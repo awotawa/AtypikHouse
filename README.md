@@ -6,5 +6,5 @@ Technology used:
 - Symfony (version)
 - 
 
-_the project is a collaboration between **Jhessy Ismaël** (@github_username), **Alexandre Huynh** (@aruseus98) and myself, **Alexandre Wotawa** (@awotawa)_
+_the project is a collaboration between **Jhessy Ismaël** (@Jhessyjhordon), **Alexandre Huynh** (@aruseus98) and myself, **Alexandre Wotawa** (@awotawa)_
 
