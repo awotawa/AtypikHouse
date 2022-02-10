@@ -3,7 +3,8 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "atypikhouse-front": {
+
+    "Frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +21,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/atypikhouse-front",
+            "outputPath": "dist/frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "atypikhouse-front:build:production"
+              "browserTarget": "Frontend:build:production"
             },
             "development": {
-              "browserTarget": "atypikhouse-front:build:development"
+              "browserTarget": "Frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "atypikhouse-front:build"
+            "browserTarget": "Frontend:build"
           }
         },
         "test": {
@@ -107,5 +108,5 @@
       }
     }
   },
-  "defaultProject": "atypikhouse-front"
+  "defaultProject": "Frontend"
 }
