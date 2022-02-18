@@ -19,9 +19,6 @@ class Lodging
     #[ORM\Column(type: 'float')]
     private $rate;
 
-    #[ORM\Column(type: 'array')]
-    private $photos = [];
-
     #[ORM\Column(type: 'text')]
     private $lodging_description;
 
@@ -59,18 +56,6 @@ class Lodging
     public function setRate(float $rate): self
     {
         $this->rate = $rate;
-
-        return $this;
-    }
-
-    public function getPhotos(): ?array
-    {
-        return $this->photos;
-    }
-
-    public function setPhotos(array $photos): self
-    {
-        $this->photos = $photos;
 
         return $this;
     }
