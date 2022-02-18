@@ -12,23 +12,24 @@
 <section class="section">
     <div class="container-form">
         <!-- Contact form -->
-        <form>
+
+        <form (ngSubmit)="submitForm()">
             <!-- Name -->
             <div class="field">
                 <label class="label-name">Name</label>
-                <input type="text" name="name" class="input" placeholder="Votre nom">
+                <input type="text" name="name" class="input" [(ngModel)]="name" placeholder="Votre nom">
             </div>
 
             <!-- Email -->
             <div class="field">
                 <label class="label-email">Email</label>
-                <input type="text" name="email" class="input" placeholder="example@gmail.com">
+                <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com">
             </div>
 
             <!-- Message -->
             <div class="field">
                 <label class="label-message">Message</label>
-                <textarea name="message" class="textarea" placeholder="Votre message"></textarea>
+                <textarea name="message" class="textarea" [(ngModel)]="message" placeholder="Votre message"></textarea>
             </div>
 
             <!-- Submit button -->
