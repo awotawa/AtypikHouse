@@ -25,6 +25,10 @@ class Property
     #[ORM\Column(type: 'datetime')]
     private $updated_at;
 
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +78,18 @@ class Property
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getCategoryId(): ?Category
+    {
+        return $this->category_id;
+    }
+
+    public function setCategoryId(?Category $category_id): self
+    {
+        $this->category_id = $category_id;
 
         return $this;
     }
