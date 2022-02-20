@@ -31,6 +31,14 @@ class Reservation
     #[ORM\Column(type: 'datetime')]
     private $updated_at;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user_id;
+
+    #[ORM\ManyToOne(targetEntity: Lodging::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $lodging_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +112,30 @@ class Reservation
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getUserId(): ?User
+    {
+        return $this->user_id;
+    }
+
+    public function setUserId(?User $user_id): self
+    {
+        $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getLodgingId(): ?Lodging
+    {
+        return $this->lodging_id;
+    }
+
+    public function setLodgingId(?Lodging $lodging_id): self
+    {
+        $this->lodging_id = $lodging_id;
 
         return $this;
     }
