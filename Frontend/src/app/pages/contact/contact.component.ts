@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -7,15 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
+  frmFinish: FormGroup;
+
   name!: string;
   email: string | undefined;
   message: string | undefined;
 
-  constructor() { }
+
+  constructor(private formBuilder: FormBuilder) {
+    this.frmFinish = this.formBuilder.group({});
+  }
 
   ngOnInit(): void {
     // create api call
     // create the form based on api fields
+
+    this.frmFinish = this.formBuilder.group({
+      checkTerms: ['', Validators.requiredTrue],
+  });
 
   }
 
@@ -27,5 +39,6 @@ export class ContactComponent implements OnInit {
     //Récupère les valeurs de tous les champs du formulaire
     alert(message);
   }
+
 
 }

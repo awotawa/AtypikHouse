@@ -1,16 +1,22 @@
+/* Header */
+
 .banner{
     background: aquamarine;
 }
 
+/* Page contenu */
 
 .section {
     display: flex;
     justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .title {
     text-align: center;
 }
+
+/* Contact form */
 
 label{
     display:flex;

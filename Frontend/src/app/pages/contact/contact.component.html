@@ -20,7 +20,7 @@
             <div class="field">
                 <label class="label-name">Name</label>
                 <input type="text" name="name" class="input" [(ngModel)]="name" placeholder="Votre nom"  #nameInput="ngModel" 
-                ngModel pattern="[a-zA-Z ]*"
+                pattern="^[a-zA-Zàéèç.-.' ']*"
                 required>
                 <div class="error" *ngIf="nameInput.invalid && nameInput.touched">
                     Ce champ est nécessaire
@@ -30,7 +30,9 @@
             <!-- Email -->
             <div class="field">
                 <label class="label-email">Email</label>
-                <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com" #emailInput="ngModel" required>
+                <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com" #emailInput="ngModel" 
+                pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+                required>
                 <div class="error" *ngIf="emailInput.invalid && emailInput.touched">
                     Ce champ est nécessaire
                 </div>
@@ -47,12 +49,14 @@
 
             <!-- RECAPTCHA -->
 
-            <section class="example-section">
-                <mat-checkbox class="example-margin" [(ngModel)]="message" #checkboxInput="ngModel" required>Je confirme avoir lu et accepté la politique de confidentialité du site (<a href="#" target="blank">Voir la politique de confidentialité</a>)</mat-checkbox>
-            </section>
+            {{ frmFinish.valid }}
+
+            <form [formGroup]="frmFinish">
+                <mat-checkbox required formControlName="checkTerms">Je confirme avoir lu et accepté la politique de confidentialité du site (<a href="#" target="blank">Voir la politique de confidentialité</a>)</mat-checkbox>
+            </form>
 
             <!-- Submit button -->
-            <button type="submit" mat-raised-button color="primary" [disabled]="contactForm.invalid">Envoyez</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid || !frmFinish.valid">Envoyez</button>
         </form>
     </div>
 </section>
