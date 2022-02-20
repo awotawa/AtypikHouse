@@ -31,7 +31,7 @@
             <div class="field">
                 <label class="label-email">Email</label>
                 <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com" #emailInput="ngModel" 
-                pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+                pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$"
                 required>
                 <div class="error" *ngIf="emailInput.invalid && emailInput.touched">
                     Ce champ est nécessaire
