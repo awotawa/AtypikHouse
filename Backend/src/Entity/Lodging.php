@@ -34,6 +34,14 @@ class Lodging
     #[ORM\Column(type: 'datetime')]
     private $updated_at;
 
+    #[ORM\ManyToOne(targetEntity: Owner::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $owner_id;
+
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +127,30 @@ class Lodging
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getOwnerId(): ?Owner
+    {
+        return $this->owner_id;
+    }
+
+    public function setOwnerId(?Owner $owner_id): self
+    {
+        $this->owner_id = $owner_id;
+
+        return $this;
+    }
+
+    public function getCategoryId(): ?Category
+    {
+        return $this->category_id;
+    }
+
+    public function setCategoryId(?Category $category_id): self
+    {
+        $this->category_id = $category_id;
 
         return $this;
     }
