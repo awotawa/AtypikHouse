@@ -13,27 +13,50 @@
     <div class="container-form">
         <!-- Contact form -->
 
-        <form (ngSubmit)="submitForm()">
+        <form (ngSubmit)="submitForm()" #contactForm="ngForm">
+
+            {{ contactForm.valid }}
             <!-- Name -->
             <div class="field">
                 <label class="label-name">Name</label>
-                <input type="text" name="name" class="input" [(ngModel)]="name" placeholder="Votre nom">
+                <input type="text" name="name" class="input" [(ngModel)]="name" placeholder="Votre nom"  #nameInput="ngModel" 
+                pattern="^[a-zA-Zàéèç.-.' ']*"
+                required>
+                <div class="error" *ngIf="nameInput.invalid && nameInput.touched">
+                    Ce champ est nécessaire
+                </div>
             </div>
 
             <!-- Email -->
             <div class="field">
                 <label class="label-email">Email</label>
-                <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com">
+                <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com" #emailInput="ngModel" 
+                pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$"
+                required>
+                <div class="error" *ngIf="emailInput.invalid && emailInput.touched">
+                    Ce champ est nécessaire
+                </div>
             </div>
 
             <!-- Message -->
             <div class="field">
                 <label class="label-message">Message</label>
-                <textarea name="message" class="textarea" [(ngModel)]="message" placeholder="Votre message"></textarea>
+                <textarea name="message" class="textarea" [(ngModel)]="message" placeholder="Votre message" #messageInput="ngModel" required></textarea>
+                <div class="error" *ngIf="messageInput.invalid && messageInput.touched">
+                    Ce champ est nécessaire
+                </div>
             </div>
 
+            <!-- RECAPTCHA -->
+
+            {{ frmFinish.valid }}
+
+            <form [formGroup]="frmFinish">
+                <mat-checkbox required formControlName="checkTerms">Je confirme avoir lu et accepté la politique de confidentialité du site (<a href="#" target="blank">Voir la politique de confidentialité</a>)</mat-checkbox>
+            </form>
+
             <!-- Submit button -->
-            <button type="submit" mat-raised-button color="primary">Envoyez</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid || !frmFinish.valid">Envoyez</button>
         </form>
     </div>
 </section>
