@@ -18,7 +18,7 @@ class ArticleTest extends KernelTestCase
     $this->user = (new User())
       ->setFirstName("John")
       ->setLastName("Smith")
-      ->setPhoto("john.smith@yopmail.com")
+      ->setPhoto("https://randomuser.me/api/portraits/men/66.jpg")
       ->setEmail("john.smith@yopmail.com")
       // ->setCreatedAt(new \DateTime('2005-08-15T15:52:01+00:00'))
       // ->setCreatedAt(new \DateTime('2005-08-15T15:52:01+00:00'))
@@ -26,3 +26,9 @@ class ArticleTest extends KernelTestCase
       ->setPassword("azertyuiop");
 
   }
+
+  public function testValidUser(): void
+  {
+    $this->assertHasErrors($this->user, 0);
+  }
+}
