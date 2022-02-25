@@ -45,3 +45,11 @@ input{
     height: 50px;
     font-size: 2rem;
 }
+
+@media screen and (max-width:760px){
+    div.container-form{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 5px;
+    }
+} 
