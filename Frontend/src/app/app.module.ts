@@ -16,6 +16,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-legales.component';
+import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     HomepageComponent,
     MainFooterComponent,
     ContactComponent,
+    MentionsLegalesComponent,
+    PolitiqueConfidentialiteComponent,
   ],
   imports: [
     BrowserModule,
