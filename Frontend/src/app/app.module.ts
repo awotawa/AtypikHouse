@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-legales.component';
 import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
+import { CGUComponent } from './pages/cgu/cgu.component';
+import { CGVComponent } from './pages/cgv/cgv.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentia
     ContactComponent,
     MentionsLegalesComponent,
     PolitiqueConfidentialiteComponent,
+    CGUComponent,
+    CGVComponent,
   ],
   imports: [
     BrowserModule,
