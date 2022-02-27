@@ -1,3 +1,4 @@
-Article (App\Tests\Article)
+User (App\Tests\User)
  [x] Valid user
+ [x] First name blank user
 

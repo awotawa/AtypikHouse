@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="3.449914">
-    <testsuite name="Project default Test Suite" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="3.449914">
-      <testsuite name="App\Tests\ArticleTest" file="/Users/alexandrewotawa/code/awotawa/AtypikHouse/Backend/tests/Entity/UserTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="3.449914">
-        <testcase name="testValidUser" class="App\Tests\ArticleTest" classname="App.Tests.ArticleTest" file="/Users/alexandrewotawa/code/awotawa/AtypikHouse/Backend/tests/Entity/UserTest.php" line="30" assertions="1" time="3.449914"/>
+  <testsuite name="" tests="2" assertions="7" errors="0" warnings="0" failures="0" skipped="0" time="1.152525">
+    <testsuite name="Project default Test Suite" tests="2" assertions="7" errors="0" warnings="0" failures="0" skipped="0" time="1.152525">
+      <testsuite name="App\Tests\UserTest" file="/Users/alexandrewotawa/code/awotawa/AtypikHouse/Backend/tests/Entity/UserTest.php" tests="2" assertions="7" errors="0" warnings="0" failures="0" skipped="0" time="1.152525">
+        <testcase name="testValidUser" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="/Users/alexandrewotawa/code/awotawa/AtypikHouse/Backend/tests/Entity/UserTest.php" line="30" assertions="1" time="1.008913"/>
+        <testcase name="testFirstNameBlankUser" class="App\Tests\UserTest" classname="App.Tests.UserTest" file="/Users/alexandrewotawa/code/awotawa/AtypikHouse/Backend/tests/Entity/UserTest.php" line="37" assertions="6" time="0.143612"/>
       </testsuite>
     </testsuite>
   </testsuite>
