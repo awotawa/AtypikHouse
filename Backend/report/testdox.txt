@@ -1,0 +1,3 @@
+Article (App\Tests\Article)
+ [x] Valid user
+
