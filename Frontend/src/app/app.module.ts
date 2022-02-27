@@ -20,6 +20,7 @@ import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-lega
 import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
 import { CGUComponent } from './pages/cgu/cgu.component';
 import { CGVComponent } from './pages/cgv/cgv.component';
+import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { CGVComponent } from './pages/cgv/cgv.component';
     PolitiqueConfidentialiteComponent,
     CGUComponent,
     CGVComponent,
+    SuppressionDonneeComponent,
   ],
   imports: [
     BrowserModule,
