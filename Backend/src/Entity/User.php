@@ -16,12 +16,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
+    #[Assert\NotBlank()]
+    #[Assert\Length([
+      'min' => 8,
+      'minMessage' => 'Your password must be at least {{ limit }} characters long',
+    ])]
     #[ORM\Column(type: 'string')]
     private $password;
 
@@ -35,6 +41,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $first_name;
 
+    #[Assert\NotBlank()]
+    #[Assert\Length([
+      'min' => 2,
+      'max' => 255,
+      'minMessage' => 'Your last name must be at least {{ limit }} characters long',
+      'maxMessage' => 'Your last name cannot be longer than {{ limit }} characters',
+      ])]
     #[ORM\Column(type: 'string', length: 255)]
     private $last_name;
 
