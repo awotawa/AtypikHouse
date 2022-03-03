@@ -59,28 +59,77 @@ class UserTest extends KernelTestCase
   }
 
   // Invalid characters first_name
+  public function testFirstNameWrongCharacterUser(): void
+  {
+    $this->assertHasErrors($this->user->setFirstName("X-Tr3M?!"), 1, 'first_name', 'Your first name');
+  }
 
   //LAST_NAME TESTING
-  // Blank last_name
-  // public function testLastNameBlankUser(): void
-  // {
-  //   $this->assertHasErrors($this->user->setLastName(""), 2, 'last_name', 'This value should not be blank.');
-  //   $this->assertHasErrors($this->user->setLastName(""), 2, 'last_name', 'Your last name must be at least 2 characters long');
-  // }
+  // Blank first_name
+  public function testLastNameBlankUser(): void
+  {
+    $this->assertHasErrors($this->user->setlastName(""), 2, 'last_name', 'This value should not be blank.');
+    $this->assertHasErrors($this->user->setlastName(""), 2, 'last_name', 'Your last name must be at least 2 characters long');
+  }
+
   // Wrong type last_name
+  public function testLastNameWrongTypeUser(): void
+  {
+    $this->assertHasErrors($this->user->setlastName(42), 1, 'last_name', 'This value should not be a string.');
+  }
+
   // Too short last_name
+  public function testLastNameTooShortUser(): void
+  {
+    $this->assertHasErrors($this->user->setlastName("A"), 1, 'last_name', 'Your last name must be at least 2 characters long');
+  }
+
   // Too long last_name
+  public function testLastNameTooLongUser(): void
+  {
+    $this->assertHasErrors($this->user->setlastName("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbBBBBBB"), 1, 'last_name', 'Your last name cannot be longer than 255 characters');
+  }
+
   // Invalid characters last_name
+  public function testLastNameWrongCharacterUser(): void
+  {
+    $this->assertHasErrors($this->user->setlastName("Sp0rtzz-420?!"), 1, 'last_name', 'Your last name');
+  }
 
   //EMAIL TESTING
   // Blank email
+  public function testEmailBlankUser(): void
+  {
+    $this->assertHasErrors($this->user->setEmail(""), 1, 'email', 'This value should not be blank.');
+  }
   // Wrong pattern email
+  public function testEmailWrongPatternUser(): void
+  {
+    $this->assertHasErrors($this->user->setEmail("bad@email..com"), 1, 'email', 'Your email');
+  }
 
   //PASSWORD TESTING
   // Blank password
+  public function testPasswordBlankUser(): void
+  {
+    $this->assertHasErrors($this->user->setPassword(""), 2, 'password', 'This value should not be blank.');
+    $this->assertHasErrors($this->user->setPassword(""), 2, 'password', 'Your password must be at least 8 characters long');
+  }
   // Too short password
+  public function testPasswordTooShortUser(): void
+  {
+    $this->assertHasErrors($this->user->setPassword("sd"), 1, 'password', 'Your password must be at least 8 characters long');
+  }
 
   //PHOTO TESTING
   // No photo
+  public function testPhotoBlankUser(): void
+  {
+    $this->assertHasErrors($this->user->setPhoto(""), 0);
+  }
   // Wrong format photo
+  public function testPhotoWrongFormatUser(): void
+  {
+    $this->assertHasErrors($this->user->setPhoto("https://wrongpattern"), 1, 'photo', 'Your photo');
+  }
 }
