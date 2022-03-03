@@ -41,12 +41,32 @@ class UserTest extends KernelTestCase
   }
 
   // Wrong type first_name
+  public function testFirstNameWrongTypeUser(): void
+  {
+    $this->assertHasErrors($this->user->setFirstName(42), 1, 'first_name', 'This value should not be a string.');
+  }
+
   // Too short first_name
+  public function testFirstNameTooShortUser(): void
+  {
+    $this->assertHasErrors($this->user->setFirstName("A"), 1, 'first_name', 'Your first name must be at least 2 characters long');
+  }
+
   // Too long first_name
+  public function testFirstNameTooLongUser(): void
+  {
+    $this->assertHasErrors($this->user->setFirstName("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAA"), 1, 'first_name', 'Your first name cannot be longer than 255 characters');
+  }
+
   // Invalid characters first_name
 
   //LAST_NAME TESTING
   // Blank last_name
+  // public function testLastNameBlankUser(): void
+  // {
+  //   $this->assertHasErrors($this->user->setLastName(""), 2, 'last_name', 'This value should not be blank.');
+  //   $this->assertHasErrors($this->user->setLastName(""), 2, 'last_name', 'Your last name must be at least 2 characters long');
+  // }
   // Wrong type last_name
   // Too short last_name
   // Too long last_name
