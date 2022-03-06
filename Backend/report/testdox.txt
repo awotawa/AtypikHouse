@@ -1,4 +1,19 @@
 User (App\Tests\User)
  [x] Valid user
  [x] First name blank user
+ [x] First name wrong type user
+ [x] First name too short user
+ [x] First name too long user
+ [x] First name wrong character user
+ [x] Last name blank user
+ [x] Last name wrong type user
+ [x] Last name too short user
+ [x] Last name too long user
+ [x] Last name wrong character user
+ [x] Email blank user
+ [x] Email wrong pattern user
+ [x] Password blank user
+ [x] Password too short user
+ [x] Photo blank user
+ [x] Photo wrong format user
 
