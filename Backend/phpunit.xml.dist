@@ -18,8 +18,8 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+        <testsuite name="Project default Test Suite">
+            <directory>tests/Entity</directory>
         </testsuite>
     </testsuites>
 
@@ -27,6 +27,9 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <report>
+            <html outputDirectory="./report/html-coverage" lowUpperBound="50" highLowerBound="90"/>
+        </report>
     </coverage>
 
     <listeners>

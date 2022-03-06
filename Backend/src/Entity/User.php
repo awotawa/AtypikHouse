@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -15,22 +16,46 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\Regex(['pattern' => '/([A-Za-z0-9À-ÿ]+@[A-Za-z]+\.[A-Za-z]{2,5})/'])]
     private $email;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
+    #[Assert\NotBlank()]
+    #[Assert\Length([
+      'min' => 8,
+      'minMessage' => 'Your password must be at least {{ limit }} characters long',
+    ])]
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[Assert\NotBlank()]
+    #[Assert\Length([
+      'min' => 2,
+      'max' => 255,
+      'minMessage' => 'Your first name must be at least {{ limit }} characters long',
+      'maxMessage' => 'Your first name cannot be longer than {{ limit }} characters',
+      ])]
+    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ]+)$/"])]
     #[ORM\Column(type: 'string', length: 255)]
     private $first_name;
 
+    #[Assert\NotBlank()]
+    #[Assert\Length([
+      'min' => 2,
+      'max' => 255,
+      'minMessage' => 'Your last name must be at least {{ limit }} characters long',
+      'maxMessage' => 'Your last name cannot be longer than {{ limit }} characters',
+      ])]
+    #[Assert\Regex(['pattern' => "/^([A-Za-zÀ-ÿ]+)$/"])]
     #[ORM\Column(type: 'string', length: 255)]
     private $last_name;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
     private $photo;
 
     public function getId(): ?int
