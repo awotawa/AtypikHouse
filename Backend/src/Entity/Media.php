@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 class Media
@@ -17,6 +18,7 @@ class Media
     private $media_type;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
     private $link;
 
     #[ORM\ManyToOne(targetEntity: Lodging::class)]
