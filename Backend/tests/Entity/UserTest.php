@@ -43,7 +43,7 @@ class UserTest extends KernelTestCase
   // Wrong type first_name
   public function testFirstNameWrongTypeUser(): void
   {
-    $this->assertHasErrors($this->user->setFirstName(42), 1, 'first_name', 'This value should not be a string.');
+    $this->assertHasErrors($this->user->setFirstName(42), 1, 'first_name', 'This value is not valid.');
   }
 
   // Too short first_name
@@ -61,7 +61,7 @@ class UserTest extends KernelTestCase
   // Invalid characters first_name
   public function testFirstNameWrongCharacterUser(): void
   {
-    $this->assertHasErrors($this->user->setFirstName("X-Tr3M?!"), 1, 'first_name', 'Your first name');
+    $this->assertHasErrors($this->user->setFirstName("X-Tr3M?!"), 1, 'first_name', 'This value is not valid.');
   }
 
   //LAST_NAME TESTING
@@ -75,7 +75,7 @@ class UserTest extends KernelTestCase
   // Wrong type last_name
   public function testLastNameWrongTypeUser(): void
   {
-    $this->assertHasErrors($this->user->setlastName(42), 1, 'last_name', 'This value should not be a string.');
+    $this->assertHasErrors($this->user->setlastName(42), 1, 'last_name', 'This value is not valid.');
   }
 
   // Too short last_name
@@ -93,7 +93,7 @@ class UserTest extends KernelTestCase
   // Invalid characters last_name
   public function testLastNameWrongCharacterUser(): void
   {
-    $this->assertHasErrors($this->user->setlastName("Sp0rtzz-420?!"), 1, 'last_name', 'Your last name');
+    $this->assertHasErrors($this->user->setlastName("Sp0rtzz-420?!"), 1, 'last_name', 'This value is not valid.');
   }
 
   //EMAIL TESTING
@@ -105,7 +105,7 @@ class UserTest extends KernelTestCase
   // Wrong pattern email
   public function testEmailWrongPatternUser(): void
   {
-    $this->assertHasErrors($this->user->setEmail("bad@email..com"), 1, 'email', 'Your email');
+    $this->assertHasErrors($this->user->setEmail("bad@email..com"), 1, 'email', 'This value is not valid.');
   }
 
   //PASSWORD TESTING
@@ -130,6 +130,6 @@ class UserTest extends KernelTestCase
   // Wrong format photo
   public function testPhotoWrongFormatUser(): void
   {
-    $this->assertHasErrors($this->user->setPhoto("https://wrongpattern"), 1, 'photo', 'Your photo');
+    $this->assertHasErrors($this->user->setPhoto("https://wrongpattern"), 1, 'photo', 'This value is not valid.');
   }
 }
