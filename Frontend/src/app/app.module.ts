@@ -37,7 +37,7 @@ import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppressi
     SuppressionDonneeComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
