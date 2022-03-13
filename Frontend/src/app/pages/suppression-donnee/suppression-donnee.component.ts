@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-suppression-donnee',
@@ -35,5 +36,10 @@ export class SuppressionDonneeComponent implements OnInit {
     //Récupère les valeurs de tous les champs du formulaire
     alert(message);
   }
+
+    // Reset form after submit
+    completeContact(contactForm :NgForm){
+      contactForm.reset()  
+    }
 
 }

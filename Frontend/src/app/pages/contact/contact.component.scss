@@ -46,6 +46,14 @@ input{
     font-size: 2rem;
 }
 
+:host::ng-deep.mat-checkbox-layout{
+    white-space: normal !important;
+}
+    
+:host::ng-deep.mat-checkbox-inner-container{
+    margin-top: 4px;
+}
+
 @media screen and (max-width:760px){
     div.container-form{
         box-sizing: border-box;
