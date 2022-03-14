@@ -1,3 +1,38 @@
+Lodgin (App\Tests\Lodgin)
+ [x] Valid lodging
+ [x] Get id lodging
+ [x] Get owner id lodging
+ [x] Get category id lodging
+ [x] Name blank lodging
+ [x] Name too short lodging
+ [x] Name too long lodging
+ [x] Name wrong character lodging
+ [x] Get name lodging
+ [x] Rate too shor lodging
+ [x] Rate too high lodging
+ [x] Rate not valide decimal lodging
+ [x] Get rate lodging
+ [x] Description blank lodging
+ [x] Description too long lodging
+ [x] Description wrong character lodging
+ [x] Get description lodging
+ [x] Adress blank lodging
+ [x] Adress too long lodging
+ [x] Get adress lodging
+
+Review (App\Tests\Review)
+ [x] Valid review
+ [x] Get id review
+ [x] Get owner id review
+ [x] Get lodging id review
+ [x] Get user id review
+ [x] Rating too short review
+ [x] Rating too high review
+ [x] Get rating review
+ [x] Review title too long review
+ [x] Review title wrong character lodging
+ [x] Get review title review
+
 User (App\Tests\User)
  [x] Valid user
  [x] First name blank user
