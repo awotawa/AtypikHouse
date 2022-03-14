@@ -19,6 +19,41 @@ Lodgin (App\Tests\Lodgin)
  [x] Adress blank lodging
  [x] Adress too long lodging
  [x] Get adress lodging
+ [x] Get created at lodging
+ [x] Get updated at lodging
+
+Media (App\Tests\Media)
+ [x] Valid media
+ [x] Get id media
+ [x] Get link media
+ [x] Get media type media
+ [x] Get lodging id media
+
+Message (App\Tests\Message)
+ [x] Valid message
+ [x] Get id message
+ [x] Get message content message
+ [x] Get created at message
+ [x] Get updated at message
+ [x] Get user id message
+ [x] Get owner id message
+
+Owner (App\Tests\Owner)
+ [x] Valid owner
+ [x] Get id owner
+ [x] Get user id owner
+
+Reservation (App\Tests\Reservation)
+ [x] Valid reservation
+ [x] Get id reservation
+ [x] Get price message
+ [x] Get start date reservation
+ [x] Get end date reservation
+ [x] Get paid reservation
+ [x] Get created at reservation
+ [x] Get updated at reservation
+ [x] Get user id reservation
+ [x] Get lodging id reservation
 
 Review (App\Tests\Review)
  [x] Valid review
@@ -29,26 +64,39 @@ Review (App\Tests\Review)
  [x] Rating too short review
  [x] Rating too high review
  [x] Get rating review
- [x] Review title too long review
- [x] Review title wrong character lodging
- [x] Get review title review
+ [x] Title too long review
+ [x] Title wrong character review
+ [x] Get title review
+ [x] Description too long review
+ [x] Description wrong character review
+ [x] Get description review
+ [x] Get created at review
+ [x] Get updated at review
 
 User (App\Tests\User)
  [x] Valid user
+ [x] Get id user
  [x] First name blank user
  [x] First name wrong type user
  [x] First name too short user
  [x] First name too long user
  [x] First name wrong character user
+ [x] Get first name user
  [x] Last name blank user
  [x] Last name wrong type user
  [x] Last name too short user
  [x] Last name too long user
  [x] Last name wrong character user
+ [x] Get last name user
  [x] Email blank user
  [x] Email wrong pattern user
+ [x] Get email user
  [x] Password blank user
  [x] Password too short user
  [x] Photo blank user
  [x] Photo wrong format user
+ [x] Get photo user
+ [x] Get user identifier user
+ [x] Get roles user
+ [x] Get password user
 

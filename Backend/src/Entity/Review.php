@@ -30,7 +30,12 @@ class Review
     #[ORM\Column(type: 'text', length: 100)]
     private $review_title;
 
-    #[ORM\Column(type: 'text')]
+    #[Assert\Length([
+        'max' => 255,
+        'maxMessage' => 'Your review description cannot be longer than {{ limit }} characters',
+    ])]
+    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
+    #[ORM\Column(type: 'text', length: 255)]
     private $review_description;
 
     #[ORM\Column(type: 'datetime')]

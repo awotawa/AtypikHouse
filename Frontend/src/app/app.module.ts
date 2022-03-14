@@ -16,11 +16,18 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutServerModule } from '@angular/flex-layout/server';
+
 import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-legales.component';
 import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
 import { CGUComponent } from './pages/cgu/cgu.component';
 import { CGVComponent } from './pages/cgv/cgv.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+
+import { ToolbarComponent } from './common/toolbar/toolbar.component';
 
 
 @NgModule({
@@ -35,15 +42,19 @@ import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppressi
     CGUComponent,
     CGVComponent,
     SuppressionDonneeComponent,
+    PagenotfoundComponent,
+    ToolbarComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

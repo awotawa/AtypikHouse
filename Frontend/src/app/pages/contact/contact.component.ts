@@ -2,20 +2,23 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
+  // ad NgbAlertconfig to the component providers
 })
 export class ContactComponent implements OnInit {
+
+  alert:boolean=false;
 
   frmFinish: FormGroup;
 
   name!: string;
   email: string | undefined;
   message: string | undefined;
-
 
   constructor(private formBuilder: FormBuilder) {
     this.frmFinish = this.formBuilder.group({});
@@ -31,6 +34,7 @@ export class ContactComponent implements OnInit {
 
   }
 
+  //Fonction test récupération valeur
   submitForm(){
     const message =`Mon name est ${this.name}.
     Mon email est ${this.email}.
@@ -38,7 +42,18 @@ export class ContactComponent implements OnInit {
 
     //Récupère les valeurs de tous les champs du formulaire
     alert(message);
+    this.alert=true;
+    this.frmFinish.reset();
   }
 
+  //Fonction alert 
+  closeAlert(){
+    this.alert=false;
+  }
+
+  // Reset form after submit
+  completeContact(contactForm :NgForm){
+    contactForm.reset()  
+  }
 
 }

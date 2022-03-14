@@ -35,8 +35,8 @@ class ReviewTest extends KernelTestCase
 
     $this->category = (new Category())
         ->setType("myType01")
-        ->setCreatedAt(new \DateTime())
-        ->setUpdatedAt(new \DateTime()); 
+        ->setCreatedAt(new DateTime('03/14/2022'))
+        ->setUpdatedAt(new DateTime('03/15/2022')); 
 
     $this->lodging = (new Lodging())
         ->setOwnerId($this->owner)
@@ -46,8 +46,8 @@ class ReviewTest extends KernelTestCase
         ->setAdress("2 rue Verdun, Rosny-sous-Bois, 93110")
         ->setCheckInTime(new \DateTime())
         ->setCategoryId($this->category)
-        ->setCreatedAt(new \DateTime())
-        ->setUpdatedAt(new \DateTime());
+        ->setCreatedAt(new \DateTime('03/14/2022'))
+        ->setUpdatedAt(new \DateTime('03/15/2022'));
 
     $this->review = (new Review())
         ->setOwnerId($this->owner)
@@ -56,8 +56,8 @@ class ReviewTest extends KernelTestCase
         ->setRating(9)
         ->setReviewTitle("My rewiew title !")
         ->setReviewDescription("Lorem ipsum dolor ipsum dolor sit amet consectetur ipsum dolor sit amet consectetur ipsum dolor sit amet consectetur ipsum dolor sit amet consectetur sit amet consectetur")
-        ->setCreatedAt(new \DateTime())
-        ->setUpdatedAt(new \DateTime());
+        ->setCreatedAt(new DateTime('03/14/2022'))
+        ->setUpdatedAt(new DateTime('03/15/2022'));
 
   }
 
@@ -124,44 +124,58 @@ class ReviewTest extends KernelTestCase
 
   //REVIEW TITLE TESTING
   // SET Too high review_title
-  public function testReviewTitleTooLongReview(): void
+  public function testTitleTooLongReview(): void
   {
     $this->assertHasErrors($this->review->setReviewTitle("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 1, 'review_title', 'Your review title cannot be longer than 100 characters');
   }
 
   // Invalid characters review_title
-  public function testReviewTitleWrongCharacterLodging(): void
+  public function testTitleWrongCharacterReview(): void
   {
     $this->assertHasErrors($this->review->setReviewTitle("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa>>"), 1, 'review_title', 'This value is not valid.');
   }
 
   // GET Rate
-  public function testGetReviewTitleReview()
+  public function testGetTitleReview()
   {
     $this->assertSame("My rewiew title !", $this->review->getReviewTitle());
   }
 
 
 
-    //REVIEW DESCRIPTION TESTING
-  // SET Too high review_title
-  public function testReviewDescriptionTooLongReview(): void
+  //REVIEW DESCRIPTION TESTING
+  // SET Too long review_description
+  public function testDescriptionTooLongReview(): void
   {
-    $this->assertHasErrors($this->review->setReviewDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 1, 'review_title', 'Your review title cannot be longer than 100 characters');
+    $this->assertHasErrors($this->review->setReviewDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"), 1, 'review_description', 'Your review description cannot be longer than 255 characters');
   }
 
-  // Invalid characters review_title
-  public function testReviewDescriptionWrongCharacterLodging(): void
+  // Invalid characters review_description
+  public function testDescriptionWrongCharacterReview(): void
   {
-    $this->assertHasErrors($this->review->setReviewDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa>>"), 1, 'review_title', 'This value is not valid.');
+    $this->assertHasErrors($this->review->setReviewDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa>>"), 1, 'review_description', 'This value is not valid.');
   }
 
   // GET review_title
-  public function testGetReviewDescriptionReview()
+  public function testGetDescriptionReview()
   {
     $this->assertSame("My rewiew title !", $this->review->getReviewTitle());
   }
 
+   
+  
+
+  //getCreatedAt
+  public function testGetCreatedAtReview()
+  {
+    $this->assertEquals(new DateTime('03/14/2022'), $this->review->getCreatedAt());
+  }
+
+  //getUpdatedAt
+  public function testGetUpdatedAtReview()
+  {
+    $this->assertEquals(new DateTime('03/15/2022'), $this->review->getUpdatedAt());
+  }
 
 
 }

@@ -5,6 +5,7 @@ import { CGVComponent } from './pages/cgv/cgv.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-legales.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
 
@@ -15,11 +16,16 @@ const routes: Routes = [
   { path: 'mentions-legales', component: MentionsLegalesComponent },
   { path: 'conditions-generales-utilisation', component: CGUComponent },
   { path: 'conditions-generales-vente', component: CGVComponent },
-  { path: 'suppression-donnees', component: SuppressionDonneeComponent }
+  { path: 'suppression-donnees', component: SuppressionDonneeComponent },
+
+  // Re route lien qui n'existe pas sur page 404
+  { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabledBlocking'
+})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

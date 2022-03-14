@@ -34,8 +34,8 @@ class LodginTest extends KernelTestCase
 
     $this->category = (new Category())
         ->setType("myType01")
-        ->setCreatedAt(new \DateTime())
-        ->setUpdatedAt(new \DateTime()); 
+        ->setCreatedAt(new \DateTime('03/14/2022'))
+        ->setUpdatedAt(new \DateTime('03/15/2022')); 
 
     $this->lodging = (new Lodging())
         ->setOwnerId($this->owner)
@@ -45,8 +45,8 @@ class LodginTest extends KernelTestCase
         ->setAdress("2 rue Verdun, Rosny-sous-Bois, 93110")
         ->setCheckInTime(new \DateTime())
         ->setCategoryId($this->category)
-        ->setCreatedAt(new \DateTime())
-        ->setUpdatedAt(new \DateTime());
+        ->setCreatedAt(new \DateTime('03/14/2022'))
+        ->setUpdatedAt(new \DateTime('03/15/2022'));
 
   }
 
@@ -195,5 +195,19 @@ class LodginTest extends KernelTestCase
     $this->assertSame("2 rue Verdun, Rosny-sous-Bois, 93110", $this->lodging->getAdress());
   }
 
+
+
+
+   //getCreatedAt
+   public function testGetCreatedAtLodging()
+   {
+     $this->assertEquals(new DateTime('03/14/2022'), $this->lodging->getCreatedAt());
+   }
+ 
+   //getUpdatedAt
+   public function testGetUpdatedAtLodging()
+   {
+     $this->assertEquals(new DateTime('03/15/2022'), $this->lodging->getUpdatedAt());
+   }
 
 }
