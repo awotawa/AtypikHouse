@@ -20,7 +20,8 @@ class UserTest extends KernelTestCase
       ->setLastName("Smith")
       ->setPhoto("https://randomuser.me/api/portraits/men/66.jpg")
       ->setEmail("john.smith@yopmail.com")
-      ->setPassword("azertyuiop");
+      ->setPassword("azertyuiop")
+      ->setRoles(['ROLE_USER']);
       // ->setCreatedAt(new \DateTime('2005-08-15T15:52:01+00:00'))
       // ->setCreatedAt(new \DateTime('2005-08-15T15:52:01+00:00'))
       // ->setIsVerified(true)
@@ -30,6 +31,13 @@ class UserTest extends KernelTestCase
   public function testValidUser(): void
   {
     $this->assertHasErrors($this->user, 0);
+  }
+
+  //ID TESTING
+  // Get id
+  public function testGetIdUser()
+  {
+    $this->assertSame(null, $this->user->getId());
   }
 
   //FIRST_NAME TESTING
@@ -63,6 +71,11 @@ class UserTest extends KernelTestCase
   {
     $this->assertHasErrors($this->user->setFirstName("X-Tr3M?!"), 1, 'first_name', 'This value is not valid.');
   }
+  // Get first_name
+  public function testGetFirstNameUser()
+  {
+    $this->assertSame("John", $this->user->getFirstName());
+  }
 
   //LAST_NAME TESTING
   // Blank first_name
@@ -95,6 +108,11 @@ class UserTest extends KernelTestCase
   {
     $this->assertHasErrors($this->user->setlastName("Sp0rtzz-420?!"), 1, 'last_name', 'This value is not valid.');
   }
+  // Get last_name
+  public function testGetLastNameUser()
+  {
+    $this->assertSame("Smith", $this->user->getLastName());
+  }
 
   //EMAIL TESTING
   // Blank email
@@ -106,6 +124,11 @@ class UserTest extends KernelTestCase
   public function testEmailWrongPatternUser(): void
   {
     $this->assertHasErrors($this->user->setEmail("bad@email..com"), 1, 'email', 'This value is not valid.');
+  }
+  // Get email
+  public function testGetEmailUser()
+  {
+    $this->assertSame("john.smith@yopmail.com", $this->user->getEmail());
   }
 
   //PASSWORD TESTING
@@ -131,5 +154,28 @@ class UserTest extends KernelTestCase
   public function testPhotoWrongFormatUser(): void
   {
     $this->assertHasErrors($this->user->setPhoto("https://wrongpattern"), 1, 'photo', 'This value is not valid.');
+  }
+  // Get photo
+  public function testGetPhotoUser()
+  {
+    $this->assertSame("https://randomuser.me/api/portraits/men/66.jpg", $this->user->getPhoto());
+  }
+
+  // getUserIdentifier
+  public function testGetUserIdentifierUser()
+  {
+    $this->assertSame("john.smith@yopmail.com", $this->user->getUserIdentifier());
+  }
+
+  //getRoles
+  public function testGetRolesUser()
+  {
+    $this->assertSame(['ROLE_USER'], $this->user->getRoles());
+  }
+
+  //getPassword
+  public function testGetPasswordUser()
+  {
+    $this->assertSame('azertyuiop', $this->user->getPassword());
   }
 }
