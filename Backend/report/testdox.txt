@@ -1,19 +1,60 @@
+Media (App\Tests\Media)
+ [x] Valid media
+ [x] Get id media
+ [x] Get link media
+ [x] Get media type media
+ [x] Get lodging id media
+
+Message (App\Tests\Message)
+ [x] Valid message
+ [x] Get id message
+ [x] Get message content message
+ [x] Get created at message
+ [x] Get updated at message
+ [x] Get user id message
+ [x] Get owner id message
+
+Owner (App\Tests\Owner)
+ [x] Valid owner
+ [x] Get id owner
+ [x] Get user id owner
+
+Reservation (App\Tests\Reservation)
+ [ ] Valid message
+ [x] Get id reservation
+ [x] Get price message
+ [x] Get start date reservation
+ [x] Get end date reservation
+ [x] Get paid reservation
+ [x] Get created at reservation
+ [x] Get updated at reservation
+ [x] Get user id reservation
+ [x] Get lodging id reservation
+
 User (App\Tests\User)
  [x] Valid user
+ [x] Get id user
  [x] First name blank user
  [x] First name wrong type user
  [x] First name too short user
  [x] First name too long user
  [x] First name wrong character user
+ [x] Get first name user
  [x] Last name blank user
  [x] Last name wrong type user
  [x] Last name too short user
  [x] Last name too long user
  [x] Last name wrong character user
+ [x] Get last name user
  [x] Email blank user
  [x] Email wrong pattern user
+ [x] Get email user
  [x] Password blank user
  [x] Password too short user
  [x] Photo blank user
  [x] Photo wrong format user
+ [x] Get photo user
+ [x] Get user identifier user
+ [x] Get roles user
+ [x] Get password user
 
