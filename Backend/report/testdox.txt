@@ -1,3 +1,12 @@
+Category (App\Tests\Category)
+ [x] Valid category
+ [x] Get id review
+ [x] Type too long category
+ [x] Type wrong character category
+ [x] Get type category
+ [x] Get created at category
+ [x] Get updated at category
+
 Lodgin (App\Tests\Lodgin)
  [x] Valid lodging
  [x] Get id lodging
@@ -22,6 +31,17 @@ Lodgin (App\Tests\Lodgin)
  [x] Get created at lodging
  [x] Get updated at lodging
 
+Lodging Value (App\Tests\LodgingValue)
+ [x] Valid lodging value
+ [x] Get id lodging value
+ [x] Get property id lodging value
+ [x] Get lodging id lodging value
+ [x] Value too long lodging value
+ [x] Value wrong character lodging value
+ [x] Get value lodging value
+ [x] Get created at lodging value
+ [x] Get updated at lodging value
+
 Media (App\Tests\Media)
  [x] Valid media
  [x] Get id media
@@ -42,6 +62,19 @@ Owner (App\Tests\Owner)
  [x] Valid owner
  [x] Get id owner
  [x] Get user id owner
+
+Property (App\Tests\Property)
+ [x] Valid property
+ [x] Get id property
+ [x] Get category id property
+ [x] New field too long property
+ [x] New field wrong character property
+ [x] Get new field property
+ [x] Default value too long property
+ [x] Default value wrong character property
+ [x] Get default value property
+ [x] Get created at property
+ [x] Get updated at property
 
 Reservation (App\Tests\Reservation)
  [x] Valid reservation

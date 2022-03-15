@@ -77,7 +77,7 @@ class ReviewTest extends KernelTestCase
 
 
 
-  //ID TESTING
+  //FOREIGN ID TESTING
   // GET owner_id
   public function testGetOwnerIdReview()
   {
@@ -106,7 +106,7 @@ class ReviewTest extends KernelTestCase
     $this->assertHasErrors($this->review->setRating(-2), 2, 'rating', 'This value is not valid.');
   }
 
-  // SET Too high Rate ( Rate > 10 )
+  // SET Too high rating ( Rate > 10 )
   public function testRatingTooHighReview(): void
   {
     $this->assertHasErrors($this->review->setRating(11), 2, 'rating', 'This value should be between 1 and 10.');
@@ -135,7 +135,7 @@ class ReviewTest extends KernelTestCase
     $this->assertHasErrors($this->review->setReviewTitle("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa>>"), 1, 'review_title', 'This value is not valid.');
   }
 
-  // GET Rate
+  // GET review_title
   public function testGetTitleReview()
   {
     $this->assertSame("My rewiew title !", $this->review->getReviewTitle());
@@ -156,7 +156,7 @@ class ReviewTest extends KernelTestCase
     $this->assertHasErrors($this->review->setReviewDescription("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa>>"), 1, 'review_description', 'This value is not valid.');
   }
 
-  // GET review_title
+  // GET review_description
   public function testGetDescriptionReview()
   {
     $this->assertSame("My rewiew title !", $this->review->getReviewTitle());

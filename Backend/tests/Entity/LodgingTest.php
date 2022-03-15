@@ -66,7 +66,7 @@ class LodginTest extends KernelTestCase
 
 
 
-  //ID TESTING
+  //FOREIGN ID TESTING
   // GET owner_id
   public function testGetOwnerIdLodging()
   {
