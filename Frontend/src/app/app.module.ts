@@ -8,7 +8,10 @@ import { MainMenuComponent } from './common/main-menu//main-menu.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { MainFooterComponent } from './common/main-footer/main-footer.component';
 
+/* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './angular-material.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -28,6 +31,8 @@ import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppressi
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
 import { ToolbarComponent } from './common/toolbar/toolbar.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 @NgModule({
@@ -44,6 +49,8 @@ import { ToolbarComponent } from './common/toolbar/toolbar.component';
     SuppressionDonneeComponent,
     PagenotfoundComponent,
     ToolbarComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -54,9 +61,11 @@ import { ToolbarComponent } from './common/toolbar/toolbar.component';
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
+    AngularMaterialModule,
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
