@@ -76,3 +76,12 @@
   .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
     padding: 0.8375em 0;
   }
+
+/* Message erreur */
+div.error{
+    border: 2px solid;
+    padding: 2px;
+    color: red;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}

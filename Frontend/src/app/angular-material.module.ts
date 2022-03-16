@@ -33,6 +33,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 const materialModules = [
   CdkTreeModule,
@@ -77,5 +78,6 @@ const materialModules = [
   exports: [
     ...materialModules
   ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }]
 })
 export class AngularMaterialModule { }
