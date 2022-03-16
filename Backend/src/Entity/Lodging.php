@@ -190,8 +190,5 @@ class Lodging
         }
     }
 
-    public function setUpdatedAtAutomatically()
-    {
-        $this->setUpdatedAt(new \DateTime());
-    }
+
 }
