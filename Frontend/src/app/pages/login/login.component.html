@@ -1,18 +1,30 @@
+<head>
+    <title>Connexion | Atypik House | Location de logement | France</title>
+</head>
+
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
         <mat-card-header>
-        <mat-card-title>Connexion</mat-card-title>
+        <mat-card-title><h1>Connexion</h1></mat-card-title>
         </mat-card-header>
-        <form class="example-form">
+        <form class="example-form" #loginForm="ngForm">
         <mat-card-content>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Username">
+                <input matInput placeholder="Identifiant" name="identifiant" [(ngModel)]="identifiant" #identifiantInput="ngModel"
+                pattern="^[a-zA-Z0-9_.]*"
+                required>
             </mat-form-field>
+            <div class="error" *ngIf="identifiantInput.invalid && identifiantInput.value">
+                L'identifiant saisie est invalide.
+            </div>
+            <div class="error" *ngIf="identifiantInput.touched && !identifiantInput.value">
+                Ce champs est requis.
+            </div>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password">
+                <input matInput placeholder="Mot de passe">
             </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+        <button mat-stroked-button color="accent" class="btn-block">Connexion</button>
         </form>
     </mat-card>
 </div>
