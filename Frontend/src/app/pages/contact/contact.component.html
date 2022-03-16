@@ -22,7 +22,10 @@
                 <input type="text" name="name" class="input" [(ngModel)]="name" placeholder="Votre nom"  #nameInput="ngModel" 
                 pattern="^[a-zA-Zàéèç.-.' ']*"
                 required>
-                <div class="error" *ngIf="nameInput.invalid && nameInput.touched">
+                <div class="error" *ngIf="nameInput.invalid && nameInput.value">
+                    Le nom saisie est incorrect
+                </div>
+                <div class="error" *ngIf="nameInput.touched && !nameInput.value">
                     Ce champ est nécessaire
                 </div>
             </div>
@@ -33,7 +36,10 @@
                 <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com" #emailInput="ngModel" 
                 pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$"
                 required>
-                <div class="error" *ngIf="emailInput.invalid && emailInput.touched">
+                <div class="error" *ngIf="emailInput.invalid && emailInput.value">
+                    L'adresse mail saisie est invalide
+                </div>
+                <div class="error" *ngIf="emailInput.touched && emailInput.value">
                     Ce champ est nécessaire
                 </div>
             </div>
@@ -42,7 +48,7 @@
             <div class="field">
                 <label class="label-message">Message</label>
                 <textarea name="message" class="textarea" [(ngModel)]="message" placeholder="Votre message" #messageInput="ngModel" required></textarea>
-                <div class="error" *ngIf="messageInput.invalid && messageInput.touched">
+                <div class="error" *ngIf="messageInput.value && messageInput.touched">
                     Ce champ est nécessaire
                 </div>
             </div>
