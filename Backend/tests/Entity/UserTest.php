@@ -20,7 +20,7 @@ class UserTest extends KernelTestCase
       ->setLastName("Smith")
       ->setPhoto("https://randomuser.me/api/portraits/men/66.jpg")
       ->setEmail("john.smith@yopmail.com")
-      ->setPassword("azertyuiop")
+      ->setPassword("Azerty123.")
       ->setRoles(['ROLE_USER']);
       // ->setCreatedAt(new \DateTime('2005-08-15T15:52:01+00:00'))
       // ->setCreatedAt(new \DateTime('2005-08-15T15:52:01+00:00'))
@@ -141,9 +141,15 @@ class UserTest extends KernelTestCase
   // Too short password
   public function testPasswordTooShortUser(): void
   {
-    $this->assertHasErrors($this->user->setPassword("sd"), 1, 'password', 'Your password must be at least 8 characters long');
+    $this->assertHasErrors($this->user->setPassword("Sd86!"), 2, 'password', 'This value is not valid.');
+    $this->assertHasErrors($this->user->setPassword("sd"), 2, 'password', 'Your password must be at least 8 characters long');
   }
 
+  // Too short password
+  public function testPasswordInvalidFormatUser(): void
+  {
+    $this->assertHasErrors($this->user->setPassword("Sdssssss!"), 1, 'password', 'This value is not valid.');
+  }
   //PHOTO TESTING
   // No photo
   public function testPhotoBlankUser(): void
@@ -176,6 +182,6 @@ class UserTest extends KernelTestCase
   //getPassword
   public function testGetPasswordUser()
   {
-    $this->assertSame('azertyuiop', $this->user->getPassword());
+    $this->assertSame('Azerty123.', $this->user->getPassword());
   }
 }
