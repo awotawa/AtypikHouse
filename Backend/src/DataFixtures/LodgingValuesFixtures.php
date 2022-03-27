@@ -2,16 +2,18 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Property;
 use App\Entity\User;
 use App\Entity\Owner;
 use App\Entity\Category;
 use App\Entity\Lodging;
+use App\Entity\LodgingValue;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class LodgingFixtures extends Fixture
+class LodgingValuesFixtures extends Fixture
 {
 
   public function load(ObjectManager $manager)
@@ -21,6 +23,8 @@ class LodgingFixtures extends Fixture
     $owner    = new Owner();
     $user     = new User();
     $category = new Category();
+    $property = new Property();
+    $lodgingValue = new LodgingValue();
 
 
     $user->setFirstName("Jean");
@@ -40,7 +44,6 @@ class LodgingFixtures extends Fixture
     $category->setUpdatedAt(new DateTime('03/15/2022')); 
     $manager->persist($category);
 
-
     $lodging->setOwnerId($owner);
     $lodging->setCategoryId($category);    
     $lodging->setName("Châlet Albert");
@@ -51,6 +54,20 @@ class LodgingFixtures extends Fixture
     $lodging->setCreatedAt(new \DateTime('03/14/2022'));
     $lodging->setUpdatedAt(new \DateTime('03/15/2022'));
     $manager->persist($lodging);
+
+    $property->setCategoryId($category);
+    $property->setNewField("Hauteur Sol");
+    $property->setDefaultValue("13 mètre");
+    $property->setCreatedAt(new DateTime('03/14/2022'));
+    $property->setUpdatedAt(new DateTime('03/15/2022')); 
+    $manager->persist($property);
+
+    $lodgingValue->setPropertyId($this->property);
+    $lodgingValue->setLodgingId($this->lodging);
+    $lodgingValue->setValue("myValue");
+    $lodgingValue->setCreatedAt(new DateTime('03/14/2022'));
+    $lodgingValue->setUpdatedAt(new DateTime('03/15/2022')); 
+    $manager->persist($lodgingValue);
     // var_dump($lodging);
 
     $manager->flush();
