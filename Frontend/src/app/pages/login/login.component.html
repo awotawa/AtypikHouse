@@ -21,8 +21,16 @@
                 Ce champs est requis.
             </div>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Mot de passe">
+                <input matInput placeholder="Mot de passe" type="password" name="password" [(ngModel)]="password" #passwordInput="ngModel"
+                pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})"
+                required>
             </mat-form-field>
+            <div class="error" *ngIf="passwordInput.invalid && passwordInput.value">
+                Le mot de passe saisie est invalide.
+            </div>
+            <div class="error" *ngIf="passwordInput.touched && !passwordInput.value">
+                Ce champs est requis.
+            </div>
         </mat-card-content>
         <button mat-stroked-button color="accent" class="btn-block">Connexion</button>
         </form>
