@@ -25,6 +25,8 @@ class LodgingFixtures extends Fixture
     $lodging->setLodgingDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, unde? Soluta repellendus ducimus, sit, dicta vero iste culpa, exercitationem fugiat alias aut nesciunt esse! Nam laborum hic iure asperiores aliquam.");
     $lodging->setAdress("Annecy, Auvergne-Rhône-Alpe");
     $lodging->setCheckInTime(new \DateTime('15:52:01+00:00'));
+    $lodging->setCreatedAt(new \DateTime('2005-08-15T15:52:01+00:00'));
+    $lodging->setUpdatedAt(new DateTime('03/20/2022'));
     $lodging->setOwnerId($owner->getId());
     $lodging->setCategoryId($category->getId());
 
