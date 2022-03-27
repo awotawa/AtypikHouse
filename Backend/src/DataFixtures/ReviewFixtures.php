@@ -6,21 +6,23 @@ use App\Entity\User;
 use App\Entity\Owner;
 use App\Entity\Category;
 use App\Entity\Lodging;
+use App\Entity\Review;
 use DateTime;
 use DateTimeInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class LodgingFixtures extends Fixture
+class ReviewFixtures extends Fixture
 {
 
   public function load(ObjectManager $manager)
   {
 
-    $lodging  = new Lodging();
-    $owner    = new Owner();
     $user     = new User();
+    $owner    = new Owner();
+    $lodging  = new Lodging();
     $category = new Category();
+    $reviews = new Review();
 
 
     $user->setFirstName("Jean");
@@ -40,7 +42,6 @@ class LodgingFixtures extends Fixture
     $category->setUpdatedAt(new DateTime('03/15/2022')); 
     $manager->persist($category);
 
-
     $lodging->setOwnerId($owner);
     $lodging->setCategoryId($category);    
     $lodging->setName("Châlet Albert");
@@ -51,6 +52,16 @@ class LodgingFixtures extends Fixture
     $lodging->setCreatedAt(new \DateTime('03/14/2022'));
     $lodging->setUpdatedAt(new \DateTime('03/15/2022'));
     $manager->persist($lodging);
+
+    $reviews->setOwnerId($this->owner);
+    $reviews->setLodgingId($this->lodging);
+    $reviews->setUserId($this->user);
+    $reviews->setRating(9);
+    $reviews->setReviewTitle("My rewiew title !");
+    $reviews->setReviewDescription("Lorem ipsum dolor ipsum dolor sit amet consectetur ipsum dolor sit amet consectetur ipsum dolor sit amet consectetur ipsum dolor sit amet consectetur sit amet consectetur");
+    $reviews->setCreatedAt(new DateTime('03/14/2022'));
+    $reviews->setUpdatedAt(new DateTime('03/15/2022'));
+    $manager->persist($reviews);
     // var_dump($lodging);
 
     $manager->flush();
