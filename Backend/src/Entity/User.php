@@ -29,6 +29,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
       'min' => 8,
       'minMessage' => 'Your password must be at least {{ limit }} characters long',
     ])]
+    #[Assert\Regex(['pattern' => "/^\S*(?=\S{8,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/"])]
     #[ORM\Column(type: 'string')]
     private $password;
 
