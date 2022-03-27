@@ -55,9 +55,9 @@ class ReservationTest extends KernelTestCase
       ->setUpdatedAt(new DateTime('03/13/2022'));
   }
 
-  public function testValidMessage(): void
+  public function testValidReservation(): void
   {
-    $this->assertHasErrors($this->message, 0);
+    $this->assertHasErrors($this->reservation, 0);
   }
 
   //getId

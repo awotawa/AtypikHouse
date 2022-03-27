@@ -1,3 +1,47 @@
+Category (App\Tests\Category)
+ [x] Valid category
+ [x] Get id review
+ [x] Type too long category
+ [x] Type wrong character category
+ [x] Get type category
+ [x] Get created at category
+ [x] Get updated at category
+
+Lodgin (App\Tests\Lodgin)
+ [x] Valid lodging
+ [x] Get id lodging
+ [x] Get owner id lodging
+ [x] Get category id lodging
+ [x] Name blank lodging
+ [x] Name too short lodging
+ [x] Name too long lodging
+ [x] Name wrong character lodging
+ [x] Get name lodging
+ [x] Rate too shor lodging
+ [x] Rate too high lodging
+ [x] Rate not valide decimal lodging
+ [x] Get rate lodging
+ [x] Description blank lodging
+ [x] Description too long lodging
+ [x] Description wrong character lodging
+ [x] Get description lodging
+ [x] Adress blank lodging
+ [x] Adress too long lodging
+ [x] Get adress lodging
+ [x] Get created at lodging
+ [x] Get updated at lodging
+
+Lodging Value (App\Tests\LodgingValue)
+ [x] Valid lodging value
+ [x] Get id lodging value
+ [x] Get property id lodging value
+ [x] Get lodging id lodging value
+ [x] Value too long lodging value
+ [x] Value wrong character lodging value
+ [x] Get value lodging value
+ [x] Get created at lodging value
+ [x] Get updated at lodging value
+
 Media (App\Tests\Media)
  [x] Valid media
  [x] Get id media
@@ -19,8 +63,21 @@ Owner (App\Tests\Owner)
  [x] Get id owner
  [x] Get user id owner
 
+Property (App\Tests\Property)
+ [x] Valid property
+ [x] Get id property
+ [x] Get category id property
+ [x] New field too long property
+ [x] New field wrong character property
+ [x] Get new field property
+ [x] Default value too long property
+ [x] Default value wrong character property
+ [x] Get default value property
+ [x] Get created at property
+ [x] Get updated at property
+
 Reservation (App\Tests\Reservation)
- [ ] Valid message
+ [x] Valid reservation
  [x] Get id reservation
  [x] Get price message
  [x] Get start date reservation
@@ -30,6 +87,24 @@ Reservation (App\Tests\Reservation)
  [x] Get updated at reservation
  [x] Get user id reservation
  [x] Get lodging id reservation
+
+Review (App\Tests\Review)
+ [x] Valid review
+ [x] Get id review
+ [x] Get owner id review
+ [x] Get lodging id review
+ [x] Get user id review
+ [x] Rating too short review
+ [x] Rating too high review
+ [x] Get rating review
+ [x] Title too long review
+ [x] Title wrong character review
+ [x] Get title review
+ [x] Description too long review
+ [x] Description wrong character review
+ [x] Get description review
+ [x] Get created at review
+ [x] Get updated at review
 
 User (App\Tests\User)
  [x] Valid user

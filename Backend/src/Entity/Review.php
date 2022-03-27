@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
@@ -13,13 +14,28 @@ class Review
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
+    #[Assert\Range([
+        'min' => 1,
+        'max' => 10,
+    ])]
+    #[Assert\Regex(['pattern' => "/^([1-9]|10)$/"])]
+    #[ORM\Column(type: 'integer', length: 10)]
     private $rating;
 
-    #[ORM\Column(type: 'text')]
+    #[Assert\Length([
+        'max' => 100,
+        'maxMessage' => 'Your review title cannot be longer than {{ limit }} characters',
+    ])]
+    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
+    #[ORM\Column(type: 'text', length: 100)]
     private $review_title;
 
-    #[ORM\Column(type: 'text')]
+    #[Assert\Length([
+        'max' => 255,
+        'maxMessage' => 'Your review description cannot be longer than {{ limit }} characters',
+    ])]
+    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
+    #[ORM\Column(type: 'text', length: 255)]
     private $review_description;
 
     #[ORM\Column(type: 'datetime')]

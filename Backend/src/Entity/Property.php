@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
@@ -13,10 +14,20 @@ class Property
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length([
+        'max' => 30,
+        'maxMessage' => 'Your new_field cannot be longer than {{ limit }} characters',
+    ])]
+    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
+    #[ORM\Column(type: 'string', length: 30)]
     private $new_field;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length([
+        'max' => 30,
+        'maxMessage' => 'Your default_value cannot be longer than {{ limit }} characters',
+    ])]
+    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ0-9 ',.-]+)$/"])]
+    #[ORM\Column(type: 'string', length: 30)]
     private $default_value;
 
     #[ORM\Column(type: 'datetime')]
