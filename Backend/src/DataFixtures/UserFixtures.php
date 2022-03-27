@@ -21,6 +21,7 @@ class UserFixtures extends Fixture
     $user0->setRoles(["ROLE_USER"]);
     $user0->setPassword("azertyuiop");
     $user0->setPhoto("https://randomuser.me/api/portraits/men/66.jpg");
+    $manager->persist($user0);
 
     $user1 = new User();
     $user1->setFirstName("Billy");
@@ -29,6 +30,7 @@ class UserFixtures extends Fixture
     $user1->setRoles(["ROLE_ADMIN"]);
     $user1->setPassword("azertyuiop");
     $user1->setPhoto("https://randomuser.me/api/portraits/men/67.jpg");
+    $manager->persist($user1);
 
     $user2 = new User();
     $user2->setFirstName("John");
@@ -37,6 +39,7 @@ class UserFixtures extends Fixture
     $user2->setRoles(["ROLE_USER"]);
     $user2->setPassword("azertyuiop");
     $user2->setPhoto("https://randomuser.me/api/portraits/men/68.jpg");
+    $manager->persist($user2);
 
     $manager->flush();
   }
