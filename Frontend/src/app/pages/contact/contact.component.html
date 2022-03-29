@@ -2,7 +2,6 @@
     <title>Contact | Atypik House | Location de logement | France</title>
 </head>
 
-
 <section class="banner">
     <div class="hero-body">
         <div class="container-title">
@@ -11,68 +10,83 @@
     </div>
 </section>
 
-
-<section class="section">
-    <div class="container-form">
-        <!-- Contact form -->
-        <form (ngSubmit)="submitForm(); completeContact(contactForm)" #contactForm="ngForm">
-
-            {{ contactForm.valid }}
-            <!-- Name -->
-            <div class="field">
-                <label class="label-name">Name</label>
-                <input type="text" name="name" class="input" [(ngModel)]="name" placeholder="Votre nom"  #nameInput="ngModel" 
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+    <!-- En-tête du formulaire-->
+      <!-- Début formulaire -->
+      <form (ngSubmit)="submitForm(); completeContact(contactForm)" class="example-form" #contactForm="ngForm">
+        <mat-card-content>
+            <!-- Input nom avec regex -->
+            <mat-form-field class="example-full-width">
+                <input matInput name="nom" [(ngModel)]="nom" #nomInput="ngModel" placeholder="Nom"
                 pattern="^[a-zA-Zàéèç.-.' ']*"
                 required>
-                <div class="error" *ngIf="nameInput.invalid && nameInput.value">
-                    Le nom saisie est incorrect
-                </div>
-                <div class="error" *ngIf="nameInput.touched && !nameInput.value">
-                    Ce champ est nécessaire
-                </div>
+            </mat-form-field>
+            <!-- Affiche une erreur si regex non respecté ou champ vide -->
+            <div class="error" *ngIf="nomInput.invalid && nomInput.value">
+                Le nom saisie est invalide !
             </div>
-
-            <!-- Email -->
-            <div class="field">
-                <label class="label-email">Email</label>
-                <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com" #emailInput="ngModel" 
+            <div class="error" *ngIf="nomInput.touched && !nomInput.value">
+                Ce champs est requis.
+            </div>
+            <!-- Input prenom avec regex -->
+            <mat-form-field class="example-full-width">
+                <input matInput name="prenom" [(ngModel)]="prenom" #prenomInput="ngModel" placeholder="Prénom"
+                pattern="^[a-zA-Zàéèç.-.' ']*"
+                required>
+            </mat-form-field>
+            <!-- Affiche une erreur si regex non respecté ou champ vide -->
+            <div class="error" *ngIf="prenomInput.invalid && prenomInput.value">
+                Le prénom saisie est invalide !
+            </div>
+            <div class="error" *ngIf="prenomInput.touched && !prenomInput.value">
+                Ce champs est requis.
+            </div>
+            <!-- Input email avec regex -->
+            <mat-form-field class="example-full-width">
+                <input matInput id="email" name="email" placeholder="Email" [(ngModel)]="email" #emailInput="ngModel"
                 pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$"
                 required>
-                <div class="error" *ngIf="emailInput.invalid && emailInput.value">
-                    L'adresse mail saisie est invalide
-                </div>
-                <div class="error" *ngIf="emailInput.touched && emailInput.value">
-                    Ce champ est nécessaire
-                </div>
+            </mat-form-field>
+            <!-- Affiche une erreur si regex non respecté ou champ vide -->
+            <div class="error" *ngIf="emailInput.invalid && emailInput.value">
+                L'adresse mail saisie est invalide !
             </div>
-
-            <!-- Message -->
-            <div class="field">
-                <label class="label-message">Message</label>
-                <textarea name="message" class="textarea" [(ngModel)]="message" placeholder="Votre message" #messageInput="ngModel" required></textarea>
-                <div class="error" *ngIf="messageInput.value && messageInput.touched">
-                    Ce champ est nécessaire
-                </div>
+            <div class="error" *ngIf="!emailInput.value && emailInput.touched">
+                Ce champs est requis.
             </div>
+            <!-- Input adresse avec regex -->
+            <mat-form-field class="example-full-width">
+                <input name="adresse" matInput placeholder="Adresse" [(ngModel)]="adresse" required>
+            </mat-form-field>
 
-            <!-- RECAPTCHA -->
+            <!-- Input message avec regex -->
+            <mat-form-field class="example-full-width">
+                <textarea name="message"  matInput placeholder="Votre message" [(ngModel)]="message" required></textarea>
+            </mat-form-field>
+        </mat-card-content>
 
-            {{ frmFinish.valid }}
+        <!-- Message d'alerte qui indique si le formulaire est valide -->
+        <div class="validate-form">
+            <div class="alert alert-success alert-dismissible fade show" *ngIf="contactForm.valid && frmFinish.valid" role="alert">
+                Formulaire valide !
+            </div>
+        </div>
 
-            <form [formGroup]="frmFinish" >
-                <mat-checkbox required formControlName="checkTerms">Je confirme avoir lu et accepté la politique de confidentialité du site (<a href="/politique-de-confidentialite/" target="blank">Voir la politique de confidentialité</a>)</mat-checkbox>
-            </form>
-
-            <!-- Submit button -->
-            <p><button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid || !frmFinish.valid">Envoyez</button></p>
+        <form [formGroup]="frmFinish" >
+            <mat-checkbox required formControlName="checkTerms">Je confirme avoir lu et accepté la politique de confidentialité du site (<a href="/politique-de-confidentialite/" target="blank">Voir la politique de confidentialité</a>)</mat-checkbox>
         </form>
 
+        <!-- Bouton désactivé tant que le formulaire n'est pas valide -->
+        <button type="submit" mat-stroked-button color="accent" class="btn-block" [disabled]="!contactForm.valid || !frmFinish.valid">Envoyez</button>
+
+        <!-- Alerte message qui apparaît une fois le message envoyé -->
         <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Message envoyé avec succès !</strong>
             <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    </div>
-</section>
-
+      </form>
+    </mat-card>
+</div>
