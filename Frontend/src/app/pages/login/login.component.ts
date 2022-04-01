@@ -10,6 +10,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   identifiant!: string;
+  password!: string;
 
   constructor(private fb: FormBuilder) { }
 
