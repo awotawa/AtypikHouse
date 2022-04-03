@@ -2,37 +2,43 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
-use App\Entity\Property;
+
 use DateTime;
 use DateTimeInterface;
+use App\Entity\Property;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker;
 
-class PropertyFixtures extends Fixture
+class PropertyFixtures extends Fixture implements DependentFixtureInterface
 {
 
-  public function load(ObjectManager $manager)
-  {
+	public function getDependencies()
+	{
+		return [
+			CategoryFixtures::class,
+		];
+	}
 
-    $category = new Category();
-    $property = new Property();
+	public function load(ObjectManager $manager)
+	{
 
-    $category->setType("myType");
-    $category->setCreatedAt(new DateTime('03/14/2022'));
-    $category->setUpdatedAt(new DateTime('03/15/2022')); 
-    $manager->persist($category);
+		$faker = Faker\Factory::create("fr_FR");
 
+		for ($i=0; $i < 20; $i++) {
 
-    $property->setCategoryId($category);
-    $property->setNewField("Hauteur Sol");
-    $property->setDefaultValue("13 mètre");
-    $property->setCreatedAt(new DateTime('03/14/2022'));
-    $property->setUpdatedAt(new DateTime('03/15/2022')); 
-    $manager->persist($property);
-    
-    // var_dump($lodging);
+			$property = new Property();
+			$property->setCategoryId($this->getReference("CATEGORY".mt_rand(0, 19)));
+			$property->setNewField($faker->randomElement(["Surface du logement ", "Nombre de pièces", "Nombre de chambres", "Hauteur Sol", "Eau", "Electricité", "Distance du parking"]));
+			$property->setDefaultValue($faker->randomElement(["20m² ", "2", "1", "2m", "Eau courante", "oui", "5km"]));
+			$property->setCreatedAt($faker->dateTime());
+			$property->setUpdatedAt($faker->dateTime());
+			$manager->persist($property);
+			$this->addReference("PROPERTY".$i, $property);
+		}
 
-    $manager->flush();
-  }
+		$manager->flush();
+	}
 }

@@ -59,6 +59,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
     private $photo;
 
+    #[ORM\Column(type: 'datetime')]
+    private $created_at;
+
+    #[ORM\Column(type: 'datetime')]
+    private $updated_at;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -161,6 +167,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }

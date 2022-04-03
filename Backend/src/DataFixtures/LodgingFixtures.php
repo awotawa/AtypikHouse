@@ -2,57 +2,49 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
-use App\Entity\Owner;
-use App\Entity\Category;
 use App\Entity\Lodging;
 use DateTime;
 use DateTimeInterface;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker;
 
-class LodgingFixtures extends Fixture
+class LodgingFixtures extends Fixture implements DependentFixtureInterface
 {
+	public function getDependencies()
+	{
+		return [
+			OwnerFixtures::class,
+			CategoryFixtures::class,
+		];
+	}
 
-  public function load(ObjectManager $manager)
-  {
+	public function load(ObjectManager $manager)
+	{
 
-    $lodging  = new Lodging();
-    $owner    = new Owner();
-    $user     = new User();
-    $category = new Category();
+		$faker = Faker\Factory::create("fr_FR");
 
+		for ($i=0; $i < 20; $i++) {
 
-    $user->setFirstName("Jean");
-    $user->setLastName("Charles");
-    $user->setPhoto("Jean");
-    $user->setPhoto("https://randomuser.me/api/portraits/men/66.jpg");
-    $user->setEmail("john.smith@yopmail.com");
-    $user->setPassword("azertyuiop");
-    $user->setRoles(['ROLE_USER']);
-    $manager->persist($user);
+			$lodging  = new Lodging();
+	
+			$lodging->setOwnerId($this->getReference("OWNER".mt_rand(5, 8)));
+			$lodging->setCategoryId($this->getReference("CATEGORY".mt_rand(0, 20)));
+			$lodging->setName($faker->userName());
+			$lodging->setRate($faker->mt_rand(1, 10));
+			$lodging->setLodgingDescription($faker->paragraph(4, true));
+			$lodging->setAdress($faker->sentence());
+			$lodging->setCheckInTime($faker->dateTime());
+			$lodging->setCreatedAt($faker->dateTime());
+			$lodging->setUpdatedAt($faker->dateTime());
+			$manager->persist($lodging);
+			$this->addReference("LODGING".$i, $lodging);
 
-    $owner->setUserId($user);
-    $manager->persist($owner);
-
-    $category->setType("myType");
-    $category->setCreatedAt(new DateTime('03/14/2022'));
-    $category->setUpdatedAt(new DateTime('03/15/2022')); 
-    $manager->persist($category);
+		}
 
 
-    $lodging->setOwnerId($owner);
-    $lodging->setCategoryId($category);    
-    $lodging->setName("Châlet Albert");
-    $lodging->setRate(200);
-    $lodging->setLodgingDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, unde? Soluta repellendus ducimus, sit, dicta vero iste culpa, exercitationem fugiat alias aut nesciunt esse! Nam laborum hic iure asperiores aliquam.");
-    $lodging->setAdress("Annecy, Auvergne-Rhône-Alpe");
-    $lodging->setCheckInTime(new \DateTime('15:52:01+00:00'));
-    $lodging->setCreatedAt(new \DateTime('03/14/2022'));
-    $lodging->setUpdatedAt(new \DateTime('03/15/2022'));
-    $manager->persist($lodging);
-    // var_dump($lodging);
-
-    $manager->flush();
-  }
+		$manager->flush();
+	}
 }

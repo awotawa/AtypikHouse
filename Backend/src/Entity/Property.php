@@ -26,7 +26,7 @@ class Property
         'max' => 30,
         'maxMessage' => 'Your default_value cannot be longer than {{ limit }} characters',
     ])]
-    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ0-9 ',.-]+)$/"])]
+    #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ0-9 '²,.-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
     private $default_value;
 

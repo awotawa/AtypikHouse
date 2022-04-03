@@ -2,41 +2,36 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
 use App\Entity\Owner;
 use DateTime;
 use DateTimeInterface;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class OwnerFixtures extends Fixture
+class OwnerFixtures extends Fixture implements DependentFixtureInterface
 {
 
-  public function load(ObjectManager $manager)
-  {
+	public function getDependencies()
+	{
+		return [
+			UserFixtures::class,
+		];
+	}
 
-    $user0 = new User();
-    $user0->setFirstName("John");
-    $user0->setLastName("Smith");
-    $user0->setEmail("john.smith@yopmail.com");
-    $user0->setRoles(["ROLE_USER"]);
-    $user0->setPassword("azertyuiop");
-    $user0->setPhoto("https://randomuser.me/api/portraits/men/66.jpg");
+	public function load(ObjectManager $manager)
+	{
 
-    $owner0 = new Owner();
-    $owner0->setUserId($user0);
+		for ($i=5; $i < 9; $i++) { 
+			# code...
+			$owner = new Owner();
+			$owner->setUserId($this->getReference("USER".$i));
+			$manager->persist($owner);
+			$this->addReference("OWNER".$i, $owner);
+		}
 
-    $user2 = new User();
-    $user2->setFirstName("John");
-    $user2->setLastName("Wayne");
-    $user2->setEmail("john.wayne@yopmail.com");
-    $user2->setRoles(["ROLE_ADMIN"]);
-    $user2->setPassword("azertyuiop");
-    $user2->setPhoto("https://randomuser.me/api/portraits/men/68.jpg");
 
-    $owner1 = new Owner();
-    $owner1->setUserId($user2);
-
-    $manager->flush();
-  }
+		$manager->flush();
+	}
 }
