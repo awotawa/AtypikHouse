@@ -16,9 +16,13 @@ export class ContactComponent implements OnInit {
 
   frmFinish: FormGroup;
 
-  name!: string;
+  nom!: string;
+  prenom!: string;
+  adresse!: string;
   email: string | undefined;
   message: string | undefined;
+
+
 
   constructor(private formBuilder: FormBuilder) {
     this.frmFinish = this.formBuilder.group({});
@@ -36,7 +40,8 @@ export class ContactComponent implements OnInit {
 
   //Fonction test récupération valeur
   submitForm(){
-    const message =`Mon name est ${this.name}.
+    const message =`Mon name est ${this.nom}.
+    Mon prénom est ${this.prenom}.
     Mon email est ${this.email}.
     Mon message est : ${this.message}`;
 
@@ -53,7 +58,7 @@ export class ContactComponent implements OnInit {
 
   // Reset form after submit
   completeContact(contactForm :NgForm){
-    contactForm.reset()  
+    contactForm.resetForm()  
   }
 
 }
