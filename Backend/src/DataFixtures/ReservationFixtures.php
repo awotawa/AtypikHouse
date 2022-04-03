@@ -33,7 +33,7 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
 			$reservation->setCreatedAt($faker->dateTime());
 			$reservation->setUpdatedAt($faker->dateTime());
 			$reservation->setUserId($this->getReference("USER".mt_rand(1, 9)));
-			$reservation->setLodgingId($this->getReference("LODGING".mt_rand(0, 20)));
+			$reservation->setLodgingId($this->getReference("LODGING".mt_rand(0, 19)));
 			$reservation->setStartDate($faker->dateTime());
 			$reservation->setEndDate($faker->dateTime());
 			$reservation->setPaid($faker->boolean(50));
