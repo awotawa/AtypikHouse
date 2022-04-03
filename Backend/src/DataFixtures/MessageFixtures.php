@@ -2,55 +2,54 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
-use App\Entity\Owner;
+
 use App\Entity\Message;
 use DateTime;
 use DateTimeInterface;
+
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker;
 
-class MessageFixtures extends Fixture
+class MessageFixtures extends Fixture implements DependentFixtureInterface
 {
 
-  public function load(ObjectManager $manager)
-  {
+	public function getDependencies()
+	{
+		return [
+			UserFixtures::class,
+			OwnerFixtures::class,
+		];
+	}
 
-    $user0 = new User();
-    $user0->setFirstName("John");
-    $user0->setLastName("Smith");
-    $user0->setEmail("john.smith@yopmail.com");
-    $user0->setRoles(["ROLE_USER"]);
-    $user0->setPassword("azertyuiop");
-    $user0->setPhoto("https://randomuser.me/api/portraits/men/66.jpg");
+	public function load(ObjectManager $manager)
+	{
 
-    $owner0 = new Owner();
-    $owner0->setUserId($user0);
+		$faker = Faker\Factory::create("fr_FR");
 
-    $user1 = new User();
-    $user1->setFirstName("John");
-    $user1->setLastName("Wayne");
-    $user1->setEmail("john.wayne@yopmail.com");
-    $user1->setRoles(["ROLE_ADMIN"]);
-    $user1->setPassword("azertyuiop");
-    $user1->setPhoto("https://randomuser.me/api/portraits/men/68.jpg");
+		for ($i = 1; $i < 5; $i++) {
 
-    $message0 = new Message();
-    $message0->setUserId($user1);
-    $message0->setOwnerId($owner0);
-    $message0->setCreatedAt(new DateTime('03/20/2022'));
-    $message0->setUpdatedAt(new DateTime('03/20/2022'));
-    $message0->setMessageContent("This is sample message");
-    $manager->persist($message0);
+			$message = new Message();
+			$message->setUserId($this->getReference("USER" . $i));
+			$message->setMessageContent($faker->sentence());
+			$message->setCreatedAt($faker->dateTime());
+			$message->setUpdatedAt($faker->dateTime());
+			$manager->persist($message);
+		}
 
-    $message1 = new Message();
-    $message1->setUserId($user1);
-    $message1->setOwnerId($owner0);
-    $message1->setCreatedAt(new DateTime('03/10/2022'));
-    $message1->setUpdatedAt(new DateTime('03/20/2022'));
-    $message1->setMessageContent("This message was updated");
-    $manager->persist($message1);
 
-    $manager->flush();
-  }
+		for ($i = 5; $i < 9; $i++) {
+
+			$message = new Message();
+			$message->setOwnerId($this->getReference("OWNER" . $i));
+			$message->setMessageContent($faker->sentence());
+			$message->setCreatedAt($faker->dateTime());
+			$message->setUpdatedAt($faker->dateTime());
+			$manager->persist($message);
+		}
+
+
+		$manager->flush();
+	}
 }
