@@ -24,7 +24,7 @@ class UserFixtures extends Fixture
 			$user->setEmail($faker->email());
 			$user->setPassword("azertyuiop".$i);
 			$user->setPhoto($faker->url());
-			$user->setRoles($faker->randomElement([[''], ['ROLE_USER'], ['ROLE_OWNER']]));
+			$user->setRoles($faker->randomElement([['ROLE_USER'], ['ROLE_OWNER']]));
 			$user->setCreatedAt($faker->dateTime());
 			$user->setUpdatedAt($faker->dateTime());
 			$manager->persist($user);

@@ -23,8 +23,8 @@ class OwnerFixtures extends Fixture implements DependentFixtureInterface
 	public function load(ObjectManager $manager)
 	{
 
-		for ($i=5; $i < 9; $i++) { 
-			# code...
+		for ($i=0; $i < 5; $i++) { 
+
 			$owner = new Owner();
 			$owner->setUserId($this->getReference("USER".$i));
 			$manager->persist($owner);

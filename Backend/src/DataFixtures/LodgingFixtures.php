@@ -30,11 +30,11 @@ class LodgingFixtures extends Fixture implements DependentFixtureInterface
 
 			$lodging  = new Lodging();
 	
-			$lodging->setOwnerId($this->getReference("OWNER".mt_rand(5, 8)));
-			$lodging->setCategoryId($this->getReference("CATEGORY".mt_rand(0, 20)));
+			$lodging->setOwnerId($this->getReference("OWNER".mt_rand(0, 4)));
+			$lodging->setCategoryId($this->getReference("CATEGORY".mt_rand(0, 19)));
 			$lodging->setName($faker->userName());
-			$lodging->setRate($faker->mt_rand(1, 10));
-			$lodging->setLodgingDescription($faker->paragraph(4, true));
+			$lodging->setRate(mt_rand(1, 10));
+			$lodging->setLodgingDescription($faker->paragraph(1, true));
 			$lodging->setAdress($faker->sentence());
 			$lodging->setCheckInTime($faker->dateTime());
 			$lodging->setCreatedAt($faker->dateTime());

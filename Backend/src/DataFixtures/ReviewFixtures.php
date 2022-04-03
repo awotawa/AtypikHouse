@@ -32,11 +32,11 @@ class ReviewFixtures extends Fixture implements DependentFixtureInterface
 			
 			$reviews = new Review();	
 			$reviews->setOwnerId($this->getReference("OWNER".mt_rand(0, 4)));
-			$reviews->setLodgingId($this->getReference("LODGING".mt_rand(0, 20)));
+			$reviews->setLodgingId($this->getReference("LODGING".mt_rand(0, 19)));
 			$reviews->setUserId($this->getReference("USER".mt_rand(1, 8)));
-			$reviews->setRating($faker->mt_rand(1, 10));
+			$reviews->setRating(mt_rand(1, 10));
 			$reviews->setReviewTitle($faker->title());
-			$reviews->setReviewDescription($faker->paragraph(4, true));
+			$reviews->setReviewDescription($faker->paragraph(1, true));
 			$reviews->setCreatedAt($faker->dateTime());
 			$reviews->setUpdatedAt($faker->dateTime());
 			$manager->persist($reviews);

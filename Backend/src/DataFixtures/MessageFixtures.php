@@ -28,10 +28,11 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
 
 		$faker = Faker\Factory::create("fr_FR");
 
-		for ($i = 1; $i < 5; $i++) {
+		for ($i = 0; $i < 5; $i++) {
 
 			$message = new Message();
-			$message->setUserId($this->getReference("USER" . $i));
+			$message->setUserId($this->getReference("USER".mt_rand(0, 9)));
+			$message->setOwnerId($this->getReference("OWNER".mt_rand(0, 4)));
 			$message->setMessageContent($faker->sentence());
 			$message->setCreatedAt($faker->dateTime());
 			$message->setUpdatedAt($faker->dateTime());
@@ -39,15 +40,14 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
 		}
 
 
-		for ($i = 5; $i < 9; $i++) {
+		// for ($i = 5; $i < 9; $i++) {
 
-			$message = new Message();
-			$message->setOwnerId($this->getReference("OWNER" . $i));
-			$message->setMessageContent($faker->sentence());
-			$message->setCreatedAt($faker->dateTime());
-			$message->setUpdatedAt($faker->dateTime());
-			$manager->persist($message);
-		}
+		// 	$message = new Message();
+		// 	$message->setMessageContent($faker->sentence());
+		// 	$message->setCreatedAt($faker->dateTime());
+		// 	$message->setUpdatedAt($faker->dateTime());
+		// 	$manager->persist($message);
+		// }
 
 
 		$manager->flush();
