@@ -16,9 +16,7 @@ export class LoginComponent implements OnInit {
 
   private _shown = false;
 
-  constructor(private fb: FormBuilder, private el: ElementRef) { 
-    
-  }
+  constructor(private fb: FormBuilder, private el: ElementRef) { }
 
   ngOnInit(): void {
   }
@@ -40,7 +38,6 @@ export class LoginComponent implements OnInit {
       myInputPassword.setAttribute('type', 'password');
       myImgPassword.src = "../../assets/icons/passwordVisibility/visibility.svg";      
     }
-
     
   }
 }
