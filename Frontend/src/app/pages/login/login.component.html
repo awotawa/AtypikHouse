@@ -4,35 +4,60 @@
 
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
+
         <mat-card-header>
-        <mat-card-title><h1>Connexion</h1></mat-card-title>
+            <mat-card-title>
+                <h1>Connexion</h1>
+            </mat-card-title>
         </mat-card-header>
+
         <form class="example-form" #loginForm="ngForm">
-        <mat-card-content>
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Identifiant" name="identifiant" [(ngModel)]="identifiant" #identifiantInput="ngModel"
-                pattern="^[a-zA-Z0-9_.]*"
-                required>
-            </mat-form-field>
-            <div class="error" *ngIf="identifiantInput.invalid && identifiantInput.value">
-                L'identifiant saisie est invalide.
-            </div>
-            <div class="error" *ngIf="identifiantInput.touched && !identifiantInput.value">
-                Ce champs est requis.
-            </div>
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Mot de passe" type="password" name="password" [(ngModel)]="password" #passwordInput="ngModel"
-                pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})"
-                required>
-            </mat-form-field>
-            <div class="error" *ngIf="passwordInput.invalid && passwordInput.value">
-                Le mot de passe saisie est invalide.
-            </div>
-            <div class="error" *ngIf="passwordInput.touched && !passwordInput.value">
-                Ce champs est requis.
-            </div>
-        </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Connexion</button>
+
+            <mat-card-content>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Identifiant" name="identifiant" [(ngModel)]="identifiant"
+                        #identifiantInput="ngModel" pattern="^[a-zA-Z0-9_.\-]*" required>
+                </mat-form-field>
+
+                <div class="error" *ngIf="identifiantInput.invalid && identifiantInput.value">
+                    L'identifiant saisie est invalide.
+                </div>
+
+                <div class="error" *ngIf="identifiantInput.touched && !identifiantInput.value">
+                    Ce champs est requis.
+                </div>
+
+                <mat-form-field class="example-full-width">
+                    <div class="passwordVisibility">
+                        <input matInput placeholder="Mot de passe" type="password" name="password"
+                            [(ngModel)]="password" #passwordInput="ngModel"
+                            pattern="^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$" required>
+                        <span (click)="visibilityPassword()">
+                            <img class="imgVisibility" src="../../assets/icons/passwordVisibility/visibility.svg" alt="">
+                        </span>
+                    </div>
+                </mat-form-field>
+
+                <div class="error" *ngIf="passwordInput.invalid && passwordInput.value">
+                    Le mot de passe saisie est invalide. <br>
+                    Il vous faut 8 caractères minimum contenant au moins :
+                    <ul>
+                        <li> <b> Une lettre Majuscule</b></li>
+                        <li> <b> Une lettre Minuscule</b></li>
+                        <li> <b> Un caractère spéciale </b></li>
+                        <li> <b> Un chiffre</b></li>
+                    </ul>
+                </div>
+
+                <div class="error" *ngIf="passwordInput.touched && !passwordInput.value">
+                    Ce champs est requis.
+                </div>
+
+            </mat-card-content>
+
+            <button mat-stroked-button color="accent" class="btn-block">Connexion</button>
+
         </form>
     </mat-card>
 </div>
