@@ -33,6 +33,8 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
 import { ToolbarComponent } from './common/toolbar/toolbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { PreFooterComponent } from './common/pre-footer/pre-footer.component';
+import { PostFooterComponent } from './common/post-footer/post-footer.component';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { RegisterComponent } from './pages/register/register.component';
     ToolbarComponent,
     LoginComponent,
     RegisterComponent,
+    PreFooterComponent,
+    PostFooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
