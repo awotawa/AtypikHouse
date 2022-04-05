@@ -22,7 +22,7 @@
             </div>
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Mot de passe" type="password" name="password" [(ngModel)]="password" #passwordInput="ngModel"
-                pattern="^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&*])(?=.{8,})"
+                pattern="^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
                 required>
             </mat-form-field>
             <div class="error" *ngIf="passwordInput.invalid && passwordInput.value">
