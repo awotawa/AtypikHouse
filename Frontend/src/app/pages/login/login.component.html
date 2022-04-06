@@ -17,7 +17,7 @@
 
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Identifiant" name="identifiant" [(ngModel)]="identifiant"
-                        #identifiantInput="ngModel" pattern="^[a-zA-Z0-9_.\-]*" required>
+                        #identifiantInput="ngModel" pattern="^[a-zA-Z0-9_.\-@]*" required>
                 </mat-form-field>
 
                 <div class="error" *ngIf="identifiantInput.invalid && identifiantInput.value">
