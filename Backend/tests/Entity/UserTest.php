@@ -145,11 +145,12 @@ class UserTest extends KernelTestCase
     $this->assertHasErrors($this->user->setPassword("sd"), 2, 'password', 'Your password must be at least 8 characters long');
   }
 
-  // Too short password
+  // Invalid format password
   public function testPasswordInvalidFormatUser(): void
   {
-    $this->assertHasErrors($this->user->setPassword("Sdssssss!"), 1, 'password', 'This value is not valid.');
+    $this->assertHasErrors($this->user->setPassword("Sdssssss<"), 1, 'password', 'This value is not valid.');
   }
+  
   //PHOTO TESTING
   // No photo
   public function testPhotoBlankUser(): void

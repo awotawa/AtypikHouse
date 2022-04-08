@@ -5,7 +5,9 @@ namespace App\Entity;
 use App\Repository\LodgingValueRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
+#[ApiResource()]
 #[ORM\Entity(repositoryClass: LodgingValueRepository::class)]
 class LodgingValue
 {
