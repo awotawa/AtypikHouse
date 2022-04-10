@@ -4,11 +4,11 @@ import { CGUComponent } from './pages/cgu/cgu.component';
 import { CGVComponent } from './pages/cgv/cgv.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { MentionsLegalesComponent } from './pages/mentions-legales/mentions-legales.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
 
 const routes: Routes = [

@@ -31,8 +31,11 @@ import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppressi
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
 import { ToolbarComponent } from './common/toolbar/toolbar.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { PreFooterComponent } from './common/pre-footer/pre-footer.component';
+import { PostFooterComponent } from './common/post-footer/post-footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -51,6 +54,8 @@ import { RegisterComponent } from './pages/register/register.component';
     ToolbarComponent,
     LoginComponent,
     RegisterComponent,
+    PreFooterComponent,
+    PostFooterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -62,6 +67,7 @@ import { RegisterComponent } from './pages/register/register.component';
     MatButtonModule,
     MatCheckboxModule,
     AngularMaterialModule,
+    HttpClientModule
 
   ],
   providers: [],
