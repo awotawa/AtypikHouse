@@ -6,50 +6,54 @@
     <mat-card class="box">
 
         <!-- En-tête du formulaire-->
-        {{ registerForm.valid }}
+        {{ userForm.valid }}
         <mat-card-header>
             <mat-card-title>Inscription</mat-card-title>
         </mat-card-header>
 
         <!-- Début formulaire -->
-        <form (ngSubmit)="onSubmit()" class="example-form" #registerForm="ngForm">
+        <form (ngSubmit)="onSubmit()" class="example-form" [formGroup]="userForm">
             <mat-card-content>
+
                 <!-- Input nom avec regex -->
                 <mat-form-field class="example-full-width">
-                    <input matInput name="nom" [(ngModel)]="nom" #nomInput="ngModel" placeholder="Nom"
-                        pattern="^[a-zA-Zàéèç.-.' ']*" required>
+                    <input matInput name="nom" [(ngModel)]="userForm.value.firstName" formControlName="firstName"
+                        placeholder="Nom" pattern="^[a-zA-Zàéèç.-.' ']*" required>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide -->
-                <div class="error" *ngIf="nomInput.invalid && nomInput.value">
+                <div class="error"
+                    *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].value">
                     Le nom saisie est invalide !
                 </div>
-                <div class="error" *ngIf="nomInput.touched && !nomInput.value">
+                <div class="error"
+                    *ngIf="userForm.controls['firstName'].touched && !userForm.controls['firstName'].value">
                     Ce champs est requis.
                 </div>
 
                 <!-- Input prenom avec regex -->
                 <mat-form-field class="example-full-width">
-                    <input matInput name="prenom" [(ngModel)]="prenom" #prenomInput="ngModel" placeholder="Prénom"
-                        pattern="^[a-zA-Zàéèç.-.' ']*" required>
+                    <input matInput name="prenom" [(ngModel)]="userForm.value.lastName" formControlName="lastName"
+                        placeholder="Prénom" pattern="^[a-zA-Zàéèç.-.' ']*" required>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide -->
-                <div class="error" *ngIf="prenomInput.invalid && prenomInput.value">
+                <div class="error" *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].value">
                     Le prénom saisie est invalide !
                 </div>
-                <div class="error" *ngIf="prenomInput.touched && !prenomInput.value">
+                <div class="error"
+                    *ngIf="userForm.controls['lastName'].touched && !userForm.controls['lastName'].value">
                     Ce champs est requis.
                 </div>
 
                 <!-- Input email avec regex -->
                 <mat-form-field class="example-full-width">
-                    <input matInput id="email" name="email" placeholder="Email" [(ngModel)]="email"
-                        #emailInput="ngModel" pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$" required>
+                    <input matInput id="email" name="email" [(ngModel)]="userForm.value.email" placeholder="Email"
+                        formControlName="email" pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$" required>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide -->
-                <div class="error" *ngIf="emailInput.invalid && emailInput.value">
+                <div class="error" *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].value">
                     L'adresse mail saisie est invalide !
                 </div>
-                <div class="error" *ngIf="!emailInput.value && emailInput.touched">
+                <div class="error" *ngIf="!userForm.controls['email'].value && userForm.controls['email'].touched">
                     Ce champs est requis.
                 </div>
 
@@ -58,7 +62,7 @@
                     <div class="passwordVisibility">
 
                         <input name="password" type="password" matInput id="password" placeholder="Mot de passe"
-                            [(ngModel)]="password" #passwordInput="ngModel" 
+                            [(ngModel)]="userForm.value.password" formControlName="password"
                             pattern="^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$" required>
                         <span (click)="visibilityPassword()">
                             <img class="imgVisibility1" src="../../assets/icons/passwordVisibility/visibility.svg"
@@ -67,7 +71,7 @@
 
                     </div>
                 </mat-form-field>
-                <div class="error" *ngIf="passwordInput.invalid && passwordInput.value">
+                <div class="error" *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].value">
                     Le mot de passe saisie est invalide. <br>
                     Il vous faut 8 caractères minimum contenant au moins :
                     <ul>
@@ -77,15 +81,16 @@
                         <li> <b> Un chiffre</b></li>
                     </ul>
                 </div>
-                <div class="error" *ngIf="passwordInput.touched && !passwordInput.value">
+                <div class="error"
+                    *ngIf="userForm.controls['password'].touched && !userForm.controls['password'].value">
                     Ce champs est requis.
                 </div>
 
                 <mat-form-field class="example-full-width">
-                    <div class="passwordVisibility">
+                    <div class="passwordVisibility" [formGroup]="repassword">
 
                         <input name="repassword" type="password" matInput placeholder="Confirmer mot de passe"
-                            [(ngModel)]="repassword" #repasswordInput="ngModel" 
+                            [(ngModel)]="repassword.value.samePassword" formControlName="samePassword"
                             pattern="^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$" required>
                         <span (click)="visibilityConfirmPassword()">
                             <img class="imgVisibility2" src="../../assets/icons/passwordVisibility/visibility.svg"
@@ -95,23 +100,25 @@
                     </div>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide et/ou mot de passe non identique -->
-                <div class="error" *ngIf="passwordInput.value != repasswordInput.value && repasswordInput.touched">
+                <div class="error"
+                    *ngIf="userForm.controls['password'].value != repassword.controls['samePassword'].value && repassword.controls['samePassword'].touched">
                     Mot de passe non identique.
                 </div>
-                <div class="error" *ngIf="repasswordInput.touched && !repasswordInput.value">
+                <div class="error" *ngIf="repassword.controls['samePassword'].touched && !repassword.controls['samePassword'].value">
                     Ce champs est requis.
                 </div>
 
                 <!-- Input adresse avec regex -->
                 <mat-form-field class="example-full-width">
-                    <input name="adresse" matInput placeholder="Adresse" [(ngModel)]="adresse" #adresseInput="ngModel" required>
+                    <input name="adresse" matInput placeholder="Adresse" [(ngModel)]="userForm.value.adresse"
+                        formControlName="adresse" required>
                 </mat-form-field>
-                <div class="error" *ngIf="adresseInput.touched && !adresseInput.value">
+                <div class="error" *ngIf="userForm.controls['adresse'].touched && !userForm.controls['adresse'].value">
                     Ce champs est requis.
                 </div>
 
                 <!-- Input date en readonly, pas de saisie manuelle autorisée -->
-                <mat-form-field class="example-full-width">
+                <!-- <mat-form-field class="example-full-width">
                     <input name="date" matInput [matDatepicker]="picker" placeholder="Date de naissance" readonly
                         [(ngModel)]="date" #dateInput="ngModel" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -119,23 +126,23 @@
                 </mat-form-field>
                 <div class="error" *ngIf="dateInput.touched && !dateInput.value">
                     Ce champs est requis.
-                </div>
+                </div> -->
 
                 <!-- Sélection du rôle -->
                 <mat-form-field class="example-full-width">
                     <mat-label>Vous êtes un...</mat-label>
-                    <mat-select name="role" [(ngModel)]="role" #roleInput="ngModel" required>
+                    <mat-select name="role" [(ngModel)]="userForm.value.role" formControlName="role" required>
                         <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <div class="error" *ngIf="roleInput.touched && !roleInput.value">
+                <div class="error" *ngIf="userForm.controls['role'].touched && !userForm.controls['role'].value">
                     Ce champs est requis.
                 </div>
 
             </mat-card-content>
             <!-- Bouton désactivé tant que le formulaire n'est pas valide -->
             <button type="submit" mat-stroked-button color="accent" class="btn-block"
-                [disabled]="!registerForm.valid">Inscription</button>
+                [disabled]="!userForm.valid">Inscription</button>
         </form>
     </mat-card>
 </div>

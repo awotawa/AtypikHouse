@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 //Redirection on submit
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
 	selector: 'app-register',
@@ -11,14 +12,10 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 	//Initialisation des variables associé au register form pour pouvoir contrôler les champs associés
-	nom!: string;
-	prenom!: string;
-	email: string | undefined;
-	password!: string;
-	repassword!: string;
-	adresse!: string;
-	date!: string;
-	role!: string;
+	userForm: FormGroup
+	repassword = this.formBuilder.group({
+		samePassword: ['', [Validators.required]],
+	})
 
 	public inputPassword = this.el.nativeElement;
 	public inputRePassword = this.el.nativeElement;
@@ -28,13 +25,44 @@ export class RegisterComponent implements OnInit {
 
 	Roles: any = ['Propriétaire/Locataire', 'Propriétaire', 'Locataire'];
 	constructor(private formBuilder: FormBuilder, private router: Router,
-		private el: ElementRef) { }
+		private el: ElementRef, private authService: AuthService) {
+
+		this.userForm = this.formBuilder.group(
+			{
+				genre: [''],
+				lastName: ['', [Validators.required]],
+				firstName: ['', [Validators.required]],
+				email: ['', [Validators.required]],
+				password: ['', [Validators.required]],
+				photoUrl: [''],
+				role: ['', [Validators.required]],
+				adresse: ['', [Validators.required]],
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			}
+		)
+
+	}
 
 	ngOnInit() { }
 
 	//Redirection sur page inscription success
 	onSubmit() {
-		this.router.navigate(['/']);
+		
+		console.log(this.userForm.value);
+
+		this.authService.register(this.userForm.value)
+		.subscribe(res => {
+			
+			if (res.firstName) {
+				console.log("gg");
+			}
+			
+			
+
+		})
+		
+		//this.router.navigate(['/']);
 	}
 
 	visibilityPassword() {

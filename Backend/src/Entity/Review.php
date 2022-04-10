@@ -5,7 +5,9 @@ namespace App\Entity;
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Annotation\ApiResource;
 
+#[ApiResource()]
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
 {
