@@ -8,6 +8,8 @@ import { MainMenuComponent } from './common/main-menu//main-menu.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { MainFooterComponent } from './common/main-footer/main-footer.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
@@ -36,7 +38,6 @@ import { RegisterComponent } from './auth/register/register.component';
 import { PreFooterComponent } from './common/pre-footer/pre-footer.component';
 import { PostFooterComponent } from './common/post-footer/post-footer.component';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatCheckboxModule,
     AngularMaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
 
   ],
   providers: [],
