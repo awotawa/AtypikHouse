@@ -1,5 +1,6 @@
 nav {
     background: linear-gradient(#16ABA0, white) !important;
+    height: 100px;
     div.container {
         div.myLogoContainer {
             max-width: 95px;
@@ -16,5 +17,16 @@ nav {
             color: #FFFFFF;
             text-decoration: none;
         }
+        ul.navbar-nav.mr-auto{
+            li.nav-item.dropdown{
+                a.nav-link.dropdown-toggle{
+                    color: #FFFFFF;
+                }
+            }
+        }
     }
+}
+
+.dropdown-toggle::after{
+    display: none;
 }
