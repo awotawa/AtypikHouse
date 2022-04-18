@@ -16,7 +16,7 @@
             <mat-card-content>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Identifiant" name="identifiant" [(ngModel)]="identifiant"
+                    <input matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Identifiant" name="identifiant" [(ngModel)]="identifiant"
                         #identifiantInput="ngModel" pattern="^[a-zA-Z0-9_.\-@]*" required>
                 </mat-form-field>
 
@@ -30,7 +30,7 @@
 
                 <mat-form-field class="example-full-width">
                     <div class="passwordVisibility">
-                        <input matInput placeholder="Mot de passe" type="password" name="password"
+                        <input matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mot de passe" type="password" name="password"
                             [(ngModel)]="password" #passwordInput="ngModel"
                             pattern="^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$" required>
                         <span (click)="visibilityPassword()">

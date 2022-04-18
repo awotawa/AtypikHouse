@@ -2,17 +2,12 @@
     <title>Contact | Atypik House | Location de logement | France</title>
 </head>
 
-<section class="banner">
-    <div class="hero-body">
-        <div class="container-title">
-            <h1 class="title">Contactez-nous !</h1>
-        </div>
-    </div>
-</section>
-
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
     <!-- En-tête du formulaire-->
+        <mat-card-header>
+            <mat-card-title>Contact</mat-card-title>
+        </mat-card-header>
       <!-- Début formulaire -->
       <form (ngSubmit)="submitForm(); completeContact(contactForm)" class="example-form" #contactForm="ngForm">
         <mat-card-content>
