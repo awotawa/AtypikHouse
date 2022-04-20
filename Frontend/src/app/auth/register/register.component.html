@@ -18,7 +18,7 @@
                 <!-- Input nom avec regex -->
                 <mat-form-field class="example-full-width">
                     <input matInput name="nom" [(ngModel)]="userForm.value.firstName" formControlName="firstName"
-                        placeholder="Nom" pattern="^[a-zA-Zàéèç.-.' ']*" required>
+                        placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nom" pattern="^[a-zA-Zàéèç.-.' ']*" required>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide -->
                 <div class="error"
@@ -33,7 +33,7 @@
                 <!-- Input prenom avec regex -->
                 <mat-form-field class="example-full-width">
                     <input matInput name="prenom" [(ngModel)]="userForm.value.lastName" formControlName="lastName"
-                        placeholder="Prénom" pattern="^[a-zA-Zàéèç.-.' ']*" required>
+                        placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prénom" pattern="^[a-zA-Zàéèç.-.' ']*" required>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide -->
                 <div class="error" *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].value">
@@ -46,7 +46,7 @@
 
                 <!-- Input email avec regex -->
                 <mat-form-field class="example-full-width">
-                    <input matInput id="email" name="email" [(ngModel)]="userForm.value.email" placeholder="Email"
+                    <input matInput id="email" name="email" [(ngModel)]="userForm.value.email" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email"
                         formControlName="email" pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$" required>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide -->
@@ -61,7 +61,7 @@
                 <mat-form-field class="example-full-width">
                     <div class="passwordVisibility">
 
-                        <input name="password" type="password" matInput id="password" placeholder="Mot de passe"
+                        <input name="password" type="password" matInput id="password" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mot de passe"
                             [(ngModel)]="userForm.value.password" formControlName="password"
                             pattern="^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$" required>
                         <span (click)="visibilityPassword()">
@@ -89,7 +89,7 @@
                 <mat-form-field class="example-full-width">
                     <div class="passwordVisibility" [formGroup]="repassword">
 
-                        <input name="repassword" type="password" matInput placeholder="Confirmer mot de passe"
+                        <input name="repassword" type="password" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Confirmer mot de passe"
                             [(ngModel)]="repassword.value.samePassword" formControlName="samePassword"
                             pattern="^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$" required>
                         <span (click)="visibilityConfirmPassword()">
@@ -110,7 +110,7 @@
 
                 <!-- Input adresse avec regex -->
                 <mat-form-field class="example-full-width">
-                    <input name="adresse" matInput placeholder="Adresse" [(ngModel)]="userForm.value.adresse"
+                    <input name="adresse" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adresse" [(ngModel)]="userForm.value.adresse"
                         formControlName="adresse" required>
                 </mat-form-field>
                 <div class="error" *ngIf="userForm.controls['adresse'].touched && !userForm.controls['adresse'].value">
