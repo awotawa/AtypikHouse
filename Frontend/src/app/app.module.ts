@@ -38,6 +38,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { PreFooterComponent } from './common/pre-footer/pre-footer.component';
 import { PostFooterComponent } from './common/post-footer/post-footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LodgingComponent } from './pages/lodging/lodging.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     PreFooterComponent,
     PostFooterComponent,
+    LodgingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -70,7 +72,6 @@ import { HttpClientModule } from '@angular/common/http';
     AngularMaterialModule,
     HttpClientModule,
     NgbModule
-
   ],
   providers: [],
   bootstrap: [AppComponent],
