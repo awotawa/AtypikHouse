@@ -90,15 +90,23 @@ section {
 
                         button {
                             color: white;
-                            background: rgb(220, 152, 24);
-                            background: linear-gradient(20deg, rgba(220, 152, 24, 1) 42%, rgba(255, 202, 87, 1) 78%);
-                            border-radius: 15px;
-                            border: 2px solid white;
-                            box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.5);
+                            //background: rgb(220, 152, 24);
+                            background: linear-gradient(90.69deg, #ED6700 0%, #FF994B 99.84%);
+                            border: 2px solid #FFFFFF;
+                            box-sizing: border-box;
+                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            border-radius: 10px;
                             cursor: pointer;
                             padding: 5px;
                             width: 80%;
                             margin: auto;
+                            opacity: 0.7;
+                            transition: 0.5s;
+                        }
+
+                        button:hover {
+                            background: linear-gradient(90.69deg, #FF994B 0%, #ED6700 99.84%);
+                            opacity: 1;
                         }
                     }
                 }
@@ -143,7 +151,7 @@ section {
                 }
             }
 
-            
+
         }
     }
 }
@@ -151,9 +159,9 @@ section {
 @media (max-width: 1024px) {
 
     section {
-    
+
         div.useful-width {
-    
+
             div.margin-constraint {
 
                 div.lodgingSection {
@@ -170,35 +178,35 @@ section {
                         width: 100%;
 
                         div.lodgingAprecu {
-    
+
                             p {
                                 display: block;
                             }
                         }
-    
+
                         div.logingDesc {
-    
+
                             h3 {
                                 text-align: left;
                                 margin: 0;
                                 color: #2c2c51;
                                 font-size: 20px;
                             }
-    
+
                             span {
                                 text-align: left;
                                 font-size: 16px;
                                 color: orange;
                                 margin-bottom: 0;
                             }
-    
+
                             p {
                                 text-align: left;
                             }
 
                         }
                     }
-            
+
                 }
             }
         }
