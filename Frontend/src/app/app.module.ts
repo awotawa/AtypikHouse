@@ -39,7 +39,7 @@ import { PreFooterComponent } from './common/pre-footer/pre-footer.component';
 import { PostFooterComponent } from './common/post-footer/post-footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LodgingComponent } from './pages/lodging/lodging.component';
-
+import { GoogleMapsModule } from '@angular/google-maps';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +71,7 @@ import { LodgingComponent } from './pages/lodging/lodging.component';
     MatCheckboxModule,
     AngularMaterialModule,
     HttpClientModule,
+    GoogleMapsModule,
     NgbModule
   ],
   providers: [],
