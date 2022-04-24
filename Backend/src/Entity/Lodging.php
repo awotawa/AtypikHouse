@@ -59,10 +59,10 @@ class Lodging
     private $check_in_time;
 
     #[ORM\Column(type: 'datetime')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\Column(type: 'datetime')]
-    private $updated_at;
+    private $updatedAt;
 
     #[ORM\ManyToOne(targetEntity: Owner::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -71,6 +71,11 @@ class Lodging
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $category_id;
+
+    public function __construct()
+    {
+      $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -139,24 +144,17 @@ class Lodging
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
+        return $this->createdAt;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
