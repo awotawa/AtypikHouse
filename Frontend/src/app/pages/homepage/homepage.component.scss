@@ -1,60 +1,80 @@
-div.container{
-    ngb-carousel.no-indicators{
+div.container {
+    ngb-carousel.no-indicators {
+
         //Retire bordure des boutons et background
-        button.carousel-control-prev{
+        button.carousel-control-prev {
             background-color: transparent;
             border: 0;
         }
+
         button.carousel-control-prev:hover {
             background-color: rgba(0, 0, 0, 0.489);
         }
+
         button.carousel-control-next {
             background-color: transparent;
             border: 0;
         }
+
         button.carousel-control-next:hover {
             background-color: rgba(0, 0, 0, 0.489);
         }
+
         //Mets l'image à 100% de longueur
-        img{
+        img {
             width: 100%;
             height: 650px;
         }
+
         //Cache le slide X of X
         span.visually-hidden {
             display: none;
         }
+
         //Description carousel
-        .carousel-caption{
+        .carousel-caption {
             background-color: #ED6700;
-            opacity: 0.7;
+            opacity: 0.8;
+            border-radius: 15px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            position: absolute;
+            right: 25%;
+            left: 25%;
+
+            p {
+                color: white;
+                margin-block-start: 0em;
+                margin-block-end: 0em;
+            }
         }
+
         //Cache l'indicateur du nombre de slide
-        .carousel-indicators.visually-hidden{
+        .carousel-indicators.visually-hidden {
             display: none;
             visibility: hidden;
         }
     }
 }
 
-.carousel-control-prev-icon{
+.carousel-control-prev-icon {
     background-image: url("../../../assets/images/icons/previous-arrow-atypikhouse.svg") !important;
     width: 35px !important;
-    height:35px !important;
+    height: 35px !important;
     filter: invert(38%) sepia(67%) saturate(1978%) hue-rotate(9deg) brightness(100%) contrast(101%);
 }
 
-.carousel-control-next-icon{
+.carousel-control-next-icon {
     background-image: url("../../../assets/images/icons/forward-arrow-atypikhouse.svg") !important;
     width: 35px !important;
-    height:35px !important;
+    height: 35px !important;
     filter: invert(38%) sepia(67%) saturate(1978%) hue-rotate(9deg) brightness(100%) contrast(101%);
 }
 
-@media (max-width: 1160px){
-    div.container{
-        ngb-carousel.no-indicators{
-            img{
+@media (max-width: 1160px) {
+    div.container {
+        ngb-carousel.no-indicators {
+            img {
                 width: 100%;
                 height: 100%;
             }

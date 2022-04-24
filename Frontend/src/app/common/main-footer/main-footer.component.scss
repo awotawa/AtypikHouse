@@ -1,6 +1,6 @@
 section.footer {
     border: red solid;
-    /*background-color: #000;*/
+    background: linear-gradient(white, #16ABA0) !important;
     color: #000;
     height: 150px;
     /*position: absolute;*/
@@ -10,15 +10,52 @@ section.footer {
     div.container {
         border: green solid;        
         height: 100%;
+        display: flex;
+        justify-content: center;
 
-        div.footerContainer {
+        div.footerContainer1 {
             border: yellow solid;
             height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-content: center;
-            align-items: center;
-            
+            align-items: flex-start;
+            max-width: 20%;
+
+            h3, p {
+                margin: 0;
+                padding: 0;
+            }            
+        }
+
+        div.footerContainer2 {
+            border: yellow solid;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 60%;
+
+            h3, p {
+                margin: 0;
+                padding: 0;
+            }            
+        }
+
+        div.footerContainer3 {
+            border: yellow solid;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            // align-items: flex-end;
+            max-width: 20%;
+
+            h3, p {
+                margin: 0;
+                padding: 0;
+            }            
         }
     }
 }
