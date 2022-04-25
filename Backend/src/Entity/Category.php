@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategoryRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
@@ -34,9 +36,17 @@ class Category
     #[ORM\Column(type: 'datetime')]
     private $updatedAt;
 
+    #[ORM\OneToMany(mappedBy: 'categoryId', targetEntity: Lodging::class, orphanRemoval: true)]
+    private $lodgings;
+
+    #[ORM\OneToMany(mappedBy: 'categoryId', targetEntity: Property::class, orphanRemoval: true)]
+    private $properties;
+
     public function __construct()
     {
       $this->createdAt = new \DateTimeImmutable();
+      $this->lodgings = new ArrayCollection();
+      $this->properties = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,6 +79,66 @@ class Category
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Lodging>
+     */
+    public function getLodgings(): Collection
+    {
+        return $this->lodgings;
+    }
+
+    public function addLodging(Lodging $lodging): self
+    {
+        if (!$this->lodgings->contains($lodging)) {
+            $this->lodgings[] = $lodging;
+            $lodging->setCategoryId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLodging(Lodging $lodging): self
+    {
+        if ($this->lodgings->removeElement($lodging)) {
+            // set the owning side to null (unless already changed)
+            if ($lodging->getCategoryId() === $this) {
+                $lodging->setCategoryId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Property>
+     */
+    public function getProperties(): Collection
+    {
+        return $this->properties;
+    }
+
+    public function addProperty(Property $property): self
+    {
+        if (!$this->properties->contains($property)) {
+            $this->properties[] = $property;
+            $property->setCategoryId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProperty(Property $property): self
+    {
+        if ($this->properties->removeElement($property)) {
+            // set the owning side to null (unless already changed)
+            if ($property->getCategoryId() === $this) {
+                $property->setCategoryId(null);
+            }
+        }
 
         return $this;
     }

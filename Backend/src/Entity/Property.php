@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PropertyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
@@ -38,13 +40,17 @@ class Property
     #[ORM\Column(type: 'datetime')]
     private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\OneToMany(mappedBy: 'propertyId', targetEntity: LodgingValue::class, orphanRemoval: true)]
+    private $lodgingValues;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'properties')]
     #[ORM\JoinColumn(nullable: false)]
     private $categoryId;
 
     public function __construct()
     {
       $this->createdAt = new \DateTimeImmutable();
+      $this->lodgingValues = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,6 +95,36 @@ class Property
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LodgingValue>
+     */
+    public function getLodgingValues(): Collection
+    {
+        return $this->lodgingValues;
+    }
+
+    public function addLodgingValue(LodgingValue $lodgingValue): self
+    {
+        if (!$this->lodgingValues->contains($lodgingValue)) {
+            $this->lodgingValues[] = $lodgingValue;
+            $lodgingValue->setPropertyId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLodgingValue(LodgingValue $lodgingValue): self
+    {
+        if ($this->lodgingValues->removeElement($lodgingValue)) {
+            // set the owning side to null (unless already changed)
+            if ($lodgingValue->getPropertyId() === $this) {
+                $lodgingValue->setPropertyId(null);
+            }
+        }
 
         return $this;
     }

@@ -46,15 +46,19 @@ class Review
     #[ORM\Column(type: 'datetime')]
     private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: Owner::class)]
+    #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'reviews')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $OwnerId;
+
+    #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
     private $ownerId;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
     private $userId;
 
-    #[ORM\ManyToOne(targetEntity: Lodging::class)]
+    #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
     private $lodgingId;
 
@@ -123,12 +127,12 @@ class Review
 
     public function getOwnerId(): ?Owner
     {
-        return $this->ownerId;
+        return $this->OwnerId;
     }
 
-    public function setOwnerId(?Owner $ownerId): self
+    public function setOwnerId(?Owner $OwnerId): self
     {
-        $this->ownerId = $ownerId;
+        $this->OwnerId = $OwnerId;
 
         return $this;
     }

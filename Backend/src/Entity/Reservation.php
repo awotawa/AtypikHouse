@@ -33,13 +33,13 @@ class Reservation
     #[ORM\Column(type: 'datetime')]
     private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $userId;
 
-    #[ORM\ManyToOne(targetEntity: Lodging::class)]
+    #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
-    private $lodging_id;
+    private $lodgingId;
 
     public function __construct()
     {
@@ -118,24 +118,24 @@ class Reservation
 
     public function getUserId(): ?User
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUserId(?User $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }
 
     public function getLodgingId(): ?Lodging
     {
-        return $this->lodging_id;
+        return $this->lodgingId;
     }
 
-    public function setLodgingId(?Lodging $lodging_id): self
+    public function setLodgingId(?Lodging $lodgingId): self
     {
-        $this->lodging_id = $lodging_id;
+        $this->lodgingId = $lodgingId;
 
         return $this;
     }

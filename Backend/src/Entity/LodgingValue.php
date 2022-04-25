@@ -30,13 +30,13 @@ class LodgingValue
     #[ORM\Column(type: 'datetime')]
     private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: Property::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private $propertyId;
-
-    #[ORM\ManyToOne(targetEntity: Lodging::class)]
+    #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'lodgingValues')]
     #[ORM\JoinColumn(nullable: false)]
     private $lodgingId;
+
+    #[ORM\ManyToOne(targetEntity: Property::class, inversedBy: 'lodgingValues')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $propertyId;
 
     public function __construct()
     {
@@ -77,18 +77,6 @@ class LodgingValue
         return $this;
     }
 
-    public function getPropertyId(): ?Property
-    {
-        return $this->propertyId;
-    }
-
-    public function setPropertyId(?Property $propertyId): self
-    {
-        $this->propertyId = $propertyId;
-
-        return $this;
-    }
-
     public function getLodgingId(): ?Lodging
     {
         return $this->lodgingId;
@@ -97,6 +85,18 @@ class LodgingValue
     public function setLodgingId(?Lodging $lodgingId): self
     {
         $this->lodgingId = $lodgingId;
+
+        return $this;
+    }
+
+    public function getPropertyId(): ?Property
+    {
+        return $this->propertyId;
+    }
+
+    public function setPropertyId(?Property $propertyId): self
+    {
+        $this->propertyId = $propertyId;
 
         return $this;
     }
