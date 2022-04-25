@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
-#[ApiResource(attributes: ["pagination_maximum_items_per_page" => 10])]
+#[ApiResource(attributes: ["pagination_items_per_page" => 10])]
 #[ORM\Entity(repositoryClass: LodgingRepository::class)]
 #[ApiFilter(SearchFilter::class, properties:['adress' => 'partial'])]
 class Lodging
