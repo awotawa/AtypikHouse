@@ -32,11 +32,11 @@ class LodgingValue
 
     #[ORM\ManyToOne(targetEntity: Property::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $property_id;
+    private $propertyId;
 
     #[ORM\ManyToOne(targetEntity: Lodging::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $lodging_id;
+    private $lodgingId;
 
     public function __construct()
     {
@@ -79,24 +79,24 @@ class LodgingValue
 
     public function getPropertyId(): ?Property
     {
-        return $this->property_id;
+        return $this->propertyId;
     }
 
-    public function setPropertyId(?Property $property_id): self
+    public function setPropertyId(?Property $propertyId): self
     {
-        $this->property_id = $property_id;
+        $this->propertyId = $propertyId;
 
         return $this;
     }
 
     public function getLodgingId(): ?Lodging
     {
-        return $this->lodging_id;
+        return $this->lodgingId;
     }
 
-    public function setLodgingId(?Lodging $lodging_id): self
+    public function setLodgingId(?Lodging $lodgingId): self
     {
-        $this->lodging_id = $lodging_id;
+        $this->lodgingId = $lodgingId;
 
         return $this;
     }

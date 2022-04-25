@@ -16,7 +16,7 @@ class Message
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $message_content;
+    private $messageContent;
 
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
@@ -26,11 +26,11 @@ class Message
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $userId;
 
     #[ORM\ManyToOne(targetEntity: Owner::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $owner_id;
+    private $ownerId;
 
     public function __construct()
     {
@@ -44,12 +44,12 @@ class Message
 
     public function getMessageContent(): ?string
     {
-        return $this->message_content;
+        return $this->messageContent;
     }
 
-    public function setMessageContent(string $message_content): self
+    public function setMessageContent(string $messageContent): self
     {
-        $this->message_content = $message_content;
+        $this->messageContent = $messageContent;
 
         return $this;
     }
@@ -73,24 +73,24 @@ class Message
 
     public function getUserId(): ?User
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUserId(?User $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }
 
     public function getOwnerId(): ?Owner
     {
-        return $this->owner_id;
+        return $this->ownerId;
     }
 
-    public function setOwnerId(?Owner $owner_id): self
+    public function setOwnerId(?Owner $ownerId): self
     {
-        $this->owner_id = $owner_id;
+        $this->ownerId = $ownerId;
 
         return $this;
     }

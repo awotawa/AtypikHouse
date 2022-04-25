@@ -45,7 +45,7 @@ class Lodging
     ])]
     #[Assert\Regex(['pattern' => "/^([A-Za-z0-9À-ÿ ',:?()~&\.-]+)$/"])]
     #[ORM\Column(type: 'text', length: 255)]
-    private $lodging_description;
+    private $lodgingDescription;
 
     #[Assert\NotBlank()]
     #[Assert\Length([
@@ -56,7 +56,7 @@ class Lodging
     private $adress;
 
     #[ORM\Column(type: 'time')]
-    private $check_in_time;
+    private $checkInTime;
 
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
@@ -66,11 +66,11 @@ class Lodging
 
     #[ORM\ManyToOne(targetEntity: Owner::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $owner_id;
+    private $ownerId;
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $category_id;
+    private $categoryId;
 
     public function __construct()
     {
@@ -108,12 +108,12 @@ class Lodging
 
     public function getLodgingDescription(): ?string
     {
-        return $this->lodging_description;
+        return $this->lodgingDescription;
     }
 
-    public function setLodgingDescription(string $lodging_description): self
+    public function setLodgingDescription(string $lodgingDescription): self
     {
-        $this->lodging_description = $lodging_description;
+        $this->lodgingDescription = $lodgingDescription;
 
         return $this;
     }
@@ -132,12 +132,12 @@ class Lodging
 
     public function getCheckInTime(): ?\DateTimeInterface
     {
-        return $this->check_in_time;
+        return $this->checkInTime;
     }
 
-    public function setCheckInTime(\DateTimeInterface $check_in_time): self
+    public function setCheckInTime(\DateTimeInterface $checkInTime): self
     {
-        $this->check_in_time = $check_in_time;
+        $this->checkInTime = $checkInTime;
 
         return $this;
     }
@@ -161,24 +161,24 @@ class Lodging
 
     public function getOwnerId(): ?Owner
     {
-        return $this->owner_id;
+        return $this->ownerId;
     }
 
-    public function setOwnerId(?Owner $owner_id): self
+    public function setOwnerId(?Owner $ownerId): self
     {
-        $this->owner_id = $owner_id;
+        $this->ownerId = $ownerId;
 
         return $this;
     }
 
     public function getCategoryId(): ?Category
     {
-        return $this->category_id;
+        return $this->categoryId;
     }
 
-    public function setCategoryId(?Category $category_id): self
+    public function setCategoryId(?Category $categoryId): self
     {
-        $this->category_id = $category_id;
+        $this->categoryId = $categoryId;
 
         return $this;
     }

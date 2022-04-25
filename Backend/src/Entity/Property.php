@@ -18,19 +18,19 @@ class Property
 
     #[Assert\Length([
         'max' => 30,
-        'maxMessage' => 'Your new_field cannot be longer than {{ limit }} characters',
+        'maxMessage' => 'Your newField cannot be longer than {{ limit }} characters',
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
-    private $new_field;
+    private $newField;
 
     #[Assert\Length([
         'max' => 30,
-        'maxMessage' => 'Your default_value cannot be longer than {{ limit }} characters',
+        'maxMessage' => 'Your defaultValue cannot be longer than {{ limit }} characters',
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ0-9 '²,.-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
-    private $default_value;
+    private $defaultValue;
 
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
@@ -40,7 +40,7 @@ class Property
 
     #[ORM\ManyToOne(targetEntity: Category::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $category_id;
+    private $categoryId;
 
     public function __construct()
     {
@@ -54,24 +54,24 @@ class Property
 
     public function getNewField(): ?string
     {
-        return $this->new_field;
+        return $this->newField;
     }
 
-    public function setNewField(string $new_field): self
+    public function setNewField(string $newField): self
     {
-        $this->new_field = $new_field;
+        $this->newField = $newField;
 
         return $this;
     }
 
     public function getDefaultValue(): ?string
     {
-        return $this->default_value;
+        return $this->defaultValue;
     }
 
-    public function setDefaultValue(string $default_value): self
+    public function setDefaultValue(string $defaultValue): self
     {
-        $this->default_value = $default_value;
+        $this->defaultValue = $defaultValue;
 
         return $this;
     }
@@ -95,12 +95,12 @@ class Property
 
     public function getCategoryId(): ?Category
     {
-        return $this->category_id;
+        return $this->categoryId;
     }
 
-    public function setCategoryId(?Category $category_id): self
+    public function setCategoryId(?Category $categoryId): self
     {
-        $this->category_id = $category_id;
+        $this->categoryId = $categoryId;
 
         return $this;
     }

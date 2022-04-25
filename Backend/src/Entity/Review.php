@@ -30,7 +30,7 @@ class Review
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
     #[ORM\Column(type: 'text', length: 100)]
-    private $review_title;
+    private $reviewTitle;
 
     #[Assert\Length([
         'max' => 255,
@@ -38,7 +38,7 @@ class Review
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
     #[ORM\Column(type: 'text', length: 255)]
-    private $review_description;
+    private $reviewDescription;
 
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
@@ -48,15 +48,15 @@ class Review
 
     #[ORM\ManyToOne(targetEntity: Owner::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $owner_id;
+    private $ownerId;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $userId;
 
     #[ORM\ManyToOne(targetEntity: Lodging::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $lodging_id;
+    private $lodgingId;
 
     public function __construct()
     {
@@ -82,24 +82,24 @@ class Review
 
     public function getReviewTitle(): ?string
     {
-        return $this->review_title;
+        return $this->reviewTitle;
     }
 
-    public function setReviewTitle(string $review_title): self
+    public function setReviewTitle(string $reviewTitle): self
     {
-        $this->review_title = $review_title;
+        $this->reviewTitle = $reviewTitle;
 
         return $this;
     }
 
     public function getReviewDescription(): ?string
     {
-        return $this->review_description;
+        return $this->reviewDescription;
     }
 
-    public function setReviewDescription(string $review_description): self
+    public function setReviewDescription(string $reviewDescription): self
     {
-        $this->review_description = $review_description;
+        $this->reviewDescription = $reviewDescription;
 
         return $this;
     }
@@ -123,36 +123,36 @@ class Review
 
     public function getOwnerId(): ?Owner
     {
-        return $this->owner_id;
+        return $this->ownerId;
     }
 
-    public function setOwnerId(?Owner $owner_id): self
+    public function setOwnerId(?Owner $ownerId): self
     {
-        $this->owner_id = $owner_id;
+        $this->ownerId = $ownerId;
 
         return $this;
     }
 
     public function getUserId(): ?User
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUserId(?User $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }
 
     public function getLodgingId(): ?Lodging
     {
-        return $this->lodging_id;
+        return $this->lodgingId;
     }
 
-    public function setLodgingId(?Lodging $lodging_id): self
+    public function setLodgingId(?Lodging $lodgingId): self
     {
-        $this->lodging_id = $lodging_id;
+        $this->lodgingId = $lodgingId;
 
         return $this;
     }

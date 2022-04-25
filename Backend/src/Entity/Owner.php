@@ -17,7 +17,7 @@ class Owner
 
     #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $userId;
 
     public function getId(): ?int
     {
@@ -26,12 +26,12 @@ class Owner
 
     public function getUserId(): ?User
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(User $user_id): self
+    public function setUserId(User $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }

@@ -17,7 +17,7 @@ class Media
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $media_type;
+    private $mediaType;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
@@ -25,7 +25,7 @@ class Media
 
     #[ORM\ManyToOne(targetEntity: Lodging::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $lodging_id;
+    private $lodgingId;
 
     public function getId(): ?int
     {
@@ -34,12 +34,12 @@ class Media
 
     public function getMediaType(): ?string
     {
-        return $this->media_type;
+        return $this->mediaType;
     }
 
-    public function setMediaType(string $media_type): self
+    public function setMediaType(string $mediaType): self
     {
-        $this->media_type = $media_type;
+        $this->mediaType = $mediaType;
 
         return $this;
     }
@@ -58,12 +58,12 @@ class Media
 
     public function getLodgingId(): ?Lodging
     {
-        return $this->lodging_id;
+        return $this->lodgingId;
     }
 
-    public function setLodgingId(?Lodging $lodging_id): self
+    public function setLodgingId(?Lodging $lodgingId): self
     {
-        $this->lodging_id = $lodging_id;
+        $this->lodgingId = $lodgingId;
 
         return $this;
     }

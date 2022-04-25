@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
       ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ]+)$/"])]
     #[ORM\Column(type: 'string', length: 255)]
-    private $first_name;
+    private $firstName;
 
     #[Assert\NotBlank()]
     #[Assert\Length([
@@ -56,7 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
       ])]
     #[Assert\Regex(['pattern' => "/^([A-Za-zÀ-ÿ]+)$/"])]
     #[ORM\Column(type: 'string', length: 255)]
-    private $last_name;
+    private $lastName;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
@@ -145,24 +145,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
