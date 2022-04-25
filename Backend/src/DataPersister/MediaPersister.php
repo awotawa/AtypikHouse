@@ -24,7 +24,7 @@ class MediaPersister implements DataPersisterInterface
   public function persist($data)
   {
     // 1. Mettre une date de création sur le lodging
-    $data->setCreatedAt(new \DateTime());
+    // $data->setCreatedAt(new \DateTime());
     // 2. Mettre une date de update sur le lodging
     $data->setUpdatedAt(new \DateTime());
     // 3. Ask Doctrine to persist the data
