@@ -2,16 +2,20 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategoryRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['category:read']],
+  denormalizationContext: ['groups' => ['category:write']],
+)]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiFilter(SearchFilter::class, properties: ['type' => 'partial'])]
 class Category
@@ -28,6 +32,7 @@ class Category
     #[Assert\NotBlank()]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
+    #[Groups(["category:read", "category:write"])]
     private $type;
 
     #[ORM\Column(type: 'datetime')]
@@ -40,6 +45,7 @@ class Category
     private $lodgings;
 
     #[ORM\OneToMany(mappedBy: 'categoryId', targetEntity: Property::class, orphanRemoval: true)]
+    #[Groups(["property:read"])]
     private $properties;
 
     public function __construct()

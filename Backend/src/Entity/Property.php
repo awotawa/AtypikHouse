@@ -9,7 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['property:read']],
+  denormalizationContext: ['groups' => ['property:write']],
+)]
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
 {
@@ -24,6 +27,7 @@ class Property
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
+    #[Groups(["property:read", "property:write", "category:read"])]
     private $newField;
 
     #[Assert\Length([
@@ -32,6 +36,7 @@ class Property
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ0-9 '²,.-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
+    #[Groups(["property:read", "property:write", "category:read"])]
     private $defaultValue;
 
     #[ORM\Column(type: 'datetime')]
@@ -41,6 +46,7 @@ class Property
     private $updatedAt;
 
     #[ORM\OneToMany(mappedBy: 'propertyId', targetEntity: LodgingValue::class, orphanRemoval: true)]
+    #[Groups(["property:read", "property:write"])]
     private $lodgingValues;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'properties')]
