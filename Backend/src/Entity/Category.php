@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\CategoryRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ApiFilter(SearchFilter::class, properties: ['type' => 'partial'])]
 class Category
 {
     #[ORM\Id]
