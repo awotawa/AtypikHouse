@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use App\Repository\LodgingRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ApiResource()]
 #[ORM\Entity(repositoryClass: LodgingRepository::class)]
+#[ApiFilter(SearchFilter::class, properties:['adress' => 'partial'])]
 class Lodging
 {
     #[ORM\Id]
