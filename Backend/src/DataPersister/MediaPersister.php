@@ -21,7 +21,7 @@ class MediaPersister implements DataPersisterInterface
     return $data instanceof Media;
   }
 
-  public function persist($data)
+  public function persist($data): void
   {
     // 1. Mettre une date de création sur le lodging
     // $data->setCreatedAt(new \DateTime());
@@ -33,7 +33,7 @@ class MediaPersister implements DataPersisterInterface
     $this->em->flush();
   }
 
-  public function remove($data)
+  public function remove($data): void
   {
     // 1. Demander à doctrine de supprimer le lodging
     $this->em->remove($data);
