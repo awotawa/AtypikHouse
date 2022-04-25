@@ -7,13 +7,19 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['read']],
+  denormalizationContext: ['groups' => ['write']],
+)]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'])]
 #[ApiFilter(SearchFilter::class, properties: ['roles' => 'partial'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -25,6 +31,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank()]
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\Regex(['pattern' => '/([A-Za-z0-9À-ÿ]+@[A-Za-z]+\.[A-Za-z]{2,5})/'])]
+    #[Assert\Email()]
+    #[Groups(["read", "write"])]
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -37,6 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     ])]
     #[Assert\Regex(['pattern' => "/^(?=.*[A-Z])(?=.*[\-._~!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/"])]
     #[ORM\Column(type: 'string')]
+    #[Groups('write')]
     private $password;
 
     #[Assert\NotBlank()]
@@ -48,6 +57,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
       ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ]+)$/"])]
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["read", "write"])]
     private $firstName;
 
     #[Assert\NotBlank()]
@@ -59,10 +69,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
       ])]
     #[Assert\Regex(['pattern' => "/^([A-Za-zÀ-ÿ]+)$/"])]
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["read", "write"])]
     private $lastName;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
+    #[Groups(["read", "write"])]
     private $photo;
 
     #[ORM\Column(type: 'datetime')]
@@ -70,6 +82,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'datetime')]
     private $updatedAt;
+
+    #[ORM\OneToOne(mappedBy: 'userId', targetEntity: Owner::class, cascade: ['persist', 'remove'])]
+    private $owner;
 
     public function __construct()
     {
@@ -195,6 +210,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getOwner(): ?Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(Owner $owner): self
+    {
+        // set the owning side of the relation if necessary
+        if ($owner->getUserId() !== $this) {
+            $owner->setUserId($this);
+        }
+
+        $this->owner = $owner;
 
         return $this;
     }
