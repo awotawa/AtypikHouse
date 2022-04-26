@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PropertyRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\PropertyRepository;
+use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
   normalizationContext: ['groups' => ['property:read']],
@@ -27,7 +28,7 @@ class Property
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
-    #[Groups(["property:read", "property:write", "category:read"])]
+    #[Groups(["property:read", "property:write", "category:read", "lodging:read"])]
     private $newField;
 
     #[Assert\Length([
@@ -46,7 +47,7 @@ class Property
     private $updatedAt;
 
     #[ORM\OneToMany(mappedBy: 'propertyId', targetEntity: LodgingValue::class, orphanRemoval: true)]
-    #[Groups(["property:read", "property:write"])]
+    #[Groups(["property:read"])]
     private $lodgingValues;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'properties')]

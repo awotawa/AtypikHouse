@@ -7,7 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['media:read']],
+  denormalizationContext: ['groups' => ['media:write']],
+)]
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 class Media
 {
@@ -17,10 +20,12 @@ class Media
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["media:read", "media:write", "lodging:read"])]
     private $mediaType;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
+    #[Groups(["media:read", "media:write", "lodging:read"])]
     private $link;
 
     #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'media')]

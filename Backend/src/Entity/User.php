@@ -86,13 +86,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $updatedAt;
 
     #[ORM\OneToOne(mappedBy: 'userId', targetEntity: Owner::class, cascade: ['persist', 'remove'])]
-    #[Groups(["user:read", "lodging:read"])]
+    // #[Groups(["user:read"])]
     private $owner;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Review::class, orphanRemoval: true)]
+    // #[Groups(["user:read"])]
     private $reviews;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Reservation::class)]
+    // #[Groups(["user:read"])]
     private $reservations;
 
     public function __construct()

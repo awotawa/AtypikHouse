@@ -32,7 +32,7 @@ class Category
     #[Assert\NotBlank()]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
-    #[Groups(["category:read", "category:write"])]
+    #[Groups(["category:read", "category:write", "lodging:read"])]
     private $type;
 
     #[ORM\Column(type: 'datetime')]

@@ -80,23 +80,29 @@ class Lodging
     private $updatedAt;
 
     #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: Review::class, orphanRemoval: true)]
+    #[Groups(["lodging:read"])]
     private $reviews;
 
     #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: Reservation::class)]
+    #[Groups(["lodging:read"])]
     private $reservations;
 
     #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: Media::class, orphanRemoval: true)]
+    #[Groups(["lodging:read"])]
     private $media;
 
     #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'lodgings')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["lodging:read"])]
     private $ownerId;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'lodgings')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["lodging:read"])]
     private $categoryId;
 
     #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: LodgingValue::class, orphanRemoval: true)]
+    #[Groups(["lodging:read"])]
     private $lodgingValues;
 
     public function __construct()

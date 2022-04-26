@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\LodgingValueRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\LodgingValueRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['lodgingvalue:read']],
+  denormalizationContext: ['groups' => ['lodgingvalue:write']],
+)]
 #[ORM\Entity(repositoryClass: LodgingValueRepository::class)]
 class LodgingValue
 {
@@ -22,6 +26,7 @@ class LodgingValue
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-z]+)$/"])]
     #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(["lodgingvalue:read", "lodgingvalue:write", "property:read"])]
     private $value;
 
     #[ORM\Column(type: 'datetime')]
@@ -32,10 +37,12 @@ class LodgingValue
 
     #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'lodgingValues')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["lodgingvalue:read", "property:read"])]
     private $lodgingId;
 
     #[ORM\ManyToOne(targetEntity: Property::class, inversedBy: 'lodgingValues')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["lodgingvalue:read", "lodging:read"])]
     private $propertyId;
 
     public function __construct()
