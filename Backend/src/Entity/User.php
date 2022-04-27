@@ -34,7 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\Regex(['pattern' => '/([A-Za-z0-9À-ÿ]+@[A-Za-z]+\.[A-Za-z]{2,5})/'])]
     #[Assert\Email()]
-    #[Groups(["user:read", "user:write"])]
+    #[Groups(["user:read", "user:write", "reservation:read"])]
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -86,15 +86,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $updatedAt;
 
     #[ORM\OneToOne(mappedBy: 'userId', targetEntity: Owner::class, cascade: ['persist', 'remove'])]
-    // #[Groups(["user:read"])]
+    #[Groups(["user:read"])]
     private $owner;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Review::class, orphanRemoval: true)]
-    // #[Groups(["user:read"])]
+    #[Groups(["user:read"])]
     private $reviews;
 
     #[ORM\OneToMany(mappedBy: 'userId', targetEntity: Reservation::class)]
-    // #[Groups(["user:read"])]
+    #[Groups(["user:read"])]
     private $reservations;
 
     public function __construct()

@@ -32,7 +32,7 @@ class Category
     #[Assert\NotBlank()]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
-    #[Groups(["category:read", "category:write", "lodging:read"])]
+    #[Groups(["category:read", "category:write", "lodging:read", "property:read"])]
     private $type;
 
     #[ORM\Column(type: 'datetime')]
@@ -42,10 +42,11 @@ class Category
     private $updatedAt;
 
     #[ORM\OneToMany(mappedBy: 'categoryId', targetEntity: Lodging::class, orphanRemoval: true)]
+    #[Groups(["category:read"])]
     private $lodgings;
 
     #[ORM\OneToMany(mappedBy: 'categoryId', targetEntity: Property::class, orphanRemoval: true)]
-    #[Groups(["property:read"])]
+    #[Groups(["category:read"])]
     private $properties;
 
     public function __construct()

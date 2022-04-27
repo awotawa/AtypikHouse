@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReservationRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['reservation:read']],
+  denormalizationContext: ['groups' => ['reservation:write']],
+)]
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
@@ -16,15 +20,19 @@ class Reservation
     private $id;
 
     #[ORM\Column(type: 'float')]
+    #[Groups(["reservation:read", "reservation:write"])]
     private $price;
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups(["reservation:read", "reservation:write"])]
     private $startDate;
 
     #[ORM\Column(type: 'datetime')]
+    #[Groups(["reservation:read", "reservation:write"])]
     private $endDate;
 
     #[ORM\Column(type: 'boolean')]
+    #[Groups(["reservation:read", "reservation:write"])]
     private $paid;
 
     #[ORM\Column(type: 'datetime')]
@@ -35,10 +43,12 @@ class Reservation
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["reservation:read"])]
     private $userId;
 
     #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'reservations')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["reservation:read"])]
     private $lodgingId;
 
     public function __construct()

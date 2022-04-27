@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\MediaRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
   normalizationContext: ['groups' => ['media:read']],
@@ -30,6 +31,7 @@ class Media
 
     #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'media')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["media:read"])]
     private $lodgingId;
 
     public function getId(): ?int

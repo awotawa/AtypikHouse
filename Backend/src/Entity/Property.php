@@ -28,7 +28,7 @@ class Property
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
-    #[Groups(["property:read", "property:write", "category:read", "lodging:read"])]
+    #[Groups(["property:read", "property:write", "category:read", "lodging:read", "lodgingvalue:read"])]
     private $newField;
 
     #[Assert\Length([
@@ -37,7 +37,7 @@ class Property
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ0-9 '²,.-]+)$/"])]
     #[ORM\Column(type: 'string', length: 30)]
-    #[Groups(["property:read", "property:write", "category:read"])]
+    #[Groups(["property:read", "property:write", "category:read", "lodgingvalue:read"])]
     private $defaultValue;
 
     #[ORM\Column(type: 'datetime')]
@@ -52,6 +52,7 @@ class Property
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'properties')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["property:read"])]
     private $categoryId;
 
     public function __construct()

@@ -37,12 +37,12 @@ class LodgingValue
 
     #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'lodgingValues')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["lodgingvalue:read", "property:read"])]
+    #[Groups(["lodgingvalue:read"])]
     private $lodgingId;
 
     #[ORM\ManyToOne(targetEntity: Property::class, inversedBy: 'lodgingValues')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["lodgingvalue:read", "lodging:read"])]
+    #[Groups(["lodgingvalue:read"])]
     private $propertyId;
 
     public function __construct()

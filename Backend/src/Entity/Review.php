@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\ReviewRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['review:read']],
+  denormalizationContext: ['groups' => ['review:write']],
+)]
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
 {
@@ -22,6 +26,7 @@ class Review
     ])]
     #[Assert\Regex(['pattern' => "/^([1-9]|10)$/"])]
     #[ORM\Column(type: 'integer', length: 10)]
+    #[Groups(["review:read", "review:write"])]
     private $rating;
 
     #[Assert\Length([
@@ -30,6 +35,7 @@ class Review
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
     #[ORM\Column(type: 'text', length: 100)]
+    #[Groups(["review:read", "review:write"])]
     private $reviewTitle;
 
     #[Assert\Length([
@@ -38,6 +44,7 @@ class Review
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
     #[ORM\Column(type: 'text', length: 255)]
+    #[Groups(["review:read", "review:write"])]
     private $reviewDescription;
 
     #[ORM\Column(type: 'datetime')]
@@ -48,18 +55,17 @@ class Review
 
     #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    private $OwnerId;
-
-    #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'reviews')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["review:read"])]
     private $ownerId;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["review:read"])]
     private $userId;
 
     #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["review:read"])]
     private $lodgingId;
 
     public function __construct()
@@ -127,12 +133,12 @@ class Review
 
     public function getOwnerId(): ?Owner
     {
-        return $this->OwnerId;
+        return $this->ownerId;
     }
 
-    public function setOwnerId(?Owner $OwnerId): self
+    public function setOwnerId(?Owner $ownerId): self
     {
-        $this->OwnerId = $OwnerId;
+        $this->ownerId = $ownerId;
 
         return $this;
     }

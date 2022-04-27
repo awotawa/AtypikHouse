@@ -23,13 +23,15 @@ class Owner
 
     #[ORM\OneToOne(inversedBy: 'owner', targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(["user:read"])]
+    #[Groups(["owner:read"])]
     private $userId;
 
     #[ORM\OneToMany(mappedBy: 'ownerId', targetEntity: Review::class, orphanRemoval: true)]
+    #[Groups(["owner:read"])]
     private $reviews;
 
     #[ORM\OneToMany(mappedBy: 'ownerId', targetEntity: Lodging::class, orphanRemoval: true)]
+    #[Groups(["owner:read"])]
     private $lodgings;
 
     public function __construct()
