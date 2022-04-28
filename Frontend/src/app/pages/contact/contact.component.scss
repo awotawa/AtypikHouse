@@ -41,12 +41,23 @@ div.login-wrapper{
     margin: auto;
     margin-top: 5rem;
     margin-bottom: 5rem;
+    mat-card-title{
+      color: #ffffff;
+      margin-left: -1rem;
+    }
     mat-card-content{
       mat-form-field-appearance-legacy{
         padding: 0.8375em 0;
       }
       mat-form-field-infix{
         padding: 0.8375em 0;
+      }
+      mat-form-field.example-full-width-2{
+        width: 45%;
+      }
+      mat-form-field.example-full-width-3{
+        width: 45%;
+        float: right;
       }
       /* Message erreur */
       div.error{
@@ -55,6 +66,10 @@ div.login-wrapper{
         color: #ffffff;
         /*margin-top: 0.5rem;*/
         margin-bottom: 1rem;
+      }
+      p.message-contact{
+        color: #ffffff;
+        font-weight: 500;
       }
     }
     form.example-form{
@@ -101,6 +116,10 @@ div.login-wrapper{
   div.alert.alert-success.alert-dismissible.fade.show{
     margin-top: 1rem;
   }
+
+  .a-lien{
+    color: #ffffff;
+  }
 }
 
 
@@ -118,7 +137,7 @@ div.login-wrapper{
 {
   background: #fff;
   border-radius: 5px;
-  border: 1px solid orange;
+  border: 2px solid orange;
   padding-left: 10px;
 }
 
