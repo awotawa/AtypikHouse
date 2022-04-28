@@ -21,7 +21,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 
@@ -32,7 +31,6 @@ import { CGVComponent } from './pages/cgv/cgv.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
-import { ToolbarComponent } from './common/toolbar/toolbar.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PreFooterComponent } from './common/pre-footer/pre-footer.component';
@@ -53,7 +51,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
     CGVComponent,
     SuppressionDonneeComponent,
     PagenotfoundComponent,
-    ToolbarComponent,
     LoginComponent,
     RegisterComponent,
     PreFooterComponent,
@@ -64,7 +61,6 @@ import { GoogleMapsModule } from '@angular/google-maps';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
