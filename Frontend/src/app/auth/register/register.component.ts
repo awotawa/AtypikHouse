@@ -1,7 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-
-//Redirection on submit
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 

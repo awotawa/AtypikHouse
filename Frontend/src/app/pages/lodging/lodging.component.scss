@@ -42,7 +42,7 @@ section {
 
                         p {
                             text-align: center;
-                            color: #2c2c51;
+                            color: #000000;
                             line-height: 25px;
                             margin: 0;
                             font-weight: 400;
@@ -69,12 +69,12 @@ section {
                             text-align: right;
                             font-size: 16px;
                             margin-bottom: 10px;
-                            color: orange;
+                            color: #ED6700;
                         }
 
                         p {
                             text-align: right;
-                            color: #7b7b93;
+                            color: #000000;
                             line-height: 25px;
                             margin: 0;
                             font-weight: 400;
@@ -88,26 +88,31 @@ section {
                             max-width: 200px;
                         }
 
-                        button {
-                            color: white;
-                            //background: rgb(220, 152, 24);
-                            background: linear-gradient(90.69deg, #ED6700 0%, #FF994B 99.84%);
-                            border: 2px solid #FFFFFF;
-                            box-sizing: border-box;
-                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 10px;
-                            cursor: pointer;
-                            padding: 5px;
-                            width: 80%;
-                            margin: auto;
-                            opacity: 0.7;
-                            transition: 0.5s;
+                        a {
+                            text-decoration: none;
+
+                            button {
+                                color: white;
+                                //background: rgb(220, 152, 24);
+                                background: linear-gradient(90.69deg, #ED6700 0%, #FF994B 99.84%);
+                                border: 2px solid #FFFFFF;
+                                box-sizing: border-box;
+                                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                                border-radius: 10px;
+                                cursor: pointer;
+                                padding: 5px;
+                                width: 80%;
+                                margin: auto;
+                                opacity: 0.7;
+                                transition: 0.5s;
+                            }
+                            
+                            button:hover {
+                                background: linear-gradient(90.69deg, #FF994B 0%, #ED6700 99.84%);
+                                opacity: 1;
+                            }
                         }
 
-                        button:hover {
-                            background: linear-gradient(90.69deg, #FF994B 0%, #ED6700 99.84%);
-                            opacity: 1;
-                        }
                     }
                 }
 
@@ -196,7 +201,7 @@ section {
                             span {
                                 text-align: left;
                                 font-size: 16px;
-                                color: orange;
+                                color: #ED6700;
                                 margin-bottom: 0;
                             }
 
