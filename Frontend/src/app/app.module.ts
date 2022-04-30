@@ -70,11 +70,11 @@ import { ReservationService } from './shared/services/reservation.service';
     ReserveFilterComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
