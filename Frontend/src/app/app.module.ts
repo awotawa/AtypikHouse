@@ -38,6 +38,13 @@ import { PostFooterComponent } from './common/post-footer/post-footer.component'
 import { HttpClientModule } from '@angular/common/http';
 import { LodgingComponent } from './pages/lodging/lodging.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { ButtonModule } from 'primeng/button';
+import { PhotoServiceService } from './shared/services/photo-service.service';
+import { ReserveFilterComponent } from './pages/lodging-detail/reserve-filter/reserve-filter.component';
+import { ReservationService } from './shared/services/reservation.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,22 +62,26 @@ import { GoogleMapsModule } from '@angular/google-maps';
     RegisterComponent,
     PreFooterComponent,
     PostFooterComponent,
-    LodgingComponent
+    LodgingComponent,
+    LodgingDetailComponent,
+    ReserveFilterComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     AngularMaterialModule,
     HttpClientModule,
     GoogleMapsModule,
+    GalleriaModule,
+    ButtonModule,
     NgbModule
   ],
-  providers: [],
+  providers: [ PhotoServiceService, ReservationService ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
