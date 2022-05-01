@@ -8,6 +8,8 @@ import { MainMenuComponent } from './common/main-menu//main-menu.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { MainFooterComponent } from './common/main-footer/main-footer.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
@@ -19,7 +21,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 
@@ -30,13 +31,19 @@ import { CGVComponent } from './pages/cgv/cgv.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
-import { ToolbarComponent } from './common/toolbar/toolbar.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PreFooterComponent } from './common/pre-footer/pre-footer.component';
 import { PostFooterComponent } from './common/post-footer/post-footer.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { LodgingComponent } from './pages/lodging/lodging.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { ButtonModule } from 'primeng/button';
+import { PhotoServiceService } from './shared/services/photo-service.service';
+import { ReserveFilterComponent } from './pages/lodging-detail/reserve-filter/reserve-filter.component';
+import { ReservationService } from './shared/services/reservation.service';
 
 @NgModule({
   declarations: [
@@ -51,26 +58,30 @@ import { HttpClientModule } from '@angular/common/http';
     CGVComponent,
     SuppressionDonneeComponent,
     PagenotfoundComponent,
-    ToolbarComponent,
     LoginComponent,
     RegisterComponent,
     PreFooterComponent,
     PostFooterComponent,
+    LodgingComponent,
+    LodgingDetailComponent,
+    ReserveFilterComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
     AngularMaterialModule,
-    HttpClientModule
-
+    HttpClientModule,
+    GoogleMapsModule,
+    GalleriaModule,
+    ButtonModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [ PhotoServiceService, ReservationService ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
