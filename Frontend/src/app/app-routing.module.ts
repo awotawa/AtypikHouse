@@ -10,6 +10,7 @@ import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.compone
 import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentialite/politique-confidentialite.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
+import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'suppression-donnees', component: SuppressionDonneeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'lodging-detail', component: LodgingDetailComponent },
 
   // Re route lien qui n'existe pas sur page 404
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
