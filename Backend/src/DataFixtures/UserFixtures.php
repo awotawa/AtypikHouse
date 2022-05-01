@@ -17,7 +17,7 @@ class UserFixtures extends Fixture
 		$faker = Faker\Factory::create("fr_FR");
 
 		for ($i=0; $i < 10; $i++) {
-			
+
 			$user = new User();
 			$user->setFirstName($faker->firstName());
 			$user->setLastName($faker->lastName());
@@ -25,7 +25,6 @@ class UserFixtures extends Fixture
 			$user->setPassword("Azertyuiop-".$i);
 			$user->setPhoto($faker->url());
 			$user->setRoles($faker->randomElement([['ROLE_USER'], ['ROLE_OWNER']]));
-			$user->setCreatedAt($faker->dateTime());
 			$user->setUpdatedAt($faker->dateTime());
 			$manager->persist($user);
 			$this->addReference("USER".$i, $user);

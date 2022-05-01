@@ -33,7 +33,6 @@ class LodgingValueFixtures extends Fixture implements DependentFixtureInterface
 			$lodgingValue->setPropertyId($this->getReference("PROPERTY".mt_rand(0, 19)));
 			$lodgingValue->setLodgingId($this->getReference("LODGING".mt_rand(0, 19)));
 			$lodgingValue->setValue("empty");
-			$lodgingValue->setCreatedAt($faker->dateTime());
 			$lodgingValue->setUpdatedAt($faker->dateTime());
 			$manager->persist($lodgingValue);
 		}

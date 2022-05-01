@@ -33,7 +33,6 @@ class PropertyFixtures extends Fixture implements DependentFixtureInterface
 			$property->setCategoryId($this->getReference("CATEGORY".mt_rand(0, 19)));
 			$property->setNewField($faker->randomElement(["Surface du logement ", "Nombre de pièces", "Nombre de chambres", "Hauteur Sol", "Eau", "Electricité", "Distance du parking"]));
 			$property->setDefaultValue($faker->randomElement(["20m² ", "2", "1", "2m", "Eau courante", "oui", "5km"]));
-			$property->setCreatedAt($faker->dateTime());
 			$property->setUpdatedAt($faker->dateTime());
 			$manager->persist($property);
 			$this->addReference("PROPERTY".$i, $property);

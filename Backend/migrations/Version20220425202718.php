@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220329224753 extends AbstractMigration
+final class Version20220425202718 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20220329224753 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        //$this->addSql('ALTER TABLE user ADD created_at DATETIME NOT NULL, ADD updated_at DATETIME NOT NULL, CHANGE roles roles JSON NOT NULL, CHANGE photo photo VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE user CHANGE roles roles JSON NOT NULL, CHANGE photo photo VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
@@ -33,6 +33,6 @@ final class Version20220329224753 extends AbstractMigration
         $this->addSql('ALTER TABLE message CHANGE message_content message_content VARCHAR(255) NOT NULL COLLATE `utf8_unicode_ci`');
         $this->addSql('ALTER TABLE property CHANGE new_field new_field VARCHAR(30) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE default_value default_value VARCHAR(30) NOT NULL COLLATE `utf8_unicode_ci`');
         $this->addSql('ALTER TABLE review CHANGE review_title review_title TINYTEXT NOT NULL COLLATE `utf8_unicode_ci`, CHANGE review_description review_description TINYTEXT NOT NULL COLLATE `utf8_unicode_ci`');
-        $this->addSql('ALTER TABLE user DROP created_at, DROP updated_at, CHANGE email email VARCHAR(180) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE roles roles LONGTEXT CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_bin`, CHANGE password password VARCHAR(255) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE first_name first_name VARCHAR(255) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE last_name last_name VARCHAR(255) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE photo photo VARCHAR(255) DEFAULT \'NULL\' COLLATE `utf8_unicode_ci`');
+        $this->addSql('ALTER TABLE user CHANGE email email VARCHAR(180) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE roles roles LONGTEXT CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_bin`, CHANGE password password VARCHAR(255) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE first_name first_name VARCHAR(255) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE last_name last_name VARCHAR(255) NOT NULL COLLATE `utf8_unicode_ci`, CHANGE photo photo VARCHAR(255) DEFAULT \'NULL\' COLLATE `utf8_unicode_ci`');
     }
 }
