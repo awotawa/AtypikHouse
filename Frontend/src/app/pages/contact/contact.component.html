@@ -12,7 +12,7 @@
       <form (ngSubmit)="submitForm(); completeContact(contactForm)" class="example-form" #contactForm="ngForm">
         <mat-card-content>
             <!-- Input nom avec regex -->
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width-2">
                 <input matInput name="nom" [(ngModel)]="nom" #nomInput="ngModel" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nom"
                 pattern="^[a-zA-Zàéèç.-.' ']*"
                 required>
@@ -25,7 +25,7 @@
                 Ce champs est requis.
             </div>
             <!-- Input prenom avec regex -->
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width-3">
                 <input matInput name="prenom" [(ngModel)]="prenom" #prenomInput="ngModel" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prénom"
                 pattern="^[a-zA-Zàéèç.-.' ']*"
                 required>
@@ -51,10 +51,12 @@
                 Ce champs est requis.
             </div>
             <!-- Input adresse avec regex -->
+            <!--
             <mat-form-field class="example-full-width">
                 <input name="adresse" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adresse" [(ngModel)]="adresse" required>
             </mat-form-field>
-
+            -->
+            <p class="message-contact">Un message, une question, une suggestion</p>
             <!-- Input message avec regex -->
             <mat-form-field class="example-full-width">
                 <textarea name="message"  matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Votre message" [(ngModel)]="message" required></textarea>
@@ -69,7 +71,7 @@
         </div>
 
         <form [formGroup]="frmFinish" >
-            <mat-checkbox required formControlName="checkTerms">Je confirme avoir lu et accepté la politique de confidentialité du site (<a href="/politique-de-confidentialite/" target="blank">Voir la politique de confidentialité</a>)</mat-checkbox>
+            <mat-checkbox required formControlName="checkTerms">Je confirme avoir lu et accepté la politique de confidentialité du site (<a class="a-lien" href="/politique-de-confidentialite/" target="blank">Voir la politique de confidentialité</a>)</mat-checkbox>
         </form>
 
         <!-- Bouton désactivé tant que le formulaire n'est pas valide -->
