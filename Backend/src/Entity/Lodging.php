@@ -2,13 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\LodgingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\LodgingRepository;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
-#[ApiResource()]
+#[ApiResource(
+  attributes: ["pagination_items_per_page" => 10],
+  normalizationContext: ['groups' => ['lodging:read']],
+  denormalizationContext: ['groups' => ['lodging:write']],
+)]
 #[ORM\Entity(repositoryClass: LodgingRepository::class)]
+#[ApiFilter(SearchFilter::class, properties:['adress' => 'partial'])]
 class Lodging
 {
     #[ORM\Id]
@@ -25,6 +35,7 @@ class Lodging
       ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '-]+)$/"])]
     #[ORM\Column(type: 'string', length: 50)]
+    #[Groups(["lodging:read", "lodging:write"])]
     private $name;
 
     #[Assert\NotBlank()]
@@ -34,6 +45,7 @@ class Lodging
     ])]
     #[Assert\Regex(['pattern' => "/^([0-9]+(\.[0-9]{0,2})?)$/"])]
     #[ORM\Column(type: 'float')]
+    #[Groups(["lodging:read", "lodging:write"])]
     private $rate;
 
     #[Assert\NotBlank()]
@@ -45,7 +57,8 @@ class Lodging
     ])]
     #[Assert\Regex(['pattern' => "/^([A-Za-z0-9À-ÿ ',:?()~&\.-]+)$/"])]
     #[ORM\Column(type: 'text', length: 255)]
-    private $lodging_description;
+    #[Groups(["lodging:read", "lodging:write"])]
+    private $lodgingDescription;
 
     #[Assert\NotBlank()]
     #[Assert\Length([
@@ -53,24 +66,53 @@ class Lodging
         'maxMessage' => 'Your adress cannot be longer than {{ limit }} characters',
     ])]
     #[ORM\Column(type: 'text', length: 50)]
+    #[Groups(["lodging:read", "lodging:write"])]
     private $adress;
 
     #[ORM\Column(type: 'time')]
-    private $check_in_time;
+    #[Groups(["lodging:read", "lodging:write"])]
+    private $checkInTime;
 
     #[ORM\Column(type: 'datetime')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\Column(type: 'datetime')]
-    private $updated_at;
+    private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: Owner::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    private $owner_id;
+    #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: Review::class, orphanRemoval: true)]
+    #[Groups(["lodging:read"])]
+    private $reviews;
 
-    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: Reservation::class)]
+    #[Groups(["lodging:read"])]
+    private $reservations;
+
+    #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: Media::class, orphanRemoval: true)]
+    #[Groups(["lodging:read"])]
+    private $media;
+
+    #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'lodgings')]
     #[ORM\JoinColumn(nullable: false)]
-    private $category_id;
+    #[Groups(["lodging:read"])]
+    private $ownerId;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'lodgings')]
+    #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["lodging:read"])]
+    private $categoryId;
+
+    #[ORM\OneToMany(mappedBy: 'lodgingId', targetEntity: LodgingValue::class, orphanRemoval: true)]
+    #[Groups(["lodging:read"])]
+    private $lodgingValues;
+
+    public function __construct()
+    {
+      $this->createdAt = new \DateTimeImmutable();
+      $this->reviews = new ArrayCollection();
+      $this->reservations = new ArrayCollection();
+      $this->media = new ArrayCollection();
+      $this->lodgingValues = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,12 +145,12 @@ class Lodging
 
     public function getLodgingDescription(): ?string
     {
-        return $this->lodging_description;
+        return $this->lodgingDescription;
     }
 
-    public function setLodgingDescription(string $lodging_description): self
+    public function setLodgingDescription(string $lodgingDescription): self
     {
-        $this->lodging_description = $lodging_description;
+        $this->lodgingDescription = $lodgingDescription;
 
         return $this;
     }
@@ -127,69 +169,175 @@ class Lodging
 
     public function getCheckInTime(): ?\DateTimeInterface
     {
-        return $this->check_in_time;
+        return $this->checkInTime;
     }
 
-    public function setCheckInTime(\DateTimeInterface $check_in_time): self
+    public function setCheckInTime(\DateTimeInterface $checkInTime): self
     {
-        $this->check_in_time = $check_in_time;
+        $this->checkInTime = $checkInTime;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
+        return $this->createdAt;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Review>
+     */
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function addReview(Review $review): self
+    {
+        if (!$this->reviews->contains($review)) {
+            $this->reviews[] = $review;
+            $review->setLodgingId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReview(Review $review): self
+    {
+        if ($this->reviews->removeElement($review)) {
+            // set the owning side to null (unless already changed)
+            if ($review->getLodgingId() === $this) {
+                $review->setLodgingId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setLodgingId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getLodgingId() === $this) {
+                $reservation->setLodgingId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Media>
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): self
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media[] = $medium;
+            $medium->setLodgingId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): self
+    {
+        if ($this->media->removeElement($medium)) {
+            // set the owning side to null (unless already changed)
+            if ($medium->getLodgingId() === $this) {
+                $medium->setLodgingId(null);
+            }
+        }
 
         return $this;
     }
 
     public function getOwnerId(): ?Owner
     {
-        return $this->owner_id;
+        return $this->ownerId;
     }
 
-    public function setOwnerId(?Owner $owner_id): self
+    public function setOwnerId(?Owner $ownerId): self
     {
-        $this->owner_id = $owner_id;
+        $this->ownerId = $ownerId;
 
         return $this;
     }
 
     public function getCategoryId(): ?Category
     {
-        return $this->category_id;
+        return $this->categoryId;
     }
 
-    public function setCategoryId(?Category $category_id): self
+    public function setCategoryId(?Category $categoryId): self
     {
-        $this->category_id = $category_id;
+        $this->categoryId = $categoryId;
 
         return $this;
     }
 
-    public function setCreatedAtAutomatically()
+    /**
+     * @return Collection<int, LodgingValue>
+     */
+    public function getLodgingValues(): Collection
     {
-        if ($this->getCreatedAt() === null) {
-            $this->setCreatedAt(new \DateTime());
+        return $this->lodgingValues;
+    }
+
+    public function addLodgingValue(LodgingValue $lodgingValue): self
+    {
+        if (!$this->lodgingValues->contains($lodgingValue)) {
+            $this->lodgingValues[] = $lodgingValue;
+            $lodgingValue->setLodgingId($this);
         }
+
+        return $this;
+    }
+
+    public function removeLodgingValue(LodgingValue $lodgingValue): self
+    {
+        if ($this->lodgingValues->removeElement($lodgingValue)) {
+            // set the owning side to null (unless already changed)
+            if ($lodgingValue->getLodgingId() === $this) {
+                $lodgingValue->setLodgingId(null);
+            }
+        }
+
+        return $this;
     }
 
 

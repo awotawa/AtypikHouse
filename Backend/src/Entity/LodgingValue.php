@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\LodgingValueRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\LodgingValueRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['lodgingvalue:read']],
+  denormalizationContext: ['groups' => ['lodgingvalue:write']],
+)]
 #[ORM\Entity(repositoryClass: LodgingValueRepository::class)]
 class LodgingValue
 {
@@ -22,21 +26,29 @@ class LodgingValue
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-z]+)$/"])]
     #[ORM\Column(type: 'string', length: 10)]
+    #[Groups(["lodgingvalue:read", "lodgingvalue:write", "property:read"])]
     private $value;
 
     #[ORM\Column(type: 'datetime')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\Column(type: 'datetime')]
-    private $updated_at;
+    private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: Property::class)]
+    #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'lodgingValues')]
     #[ORM\JoinColumn(nullable: false)]
-    private $property_id;
+    #[Groups(["lodgingvalue:read"])]
+    private $lodgingId;
 
-    #[ORM\ManyToOne(targetEntity: Lodging::class)]
+    #[ORM\ManyToOne(targetEntity: Property::class, inversedBy: 'lodgingValues')]
     #[ORM\JoinColumn(nullable: false)]
-    private $lodging_id;
+    #[Groups(["lodgingvalue:read"])]
+    private $propertyId;
+
+    public function __construct()
+    {
+      $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -57,48 +69,41 @@ class LodgingValue
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
+        return $this->createdAt;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
-
-        return $this;
-    }
-
-    public function getPropertyId(): ?Property
-    {
-        return $this->property_id;
-    }
-
-    public function setPropertyId(?Property $property_id): self
-    {
-        $this->property_id = $property_id;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     public function getLodgingId(): ?Lodging
     {
-        return $this->lodging_id;
+        return $this->lodgingId;
     }
 
-    public function setLodgingId(?Lodging $lodging_id): self
+    public function setLodgingId(?Lodging $lodgingId): self
     {
-        $this->lodging_id = $lodging_id;
+        $this->lodgingId = $lodgingId;
+
+        return $this;
+    }
+
+    public function getPropertyId(): ?Property
+    {
+        return $this->propertyId;
+    }
+
+    public function setPropertyId(?Property $propertyId): self
+    {
+        $this->propertyId = $propertyId;
 
         return $this;
     }

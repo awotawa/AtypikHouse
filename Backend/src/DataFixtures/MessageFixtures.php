@@ -34,7 +34,6 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
 			$message->setUserId($this->getReference("USER".mt_rand(0, 9)));
 			$message->setOwnerId($this->getReference("OWNER".mt_rand(0, 4)));
 			$message->setMessageContent($faker->sentence());
-			$message->setCreatedAt($faker->dateTime());
 			$message->setUpdatedAt($faker->dateTime());
 			$manager->persist($message);
 		}
