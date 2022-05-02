@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-	selector: 'app-reserve-filter',
-	templateUrl: './reserve-filter.component.html',
-	styleUrls: ['./reserve-filter.component.scss']
+	selector: 'app-lodging-filter',
+	templateUrl: './lodging-filter.component.html',
+	styleUrls: ['./lodging-filter.component.scss']
 })
-export class ReserveFilterComponent implements OnInit {
+export class LodgingFilterComponent implements OnInit {
 
-	reserveForm: FormGroup
+	filterLodging: FormGroup
 
 	constructor(private formBuilder: FormBuilder) {
-		
-		this.reserveForm = this.formBuilder.group(
+
+		this.filterLodging = this.formBuilder.group(
 			{
+				destination: ['', [Validators.required]],
 				dateDepart: ['', [Validators.required]],
 				dateArrivee: ['', [Validators.required]],
 				nbAdulte: [0, [Validators.required]],
@@ -27,9 +28,9 @@ export class ReserveFilterComponent implements OnInit {
 
 	onSubmit() {
 		
-		console.log(this.reserveForm.value);
+		console.log(this.filterLodging.value);
 
-		// this.authService.register(this.reserveForm.value)
+		// this.authService.register(this.filterLodging.value)
 		// .subscribe(res => {
 			
 		// 	if (res.firstName) {
