@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\ReviewRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['review:read']],
+  denormalizationContext: ['groups' => ['review:write']],
+)]
 #[ORM\Entity(repositoryClass: ReviewRepository::class)]
 class Review
 {
@@ -22,6 +26,7 @@ class Review
     ])]
     #[Assert\Regex(['pattern' => "/^([1-9]|10)$/"])]
     #[ORM\Column(type: 'integer', length: 10)]
+    #[Groups(["review:read", "review:write"])]
     private $rating;
 
     #[Assert\Length([
@@ -30,7 +35,8 @@ class Review
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
     #[ORM\Column(type: 'text', length: 100)]
-    private $review_title;
+    #[Groups(["review:read", "review:write"])]
+    private $reviewTitle;
 
     #[Assert\Length([
         'max' => 255,
@@ -38,25 +44,34 @@ class Review
     ])]
     #[Assert\Regex(['pattern'=>"/^([A-Za-zÀ-ÿ '!-]+)$/"])]
     #[ORM\Column(type: 'text', length: 255)]
-    private $review_description;
+    #[Groups(["review:read", "review:write"])]
+    private $reviewDescription;
 
     #[ORM\Column(type: 'datetime')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\Column(type: 'datetime')]
-    private $updated_at;
+    private $updatedAt;
 
-    #[ORM\ManyToOne(targetEntity: Owner::class)]
+    #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    private $owner_id;
+    #[Groups(["review:read"])]
+    private $ownerId;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    #[Groups(["review:read"])]
+    private $userId;
 
-    #[ORM\ManyToOne(targetEntity: Lodging::class)]
+    #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'reviews')]
     #[ORM\JoinColumn(nullable: false)]
-    private $lodging_id;
+    #[Groups(["review:read"])]
+    private $lodgingId;
+
+    public function __construct()
+    {
+      $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -77,84 +92,77 @@ class Review
 
     public function getReviewTitle(): ?string
     {
-        return $this->review_title;
+        return $this->reviewTitle;
     }
 
-    public function setReviewTitle(string $review_title): self
+    public function setReviewTitle(string $reviewTitle): self
     {
-        $this->review_title = $review_title;
+        $this->reviewTitle = $reviewTitle;
 
         return $this;
     }
 
     public function getReviewDescription(): ?string
     {
-        return $this->review_description;
+        return $this->reviewDescription;
     }
 
-    public function setReviewDescription(string $review_description): self
+    public function setReviewDescription(string $reviewDescription): self
     {
-        $this->review_description = $review_description;
+        $this->reviewDescription = $reviewDescription;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
+        return $this->createdAt;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     public function getOwnerId(): ?Owner
     {
-        return $this->owner_id;
+        return $this->ownerId;
     }
 
-    public function setOwnerId(?Owner $owner_id): self
+    public function setOwnerId(?Owner $ownerId): self
     {
-        $this->owner_id = $owner_id;
+        $this->ownerId = $ownerId;
 
         return $this;
     }
 
     public function getUserId(): ?User
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUserId(?User $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }
 
     public function getLodgingId(): ?Lodging
     {
-        return $this->lodging_id;
+        return $this->lodgingId;
     }
 
-    public function setLodgingId(?Lodging $lodging_id): self
+    public function setLodgingId(?Lodging $lodgingId): self
     {
-        $this->lodging_id = $lodging_id;
+        $this->lodgingId = $lodgingId;
 
         return $this;
     }

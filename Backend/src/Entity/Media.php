@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\MediaRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\MediaRepository;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ApiResource()]
+#[ApiResource(
+  normalizationContext: ['groups' => ['media:read']],
+  denormalizationContext: ['groups' => ['media:write']],
+)]
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 class Media
 {
@@ -17,15 +21,18 @@ class Media
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $media_type;
+    #[Groups(["media:read", "media:write", "lodging:read"])]
+    private $mediaType;
 
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Regex(['pattern' => "/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&=]*))/"])]
+    #[Groups(["media:read", "media:write", "lodging:read"])]
     private $link;
 
-    #[ORM\ManyToOne(targetEntity: Lodging::class)]
+    #[ORM\ManyToOne(targetEntity: Lodging::class, inversedBy: 'media')]
     #[ORM\JoinColumn(nullable: false)]
-    private $lodging_id;
+    #[Groups(["media:read"])]
+    private $lodgingId;
 
     public function getId(): ?int
     {
@@ -34,12 +41,12 @@ class Media
 
     public function getMediaType(): ?string
     {
-        return $this->media_type;
+        return $this->mediaType;
     }
 
-    public function setMediaType(string $media_type): self
+    public function setMediaType(string $mediaType): self
     {
-        $this->media_type = $media_type;
+        $this->mediaType = $mediaType;
 
         return $this;
     }
@@ -58,12 +65,12 @@ class Media
 
     public function getLodgingId(): ?Lodging
     {
-        return $this->lodging_id;
+        return $this->lodgingId;
     }
 
-    public function setLodgingId(?Lodging $lodging_id): self
+    public function setLodgingId(?Lodging $lodgingId): self
     {
-        $this->lodging_id = $lodging_id;
+        $this->lodgingId = $lodgingId;
 
         return $this;
     }

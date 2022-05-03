@@ -16,21 +16,26 @@ class Message
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $message_content;
+    private $messageContent;
 
     #[ORM\Column(type: 'datetime')]
-    private $created_at;
+    private $createdAt;
 
     #[ORM\Column(type: 'datetime')]
-    private $updated_at;
+    private $updatedAt;
 
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $user_id;
+    private $userId;
 
     #[ORM\ManyToOne(targetEntity: Owner::class)]
     #[ORM\JoinColumn(nullable: false)]
-    private $owner_id;
+    private $ownerId;
+
+    public function __construct()
+    {
+      $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
@@ -39,60 +44,53 @@ class Message
 
     public function getMessageContent(): ?string
     {
-        return $this->message_content;
+        return $this->messageContent;
     }
 
-    public function setMessageContent(string $message_content): self
+    public function setMessageContent(string $messageContent): self
     {
-        $this->message_content = $message_content;
+        $this->messageContent = $messageContent;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
+        return $this->createdAt;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     public function getUserId(): ?User
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function setUserId(?User $user_id): self
+    public function setUserId(?User $userId): self
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
 
         return $this;
     }
 
     public function getOwnerId(): ?Owner
     {
-        return $this->owner_id;
+        return $this->ownerId;
     }
 
-    public function setOwnerId(?Owner $owner_id): self
+    public function setOwnerId(?Owner $ownerId): self
     {
-        $this->owner_id = $owner_id;
+        $this->ownerId = $ownerId;
 
         return $this;
     }

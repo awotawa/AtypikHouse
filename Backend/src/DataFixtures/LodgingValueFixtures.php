@@ -11,7 +11,7 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
 
-class LodgingValuesFixtures extends Fixture implements DependentFixtureInterface
+class LodgingValueFixtures extends Fixture implements DependentFixtureInterface
 {
 
 	public function getDependencies()
@@ -29,11 +29,10 @@ class LodgingValuesFixtures extends Fixture implements DependentFixtureInterface
 
 		for ($i=0; $i < 20; $i++) {
 
-			$lodgingValue = new LodgingValue();	
+			$lodgingValue = new LodgingValue();
 			$lodgingValue->setPropertyId($this->getReference("PROPERTY".mt_rand(0, 19)));
 			$lodgingValue->setLodgingId($this->getReference("LODGING".mt_rand(0, 19)));
-			$lodgingValue->setValue($faker->randomElement(["disponible", "indisponible"]));
-			$lodgingValue->setCreatedAt($faker->dateTime());
+			$lodgingValue->setValue("empty");
 			$lodgingValue->setUpdatedAt($faker->dateTime());
 			$manager->persist($lodgingValue);
 		}

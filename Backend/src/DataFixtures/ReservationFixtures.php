@@ -26,11 +26,10 @@ class ReservationFixtures extends Fixture implements DependentFixtureInterface
 	{
 		$faker = Faker\Factory::create("fr_FR");
 
-		for ($i=0; $i < 10; $i++) { 
+		for ($i=0; $i < 10; $i++) {
 
 			$reservation = new Reservation();
 			$reservation->setPrice($faker->randomFloat(2, 1, 999));
-			$reservation->setCreatedAt($faker->dateTime());
 			$reservation->setUpdatedAt($faker->dateTime());
 			$reservation->setUserId($this->getReference("USER".mt_rand(1, 9)));
 			$reservation->setLodgingId($this->getReference("LODGING".mt_rand(0, 19)));

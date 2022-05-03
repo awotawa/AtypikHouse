@@ -18,15 +18,14 @@ class CategoryFixtures extends Fixture
 
 		$faker = Faker\Factory::create("fr_FR");
 
-		for ($i=0; $i < 20; $i++) { 
-			
+		for ($i=0; $i < 20; $i++) {
+
 			$category = new Category();
 			$category->setType($faker->randomElement(["cabane", "cabane dans les arbres", "cabane sur l'eau", "cabane sur pilotis", "bulle", "yourte", "bateau", "dome", "tipi", "tiny house", "maison de hobbit", "chalet"]));
-			$category->setCreatedAt($faker->dateTime());
 			$category->setUpdatedAt($faker->dateTime());
 			$manager->persist($category);
 			$this->addReference("CATEGORY".$i, $category);
-	
+
 		}
 
 		$manager->flush();
