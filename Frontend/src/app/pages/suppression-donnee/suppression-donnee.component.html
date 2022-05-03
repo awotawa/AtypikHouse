@@ -1,8 +1,3 @@
-
-<head>
-    <title>Suppresion de données | Atypik House | Location de logement | France</title>
-</head>
-
 <section class="banner">
     <div class="hero-body">
         <div class="container-title">
@@ -15,11 +10,9 @@
     <div class="container-form">
         <!-- Contact form -->
 
-        <!-- <form (ngSubmit)="submitForm(); completeContact(contactForm)" #contactForm="ngForm">
-
-            {{ contactForm.valid }} -->
+         <form (ngSubmit)="submitForm(); completeContact(contactForm)" #contactForm="ngForm">
             <!-- Name -->
-            <!-- <div class="field">
+            <div class="field">
                 <label class="label-name">Name</label>
                 <input type="text" name="name" class="input" [(ngModel)]="name" placeholder="Votre nom"  #nameInput="ngModel" 
                 pattern="^[a-zA-Zàéèç.-.' ']*"
@@ -27,10 +20,10 @@
                 <div class="error" *ngIf="nameInput.invalid && nameInput.touched">
                     Ce champ est nécessaire
                 </div>
-            </div> -->
+            </div>
 
             <!-- Email -->
-            <!-- <div class="field">
+            <div class="field">
                 <label class="label-email">Email</label>
                 <input type="text" name="email" class="input" [(ngModel)]="email" placeholder="example@gmail.com" #emailInput="ngModel" 
                 pattern="^[a-zA-Z0-9_.]+@(?:[a-zA-Z0-9-]+\.)+[a-z]{2,7}$"
@@ -38,11 +31,11 @@
                 <div class="error" *ngIf="emailInput.invalid && emailInput.touched">
                     Ce champ est nécessaire
                 </div>
-            </div> -->
+            </div>
             <!-- RECAPTCHA -->
 
             <!-- Submit button -->
-            <!-- <button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid">Envoyez</button> -->
-        <!-- </form> -->
+            <button type="submit" mat-raised-button color="primary" [disabled]="!contactForm.valid">Envoyez</button>
+        </form> 
     </div>
 </section>

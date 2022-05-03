@@ -42,6 +42,9 @@ import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.co
 import { ReserveFilterComponent } from './pages/lodging-detail/reserve-filter/reserve-filter.component';
 import { LodgingFilterComponent } from './pages/lodging-filter/lodging-filter.component';
 
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { Meta } from '@angular/platform-browser';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,10 +80,11 @@ import { LodgingFilterComponent } from './pages/lodging-filter/lodging-filter.co
     GoogleMapsModule,
     GalleriaModule,
     ButtonModule,
-    NgbModule
+    NgbModule,
+    NgxCaptchaModule
   ],
-  providers: [ PhotoServiceService, ReservationService, SearchLodgingService ],
+  providers: [ PhotoServiceService, ReservationService, SearchLodgingService, Meta],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

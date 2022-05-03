@@ -6,7 +6,6 @@
     <mat-card class="box">
 
         <!-- En-tête du formulaire-->
-        {{ userForm.valid }}
         <mat-card-header>
             <mat-card-title>Inscription</mat-card-title>
         </mat-card-header>
@@ -130,7 +129,7 @@
 
                 <!-- Sélection du rôle -->
                 <mat-form-field class="example-full-width">
-                    <mat-label>Vous êtes un...</mat-label>
+                    <mat-label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vous êtes un...</mat-label>
                     <mat-select name="role" [(ngModel)]="userForm.value.role" formControlName="role" required>
                         <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}</mat-option>
                     </mat-select>
