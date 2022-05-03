@@ -19,8 +19,6 @@ export class CGVComponent implements OnInit {
 
     // Définition des différentes balises pour le SEO
     addTag() {
-      this.metaService.addTag({ charset: 'UTF-8' }); // Set en UTF 8
-      this.metaService.addTag({ name: 'viewport', content: 'width=device-width, initial-scale=1' }); // Donne comme instruction au browser comment controler la dimension et l'échelle de la page
       this.metaService.addTag({ httpEquiv: 'Content-Type', content: 'text/html' }); // Indique aux agents et serveurs de prendre le contenu de cette page en tant que HTML
       this.metaService.addTag({ name: 'description', content: "Conditions générales de vente d'Atypik House, site de location de logement insolite en France" }); // Meta description de la page
       this.metaService.addTag({ property: 'og-type', content: "Site web"}); /* Indique le type de l'objet

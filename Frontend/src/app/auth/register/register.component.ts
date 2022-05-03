@@ -3,12 +3,17 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
+import { Meta, Title } from '@angular/platform-browser';
+
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
+	title ='Inscription | Atypik House | Location de logement | France';
+
 	//Initialisation des variables associé au register form pour pouvoir contrôler les champs associés
 	userForm: FormGroup
 	repassword = this.formBuilder.group({
@@ -23,7 +28,7 @@ export class RegisterComponent implements OnInit {
 
 	Roles: any = ['Propriétaire/Locataire', 'Propriétaire', 'Locataire'];
 	constructor(private formBuilder: FormBuilder, private router: Router,
-		private el: ElementRef, private authService: AuthService) {
+		private el: ElementRef, private authService: AuthService, private metaService:Meta, private titleService: Title) {
 
 		this.userForm = this.formBuilder.group(
 			{
@@ -40,6 +45,19 @@ export class RegisterComponent implements OnInit {
 			}
 		)
 
+		this.addTag();
+		this.titleService.setTitle(this.title);
+
+	}
+
+	addTag() {
+		this.metaService.addTag({ httpEquiv: 'Content-Type', content: 'text/html' }); // Indique aux agents et serveurs de prendre le contenu de cette page en tant que HTML
+		this.metaService.addTag({ name: 'description', content: "Inscrivez-vous sur Atypik House, site de location de logement insolite en France" }); // Meta description de la page
+		this.metaService.addTag({ property: 'og-type', content: "Site web"}); /* Indique le type de l'objet
+		/*this.metaService.addTag({ name: 'robots', content: 'index,follow' }); */ // Permet au robot d'indexer la page
+		/* this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' }); */ // Titre pour réseau social
+		/*this.metaService.addTag({ name: 'keywords', content: 'TypeScript, Angular' });*/ //Add keyword
+		/* this.metaService.addTag({ property: 'og:title', content: "My Text" }) */ // Titre pour l'encadré dans les recherches
 	}
 
 	ngOnInit() { }

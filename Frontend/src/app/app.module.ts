@@ -42,7 +42,8 @@ import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.co
 import { ReserveFilterComponent } from './pages/lodging-detail/reserve-filter/reserve-filter.component';
 import { LodgingFilterComponent } from './pages/lodging-filter/lodging-filter.component';
 
-import { NgxCaptchaModule } from 'ngx-captcha';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, RecaptchaFormsModule, RecaptchaModule } from "ng-recaptcha";
+import { RECAPTCHA_SETTINGS, RecaptchaSettings } from "ng-recaptcha";
 import { Meta } from '@angular/platform-browser';
 
 @NgModule({
@@ -81,9 +82,15 @@ import { Meta } from '@angular/platform-browser';
     GalleriaModule,
     ButtonModule,
     NgbModule,
-    NgxCaptchaModule
+    RecaptchaV3Module,
+    RecaptchaFormsModule
   ],
-  providers: [ PhotoServiceService, ReservationService, SearchLodgingService, Meta],
+  providers: [ PhotoServiceService, 
+    ReservationService, 
+    SearchLodgingService, 
+    Meta,     
+    { provide: RECAPTCHA_SETTINGS, useValue: { siteKey: "6Ld6ersfAAAAAOM1Ve_JGLIShKFi2lhnqZ44h0Wv" } as RecaptchaSettings}, 
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6Ld6ersfAAAAAOM1Ve_JGLIShKFi2lhnqZ44h0Wv" }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
