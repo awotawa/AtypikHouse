@@ -46,6 +46,10 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, RecaptchaFormsModule, Recaptc
 import { RECAPTCHA_SETTINGS, RecaptchaSettings } from "ng-recaptcha";
 import { Meta } from '@angular/platform-browser';
 
+import { NgChartsModule } from 'ng2-charts';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { CheckoutStripeSandboxComponent } from './auth/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +70,9 @@ import { Meta } from '@angular/platform-browser';
     LodgingComponent,
     LodgingDetailComponent,
     ReserveFilterComponent,
-    LodgingFilterComponent
+    LodgingFilterComponent,
+    UserProfileComponent,
+    CheckoutStripeSandboxComponent,
   ],
   imports: [
     FormsModule,
@@ -83,7 +89,8 @@ import { Meta } from '@angular/platform-browser';
     ButtonModule,
     NgbModule,
     RecaptchaV3Module,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    NgChartsModule
   ],
   providers: [ PhotoServiceService, 
     ReservationService, 

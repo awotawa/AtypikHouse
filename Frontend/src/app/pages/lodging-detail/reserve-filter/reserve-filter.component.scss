@@ -57,6 +57,10 @@ div.container {
                         transition: 0.5s;
                         display: flex;
                         justify-content: center;
+                        a.paiement{
+                            text-decoration: none;
+                            color: #fff;
+                        }
                     }
 
                     button:hover {

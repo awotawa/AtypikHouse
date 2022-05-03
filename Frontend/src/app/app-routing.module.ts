@@ -11,6 +11,8 @@ import { PolitiqueConfidentialiteComponent } from './pages/politique-confidentia
 import { RegisterComponent } from './auth/register/register.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
 import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { CheckoutStripeSandboxComponent } from './auth/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'lodging-detail', component: LodgingDetailComponent },
+  { path: 'mon-compte', component: UserProfileComponent },
+  { path: 'paiement', component: CheckoutStripeSandboxComponent },
 
   // Re route lien qui n'existe pas sur page 404
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
