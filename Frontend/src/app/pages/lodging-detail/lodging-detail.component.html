@@ -41,14 +41,14 @@
                                 [containerStyle]="{'max-width': '660px'}" [numVisible]="5" thumbnailsPosition="bottom">
 
                                 <ng-template pTemplate="item" let-item>
-                                    <img [src]="item.previewImageSrc" style="width: 100%; display: block; border-radius: 10px 10px 0px 0px;" />
+                                    <img [src]="item.previewImageSrc" style="width: 100%; display: block; border-radius: 10px 10px 0px 0px;" alt="lodging-image-preview" />
                                 </ng-template>
 
                                 <ng-template pTemplate="thumbnail" let-item>
                                     <div class="grid grid-nogutter justify-content-center"
                                         style="max-width: 300px; height: auto;">
                                         <img style="max-width: 100%; height: auto;" class="thumbnailImg"
-                                            [src]="item.thumbnailImageSrc" />
+                                            [src]="item.thumbnailImageSrc" alt="lodging-images" />
                                     </div>
                                 </ng-template>
 

@@ -45,6 +45,9 @@ import { PhotoServiceService } from './shared/services/photo-service.service';
 import { ReserveFilterComponent } from './pages/lodging-detail/reserve-filter/reserve-filter.component';
 import { ReservationService } from './shared/services/reservation.service';
 
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { Meta } from '@angular/platform-browser';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,10 +82,11 @@ import { ReservationService } from './shared/services/reservation.service';
     GoogleMapsModule,
     GalleriaModule,
     ButtonModule,
-    NgbModule
+    NgbModule,
+    NgxCaptchaModule
   ],
-  providers: [ PhotoServiceService, ReservationService ],
+  providers: [ PhotoServiceService, ReservationService, Meta],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

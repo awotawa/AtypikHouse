@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { ViewEncapsulation } from '@angular/core'
+import { ViewEncapsulation } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -11,18 +12,34 @@ import { ViewEncapsulation } from '@angular/core'
   providers: [ NgbCarouselConfig ]
 })
 export class HomepageComponent implements OnInit {
+  title ='Accueil | Atypik House | Location de logement | France';
   showNavigationArrows = true;
   showNavigationIndicators = false;
   //images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   images = ['location-insolite-atypik-house', 'location-insolite-atypik-house-2', 'location-insolite-atypik-house-3'].map((n) => `../../assets/images/icons/${n}.png`);
 
-  constructor(config: NgbCarouselConfig) { 
-    config.interval = 5000;
+  constructor(config: NgbCarouselConfig, private metaService:Meta, private titleService: Title) { 
+    config.interval = 5000; // Change de slide toutes les 5 secondes
     config.wrap = true;
-    config.showNavigationArrows = true;
+    config.showNavigationArrows = true; // Affiche les flèches
     config.showNavigationIndicators = false;
     config.pauseOnFocus = false;
     config.pauseOnHover = false;
+    this.addTag();
+    this.titleService.setTitle(this.title);
+  }
+
+  // Définition des différentes balises pour le SEO
+  addTag() {
+    this.metaService.addTag({ charset: 'UTF-8' }); // Set en UTF 8
+    this.metaService.addTag({ name: 'viewport', content: 'width=device-width, initial-scale=1' }); // Donne comme instruction au browser comment controler la dimension et l'échelle de la page
+    this.metaService.addTag({ httpEquiv: 'Content-Type', content: 'text/html' }); // Indique aux agents et serveurs de prendre le contenu de cette page en tant que HTML
+    this.metaService.addTag({ name: 'description', content: 'Atypik House, site de location de logement insolite en France' }); // Meta description de la page
+    this.metaService.addTag({ property: 'og-type', content: "Site web"}); /* Indique le type de l'objet
+    /*this.metaService.addTag({ name: 'robots', content: 'index,follow' }); */ // Permet au robot d'indexer la page
+    /* this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' }); */ // Titre pour réseau social
+    /*this.metaService.addTag({ name: 'keywords', content: 'TypeScript, Angular' });*/ //Add keyword
+    /* this.metaService.addTag({ property: 'og:title', content: "My Text" }) */ // Titre pour l'encadré dans les recherches
   }
 
   ngOnInit(): void {
