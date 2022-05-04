@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-reserve-filter',
@@ -10,7 +11,7 @@ export class ReserveFilterComponent implements OnInit {
 
 	reserveForm: FormGroup
 
-	constructor(private formBuilder: FormBuilder) {
+	constructor(private formBuilder: FormBuilder, private route:ActivatedRoute,private router:Router ) {
 		
 		this.reserveForm = this.formBuilder.group(
 			{
@@ -28,6 +29,8 @@ export class ReserveFilterComponent implements OnInit {
 	onSubmit() {
 		
 		console.log(this.reserveForm.value);
+		this.router.navigate(['/paiement']);
+		
 
 		// this.authService.register(this.reserveForm.value)
 		// .subscribe(res => {
@@ -37,8 +40,6 @@ export class ReserveFilterComponent implements OnInit {
 		// 	}
 			
 		// })
-		
-		//this.router.navigate(['/']);
 	}
 
 }
