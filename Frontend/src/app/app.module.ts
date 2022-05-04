@@ -48,7 +48,9 @@ import { Meta } from '@angular/platform-browser';
 
 import { NgChartsModule } from 'ng2-charts';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
-import { CheckoutStripeSandboxComponent } from './auth/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
+import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
+
+//import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -97,7 +99,7 @@ import { CheckoutStripeSandboxComponent } from './auth/checkout-stripe-sandbox/c
     SearchLodgingService, 
     Meta,     
     { provide: RECAPTCHA_SETTINGS, useValue: { siteKey: "6Ld6ersfAAAAAOM1Ve_JGLIShKFi2lhnqZ44h0Wv" } as RecaptchaSettings}, 
-    { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6Ld6ersfAAAAAOM1Ve_JGLIShKFi2lhnqZ44h0Wv" }],
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6Ld6ersfAAAAAOM1Ve_JGLIShKFi2lhnqZ44h0Wv" }, /*authInterceptorProviders*/  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

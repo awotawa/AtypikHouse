@@ -7,6 +7,11 @@ import { NgForm } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 
+//HTTP INTERCEPTOR
+import { Injectable } from '@angular/core';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

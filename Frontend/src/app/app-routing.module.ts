@@ -12,7 +12,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { SuppressionDonneeComponent } from './pages/suppression-donnee/suppression-donnee.component';
 import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
-import { CheckoutStripeSandboxComponent } from './auth/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
+import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
