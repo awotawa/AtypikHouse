@@ -15,7 +15,9 @@ export class RegisterComponent implements OnInit {
 	title ='Inscription | Atypik House | Location de logement | France';
 
 	//Initialisation des variables associé au register form pour pouvoir contrôler les champs associés
-	userForm: FormGroup
+	userForm: FormGroup;
+
+	frmFinish: FormGroup;
 	repassword = this.formBuilder.group({
 		samePassword: ['', [Validators.required]],
 	})
@@ -48,6 +50,8 @@ export class RegisterComponent implements OnInit {
 		this.addTag();
 		this.titleService.setTitle(this.title);
 
+		this.frmFinish = this.formBuilder.group({});
+
 	}
 
 	addTag() {
@@ -60,7 +64,11 @@ export class RegisterComponent implements OnInit {
 		/* this.metaService.addTag({ property: 'og:title', content: "My Text" }) */ // Titre pour l'encadré dans les recherches
 	}
 
-	ngOnInit() { }
+	ngOnInit() { 
+		this.frmFinish = this.formBuilder.group({
+			checkTerms: ['', Validators.requiredTrue],
+		});
+	}
 
 	//Redirection sur page inscription success
 	onSubmit() {

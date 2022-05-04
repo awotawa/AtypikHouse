@@ -12,11 +12,11 @@ export class MainFooterComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
-		this.getCurrentLocation();
+		//this.getCurrentLocation();
 
 	}
 
-	loading = false;
+	/*loading = false;
 
 	@ViewChild(GoogleMap, { static: false }) map!: GoogleMap;
 	@ViewChild(MapInfoWindow, { static: false }) infoWindow!: MapInfoWindow;
@@ -84,7 +84,7 @@ export class MainFooterComponent implements OnInit {
 			},
 			{ enableHighAccuracy: true }
 		);
-	}
+	}*/
 
 	// Initialize and add the map
 	// public initMap(): void {

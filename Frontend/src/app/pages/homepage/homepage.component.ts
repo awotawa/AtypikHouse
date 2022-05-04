@@ -16,7 +16,7 @@ export class HomepageComponent implements OnInit {
   showNavigationArrows = true;
   showNavigationIndicators = false;
   //images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  images = ['location-insolite-atypik-house', 'location-insolite-atypik-house-2', 'location-insolite-atypik-house-3'].map((n) => `../../assets/images/icons/${n}.png`);
+  images = ['atypik-house-accueil-1', 'atypik-house-accueil-2', 'atypik-house-accueil-3'].map((n) => `../../assets/images/icons/${n}.jpg`);
 
   constructor(config: NgbCarouselConfig, private metaService:Meta, private titleService: Title) { 
     config.interval = 5000; // Change de slide toutes les 5 secondes
@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
     this.metaService.addTag({ property: 'og-type', content: "Site web"}); /* Indique le type de l'objet
     /*this.metaService.addTag({ name: 'robots', content: 'index,follow' }); */ // Permet au robot d'indexer la page
     /* this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' }); */ // Titre pour réseau social
-    /*this.metaService.addTag({ name: 'keywords', content: 'TypeScript, Angular' });*/ //Add keyword
+    this.metaService.addTag({ name: 'keywords', content: 'Logement insolite, hébergement, logement nature' }); //Add keyword
     /* this.metaService.addTag({ property: 'og:title', content: "My Text" }) */ // Titre pour l'encadré dans les recherches
   }
 
