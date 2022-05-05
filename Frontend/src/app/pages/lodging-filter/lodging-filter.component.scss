@@ -14,9 +14,17 @@ div.container {
                 margin-left: 20px;
                 margin-right: 20px;
 
+                form.example-form.ng-untouched.ng-pristine.ng-invalid {
+                    background: #000;
+                    border-radius: 30px;
+                    padding: 10px;
+                }
+
                 div.filter {
 
                     p {
+                        color: #fff;
+                        font-weight: 700;
                         text-align: center;
 
                         span {

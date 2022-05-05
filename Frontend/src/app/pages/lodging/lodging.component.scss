@@ -1,6 +1,15 @@
 section {
     padding: 64px 0;
 
+    h2{
+        font-size: 24px;
+        color: #325F5C;
+        -webkit-text-decoration: underline #ff994b;
+        text-decoration: underline #ff994b;
+        margin-block-end: 3px;
+        text-align: center;
+    }
+
     div.useful-width {
         display: block;
         width: auto;
