@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FlexLayoutServerModule } from '@angular/flex-layout/server';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { GalleriaModule } from 'primeng/galleria';
 import { ButtonModule } from 'primeng/button';
@@ -49,6 +49,7 @@ import { Meta } from '@angular/platform-browser';
 import { NgChartsModule } from 'ng2-charts';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
+import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 //import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -98,6 +99,7 @@ import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/
     ReservationService, 
     SearchLodgingService, 
     Meta,     
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: RECAPTCHA_SETTINGS, useValue: { siteKey: "6Ld6ersfAAAAAOM1Ve_JGLIShKFi2lhnqZ44h0Wv" } as RecaptchaSettings}, 
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: "6Ld6ersfAAAAAOM1Ve_JGLIShKFi2lhnqZ44h0Wv" }, /*authInterceptorProviders*/  ],
   bootstrap: [AppComponent],
