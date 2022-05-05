@@ -13,18 +13,18 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class HomepageComponent implements OnInit {
   title ='Accueil | Atypik House | Location de logement | France';
-  showNavigationArrows = true;
-  showNavigationIndicators = false;
+  //showNavigationArrows = true;
+  //showNavigationIndicators = false;
   //images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  images = ['atypik-house-accueil-1', 'atypik-house-accueil-2', 'atypik-house-accueil-3'].map((n) => `../../assets/images/icons/${n}.jpg`);
+  //images = ['atypik-house-accueil-1', 'atypik-house-accueil-2', 'atypik-house-accueil-3'].map((n) => `../../assets/images/icons/${n}.jpg`);
 
   constructor(config: NgbCarouselConfig, private metaService:Meta, private titleService: Title) { 
-    config.interval = 5000; // Change de slide toutes les 5 secondes
-    config.wrap = true;
-    config.showNavigationArrows = true; // Affiche les flèches
-    config.showNavigationIndicators = false;
-    config.pauseOnFocus = false;
-    config.pauseOnHover = false;
+    //config.interval = 5000; // Change de slide toutes les 5 secondes
+    //config.wrap = true;
+    //config.showNavigationArrows = true; // Affiche les flèches
+    //config.showNavigationIndicators = false;
+    //config.pauseOnFocus = false;
+    //config.pauseOnHover = false;
     this.addTag();
     this.titleService.setTitle(this.title);
   }
