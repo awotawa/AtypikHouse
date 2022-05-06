@@ -1,26 +1,25 @@
-<section class="banniere">
-    <div class="rows">
-        <div class="container-title">
-            <h1 class="title">Mon compte</h1>
-        </div>
-    </div>
-</section>
-
-<div class="container">
-    <div class="row">
-      <div>
-        <!--<p><strong>Name:</strong> {{ this.currentUser.name }}</p>
-        <p><strong>Email:</strong> {{ this.currentUser.email }}</p>-->
-        <p>Bienvenue sur votre profil, <!-- {{ this.currentUser.name }} ! --></p> <br>
-        <p>Que souhaitez-vous faire ?</p>
-        <br>
-        <ul>
-            <li>Voir les détails de mon compte</li>
-            <li>Changer de mot de passe</li>
-            <li>Changer de moyen de paiement</li>
-            <li>Voir vos réservations</li>
-            <li>Nous contacter !</li>
-        </ul>
-      </div>
-    </div>
+<div class="container" *ngIf="currentUser; else loggedOut">
+	<header class="jumbotron">
+	  <h3>
+		<strong>{{ currentUser.username }}</strong> Profile
+	  </h3>
+	</header>
+	<!-- <p>
+	  <strong>Token:</strong>
+	  {{ currentUser.accessToken.substring(0, 20) }} ...
+	  {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+	</p> -->
+	<p>
+	  <strong>Email:</strong>
+	  {{ currentUser.email }}
+	</p>
+	<strong>Roles:</strong>
+	<ul>
+	  <li *ngFor="let role of currentUser.roles">
+		{{ role }}
+	  </li>
+	</ul>
   </div>
+  <ng-template #loggedOut>
+	Please login.
+  </ng-template>
