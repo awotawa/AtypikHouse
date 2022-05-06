@@ -42,7 +42,7 @@ div.login-wrapper{
     margin-top: 5rem;
     margin-bottom: 5rem;
     mat-card-title{
-      color: #ffffff;
+      color: #000;
       margin-left: -1rem;
     }
     mat-card-content{
@@ -63,7 +63,7 @@ div.login-wrapper{
       div.error{
         border: 2px solid;
         padding: 2px;
-        color: #ffffff;
+        color: black;
         /*margin-top: 0.5rem;*/
         margin-bottom: 1rem;
       }
@@ -71,7 +71,7 @@ div.login-wrapper{
       div.error-nom{
         border: 2px solid;
         padding: 2px;
-        color: #ffffff;
+        color: #000;
         /*margin-top: 0.5rem;*/
         margin-bottom: 1rem;
         width: 45%;
@@ -80,13 +80,13 @@ div.login-wrapper{
       div.error-prenom{
         border: 2px solid;
         padding: 2px;
-        color: #ffffff;
+        color: #000;
         /*margin-top: 0.5rem;*/
         margin-bottom: 1rem;
         width: 45%;
       }
       p.message-contact{
-        color: #ffffff;
+        color: #000;
         font-weight: 500;
       }
     }
@@ -136,7 +136,7 @@ div.login-wrapper{
   }
 
   .a-lien{
-    color: #ffffff;
+    color: #000;
   }
 }
 
