@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { NgForm } from '@angular/forms';
 
@@ -11,71 +11,121 @@ import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/_services/auth.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
-  title ='Connexion | Atypik House | Location de logement | France';
+	title = 'Connexion | Atypik House | Location de logement | France';
 
-  identifiant!: string;
-  password!: string;
-  public inputPassword = this.el.nativeElement;
-  public imgPassword = this.el.nativeElement;
+	isLoggedIn = false;
+	isLoginFailed = false;
+	errorMessage = '';
+	roles: string[] = [];
 
-  private _shown = false;
+	userForm: FormGroup;
+	identifiant!: string;
+	password!: string;
+	public inputPassword = this.el.nativeElement;
+	public imgPassword = this.el.nativeElement;
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private metaService:Meta, private titleService: Title, private recaptchaV3Service: ReCaptchaV3Service) { 
-    this.addTag();
-    this.titleService.setTitle(this.title);
-  }
+	private _shown = false;
 
-  //Génération du token
-  public login(form: NgForm): void {
-    this.recaptchaV3Service.execute('importantAction')
-      .subscribe((token) => this.handleToken(token));
-  }
-  handleToken(token: string): void {
-    this.recaptchaV3Service.execute('importantAction')
-    .subscribe((token: string) => {
-      console.log(`[${token}]`);
-    });
-  }
+	constructor(
+		private formBuilder: FormBuilder, private el: ElementRef,
+		private metaService: Meta, private titleService: Title,
+		private recaptchaV3Service: ReCaptchaV3Service,
+		private authService: AuthService,
+		private tokenStorage: TokenStorageService) {
+		this.addTag();
+		this.titleService.setTitle(this.title);
 
-  addTag() {
-    this.metaService.addTag({ httpEquiv: 'Content-Type', content: 'text/html' }); // Indique aux agents et serveurs de prendre le contenu de cette page en tant que HTML
-    this.metaService.addTag({ name: 'description', content: "Connectez vous sur Atypik House, site de location de logement insolite en France" }); // Meta description de la page
-    this.metaService.addTag({ property: 'og-type', content: "Site web"}); /* Indique le type de l'objet
+		this.userForm = this.formBuilder.group(
+			{
+				email: ['', [Validators.required]],
+				password: ['', [Validators.required]]
+			}
+		)
+	}
+
+	//Génération du token
+	public login(form: NgForm): void {
+		this.recaptchaV3Service.execute('importantAction')
+			.subscribe((token) => this.handleToken(token));
+	}
+	handleToken(token: string): void {
+		this.recaptchaV3Service.execute('importantAction')
+			.subscribe((token: string) => {
+				console.log(`[${token}]`);
+			});
+	}
+
+	addTag() {
+		this.metaService.addTag({ httpEquiv: 'Content-Type', content: 'text/html' }); // Indique aux agents et serveurs de prendre le contenu de cette page en tant que HTML
+		this.metaService.addTag({ name: 'description', content: "Connectez vous sur Atypik House, site de location de logement insolite en France" }); // Meta description de la page
+		this.metaService.addTag({ property: 'og-type', content: "Site web" }); /* Indique le type de l'objet
     /*this.metaService.addTag({ name: 'robots', content: 'index,follow' }); */ // Permet au robot d'indexer la page
-    /* this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' }); */ // Titre pour réseau social
-    /*this.metaService.addTag({ name: 'keywords', content: 'TypeScript, Angular' });*/ //Add keyword
-    /* this.metaService.addTag({ property: 'og:title', content: "My Text" }) */ // Titre pour l'encadré dans les recherches
-  }
+		/* this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' }); */ // Titre pour réseau social
+		/*this.metaService.addTag({ name: 'keywords', content: 'TypeScript, Angular' });*/ //Add keyword
+		/* this.metaService.addTag({ property: 'og:title', content: "My Text" }) */ // Titre pour l'encadré dans les recherches
+	}
 
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+	}
+
+	onSubmit() {
+		const { email, password } = this.userForm.value
+		console.log(email, password);
+
+		this.authService.login(email, password)
+			.subscribe(data => {
+
+				console.log("gg --------->");
+				console.log(data);
+
+				this.tokenStorage.saveToken(data.accessToken);
+				this.tokenStorage.saveUser(data);
+				this.isLoginFailed = false;
+				this.isLoggedIn = true;
+				this.roles = this.tokenStorage.getUser().roles;
+				//this.reloadPage();
+			},
+			err => {
+				this.errorMessage = err.error.message;
+				this.isLoginFailed = true;
+			}
+		);
+
+		//this.router.navigate(['/']);
+	}
+
+	reloadPage(): void {
+		window.location.reload();
+	}
 
 
-  visibilityPassword() {
-    
-    const myInputPassword = this.inputPassword.querySelector("input[name='password']");
-    const myImgPassword = this.imgPassword.querySelector("img.imgVisibility");
-    this._shown = !this._shown;
+	visibilityPassword() {
 
-    if (this._shown) {
-      
-      myInputPassword.setAttribute('type', 'test');
-      myImgPassword.src = "../../assets/icons/passwordVisibility/visibility_off.svg";    
+		const myInputPassword = this.inputPassword.querySelector("input[name='password']");
+		const myImgPassword = this.imgPassword.querySelector("img.imgVisibility1");
+		this._shown = !this._shown;
 
-    } else {
+		if (this._shown) {
 
-      myInputPassword.setAttribute('type', 'password');
-      myImgPassword.src = "../../assets/icons/passwordVisibility/visibility.svg";      
-    }
-    
-  }
+			myInputPassword.setAttribute('type', 'test');
+			myImgPassword.src = "../../assets/icons/passwordVisibility/visibility_off.svg";
+
+		} else {
+
+			myInputPassword.setAttribute('type', 'password');
+			myImgPassword.src = "../../assets/icons/passwordVisibility/visibility.svg";
+		}
+
+	}
 }

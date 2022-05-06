@@ -104,13 +104,13 @@
                 </div>
 
                 <!-- Input adresse avec regex -->
-                <mat-form-field class="example-full-width">
+                <!-- <mat-form-field class="example-full-width">
                     <input name="adresse" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adresse" [(ngModel)]="userForm.value.adresse"
                         formControlName="adresse" required>
                 </mat-form-field>
                 <div class="error" *ngIf="userForm.controls['adresse'].touched && !userForm.controls['adresse'].value">
                     Ce champs est requis.
-                </div>
+                </div> -->
 
                 <!-- Input date en readonly, pas de saisie manuelle autorisée -->
                 <!-- <mat-form-field class="example-full-width">
@@ -124,7 +124,7 @@
                 </div> -->
 
                 <!-- Sélection du rôle -->
-                <mat-form-field class="example-full-width">
+                <!-- <mat-form-field class="example-full-width">
                     <mat-label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vous êtes un...</mat-label>
                     <mat-select name="role" [(ngModel)]="userForm.value.role" formControlName="role" required>
                         <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}</mat-option>
@@ -132,7 +132,7 @@
                 </mat-form-field>
                 <div class="error" *ngIf="userForm.controls['role'].touched && !userForm.controls['role'].value">
                     Ce champs est requis.
-                </div>
+                </div> -->
 
             </mat-card-content>
 

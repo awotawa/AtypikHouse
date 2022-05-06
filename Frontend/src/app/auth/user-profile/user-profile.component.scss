@@ -1,21 +1,43 @@
-section.banniere{
-    div.rows{
+section.banniere {
+    div.rows {
         text-align: center;
         margin-top: 5rem;
         margin-bottom: 5rem;
     }
 }
 
-div.container{
-    div.row{
-        div{
-            p{
-                font-size: 1.4rem;
+div.container {
+
+    div.row {
+
+        div.profileInfo {
+            // p{
+            //     font-size: 1.4rem;
+            // }
+
+            // ul{
+            //     font-size: 1.4rem;
+            //     line-height: 1.5;
+            // }
+            background: rgb(234, 1, 1);
+            padding: 20px;
+
+            div.f-form-half {
+                background: rgb(240, 156, 156);
+                margin-left: 8%;
+                width: 46%
             }
 
-            ul{
-                font-size: 1.4rem;
-                line-height: 1.5;
+
+        }
+
+        @media (min-width: 768px) {
+            div.profileInfo {
+                padding: 40px;
+
+                div.f-form-half {
+                    margin-left: 0;
+                }
             }
         }
     }
