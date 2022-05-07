@@ -20,7 +20,7 @@
 					<a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Hébergement</a>
+					<a class="nav-link" href="/hebergement">Hébergement</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="/contact">Contact</a>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 
-			<ul class="navbar-nav mr-auto">
+			<ul class="navbar-nav mr-auto" *ngIf="!isLoggedIn">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle account_link" href="#" id="navbarDropdown" role="button"
 						data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,6 +47,20 @@
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" href="/login">Connexion</a>
 						<a class="dropdown-item" href="/register">S'inscrire</a>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav mr-auto" *ngIf="isLoggedIn">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle account_link" href="#" id="navbarDropdown" role="button"
+						data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img class="account-icon" src="../../../assets/images/icons/icone-compte-atypikhouse.svg" alt="Logo-mon-compte"/>
+						<span>Mon compte</span>
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="/mon-compte">Profil</a>
+						<a class="dropdown-item" href="/" (click)="logout()">Se déconnecter</a>
 					</div>
 				</li>
 			</ul>

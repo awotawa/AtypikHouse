@@ -52,6 +52,7 @@ import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { HebergementComponent } from './pages/hebergement/hebergement.component';
 
 @NgModule({
 	declarations: [
@@ -76,6 +77,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 		LodgingFilterComponent,
 		UserProfileComponent,
 		CheckoutStripeSandboxComponent,
+  HebergementComponent,
 	],
 	imports: [
 		FormsModule,
