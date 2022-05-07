@@ -53,6 +53,7 @@ import { AuthInterceptor } from './_helpers/auth.interceptor';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { HebergementComponent } from './pages/hebergement/hebergement.component';
+import { OffreComponent } from './auth/offre/offre.component';
 
 @NgModule({
 	declarations: [
@@ -78,6 +79,7 @@ import { HebergementComponent } from './pages/hebergement/hebergement.component'
 		UserProfileComponent,
 		CheckoutStripeSandboxComponent,
   HebergementComponent,
+  OffreComponent,
 	],
 	imports: [
 		FormsModule,

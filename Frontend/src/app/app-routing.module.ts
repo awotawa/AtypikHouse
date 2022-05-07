@@ -14,6 +14,7 @@ import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.co
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
 import { HebergementComponent } from './pages/hebergement/hebergement.component';
+import { OffreComponent } from './auth/offre/offre.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'lodging-detail', component: LodgingDetailComponent },
   { path: 'mon-compte', component: UserProfileComponent },
   { path: 'paiement', component: CheckoutStripeSandboxComponent },
-  { path: 'hebergement', component: HebergementComponent},
+  { path: 'hebergement', component: HebergementComponent },
+  { path: 'offre', component: OffreComponent },
 
   // Re route lien qui n'existe pas sur page 404
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
