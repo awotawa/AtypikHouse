@@ -33,7 +33,7 @@ export class HebergementComponent implements OnInit {
 
 	ngOnInit(): void {
 
-		this.publicService.getPublicContent().subscribe({
+		this.publicService.getLodgings().subscribe({
 			next: data => {
 			  this.content = data;
 			},

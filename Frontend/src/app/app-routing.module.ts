@@ -14,9 +14,11 @@ import { LodgingDetailComponent } from './pages/lodging-detail/lodging-detail.co
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
 import { HebergementComponent } from './pages/hebergement/hebergement.component';
+import { LodgingComponent } from './pages/lodging/lodging.component';
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent },
+  { path: 'homepage', component: HomepageComponent },
+  { path: '',   redirectTo: '/homepage', pathMatch: 'full' },
   { path: 'contact', component: ContactComponent },
   { path: 'politique-de-confidentialite', component: PolitiqueConfidentialiteComponent},
   { path: 'mentions-legales', component: MentionsLegalesComponent },
@@ -25,7 +27,8 @@ const routes: Routes = [
   { path: 'suppression-donnees', component: SuppressionDonneeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'lodging-detail', component: LodgingDetailComponent },
+  // { path: 'lodgings', component: LodgingComponent },
+  { path: 'lodging-detail/:id', component: LodgingDetailComponent },
   { path: 'mon-compte', component: UserProfileComponent },
   { path: 'paiement', component: CheckoutStripeSandboxComponent },
   { path: 'hebergement', component: HebergementComponent},
