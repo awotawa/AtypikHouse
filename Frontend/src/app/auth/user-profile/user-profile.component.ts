@@ -13,10 +13,17 @@ export class UserProfileComponent implements OnInit {
 	title = 'Mon compte | Atypik House | Location de logement | France';
 	currentUser: any;
 
+	private roles: string[] = [];
+	isLoggedIn = false;
+	showAdminBoard = false;
+	showModeratorBoard = false;
+	username?: string;
+
 	constructor(
 		private metaService: Meta,
 		private titleService: Title,
-		private token: TokenStorageService) {
+		private token: TokenStorageService,
+		private tokenStorageService: TokenStorageService) {
 		this.addTag();
 		this.titleService.setTitle(this.title);
 	}
@@ -39,8 +46,21 @@ export class UserProfileComponent implements OnInit {
 		let splitToken = this.currentUser.token.split('.')[1]
 		let atobRes = JSON.parse(atob(splitToken));
 
-		console.log(atobRes.roles );
+		console.log(atobRes.roles);
 
+		this.isLoggedIn = !!this.tokenStorageService.getToken();
+		if (this.isLoggedIn) {
+		  const user = this.tokenStorageService.getUser();
+		  this.roles = user.roles;
+		 //this.showAdminBoard = this.roles.includes('ROLE_USER');
+		  //this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+		  this.username = user.username;
+		}
+
+	}
+
+	reloadPage(): void {
+		window.location.reload();
 	}
 
 }

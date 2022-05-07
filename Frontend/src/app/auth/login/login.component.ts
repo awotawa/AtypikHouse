@@ -13,6 +13,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -41,7 +42,8 @@ export class LoginComponent implements OnInit {
 		private metaService: Meta, private titleService: Title,
 		private recaptchaV3Service: ReCaptchaV3Service,
 		private authService: AuthService,
-		private tokenStorage: TokenStorageService) {
+		private tokenStorage: TokenStorageService,
+		private router:Router) {
 		this.addTag();
 		this.titleService.setTitle(this.title);
 
@@ -79,31 +81,32 @@ export class LoginComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
+
 	onSubmit() {
 		const { email, password } = this.userForm.value
 		console.log(email, password);
 
-		this.authService.login(email, password)
-			.subscribe(data => {
+		this.authService.login(email, password).subscribe({
+		  next: data => {
+			console.log("gg --------->");
+			console.log(data);
 
-				console.log("gg --------->");
-				console.log(data);
-
-				this.tokenStorage.saveToken(data.accessToken);
-				this.tokenStorage.saveUser(data);
-				this.isLoginFailed = false;
-				this.isLoggedIn = true;
-				this.roles = this.tokenStorage.getUser().roles;
-				//this.reloadPage();
-			},
-			err => {
-				this.errorMessage = err.error.message;
-				this.isLoginFailed = true;
+			this.tokenStorage.saveToken(data.accessToken);
+			this.tokenStorage.saveUser(data);
+			this.isLoginFailed = false;
+			this.isLoggedIn = true;
+			this.roles = this.tokenStorage.getUser().roles;
+			//this.reloadPage();
+			if(this.isLoggedIn = true){
+				this.router.navigate(['/mon-compte']);
 			}
-		);
-
-		//this.router.navigate(['/']);
-	}
+		  },
+		  error: err => {
+			this.errorMessage = err.error.message;
+			this.isLoginFailed = true;
+		  }
+		});
+	  }
 
 	reloadPage(): void {
 		window.location.reload();
@@ -129,3 +132,5 @@ export class LoginComponent implements OnInit {
 
 	}
 }
+
+
