@@ -15,6 +15,7 @@ export class AuthService {
 
 	constructor(private http: HttpClient) { }
 
+
 	login(username: string, password: string): Observable<any> {
 		return this.http.post(AUTH_API + '/login', {
 			username,
@@ -29,6 +30,17 @@ export class AuthService {
 			firstName,
 			lastName,
 			photo
+		}, httpOptions);
+	}
+
+	offre(name: string, rate: number, description: string, address: string, owner: string, category: string): Observable<any> {
+		return this.http.post(AUTH_API + '/lodgings', {
+			name,
+			rate,
+			description,
+			address,
+			owner,
+			category
 		}, httpOptions);
 	}
 

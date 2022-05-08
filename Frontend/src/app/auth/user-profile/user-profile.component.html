@@ -8,6 +8,13 @@
 	</header>
   </div>
 
+  <strong>Roles:</strong>
+  <ul>
+    <li *ngFor="let role of currentUser.roles">
+      {{ role }}
+    </li>
+  </ul>
+
   <ul class="navbar-nav mr-auto" *ngIf="isLoggedIn">
 	<li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle account_link" href="#" id="navbarDropdown" role="button"
@@ -17,6 +24,7 @@
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 			<a class="dropdown-item" href="/hebergement">Réserver</a>
+			<a class="dropdown-item" href="/offre">Déposer une offre</a>
 		</div>
 	</li>
 	</ul>
