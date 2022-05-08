@@ -2,6 +2,7 @@ import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
 	selector: 'app-user-profile',
@@ -16,14 +17,16 @@ export class UserProfileComponent implements OnInit {
 	private roles: string[] = [];
 	isLoggedIn = false;
 	showAdminBoard = false;
-	showModeratorBoard = false;
-	username?: string;
+	showOwnerBoard = false;
+	content?: string;
+	//username?: string;
 
 	constructor(
 		private metaService: Meta,
 		private titleService: Title,
 		private token: TokenStorageService,
-		private tokenStorageService: TokenStorageService) {
+		private tokenStorageService: TokenStorageService,
+		private adminService: AdminService,) {
 		this.addTag();
 		this.titleService.setTitle(this.title);
 	}
@@ -45,19 +48,37 @@ export class UserProfileComponent implements OnInit {
 
 		let splitToken = this.currentUser.token.split('.')[1]
 		let atobRes = JSON.parse(atob(splitToken));
+		console.log(atobRes.username)
 
-		console.log(atobRes.roles);
+		/*console.log(atobRes.roles);*/
+		/*if(atobRes.roles[0]=="ROLE_ADMIN"){
+			this.showAdminBoard = true;
+		}
+		else if(atobRes.roles[0]=="ROLE_OWNER"){
+			this.showOwnerBoard = true;
+		}*/
 
 		this.isLoggedIn = !!this.tokenStorageService.getToken();
 		if (this.isLoggedIn) {
 		  const user = this.tokenStorageService.getUser();
 		  
-		  this.roles = user.roles;
-		 	//this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-		  //this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-		  this.username = user.username;
+		  this.roles = atobRes.roles;
+		  console.log(this.roles)
+		  this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+		  /*console.log(this.showAdminBoard)*/
+		  this.showOwnerBoard = this.roles.includes('ROLE_OWNER');
 		}
 
+		this.adminService.getallUsers().subscribe({
+			next: data => {
+				this.content = data;
+				console.log(data.roles)
+			},
+			error: err => {
+			  //this.errorMessage = err.error.message;
+			  //this.isLoginFailed = true;
+			}
+		  });
 	}
 
 	reloadPage(): void {

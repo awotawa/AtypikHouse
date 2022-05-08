@@ -15,6 +15,7 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
 import { CheckoutStripeSandboxComponent } from './pages/checkout-stripe-sandbox/checkout-stripe-sandbox.component';
 import { HebergementComponent } from './pages/hebergement/hebergement.component';
 import { OffreComponent } from './auth/offre/offre.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'paiement', component: CheckoutStripeSandboxComponent },
   { path: 'hebergement', component: HebergementComponent },
   { path: 'offre', component: OffreComponent },
+  { path: 'categorie', component: AdminComponent},
 
   // Re route lien qui n'existe pas sur page 404
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },
