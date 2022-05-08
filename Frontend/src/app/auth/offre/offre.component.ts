@@ -103,15 +103,7 @@ export class OffreComponent implements OnInit {
 
   }
 
-  //Fonction test récupération valeur
   submitForm(){
-    /*const message =`Mon name est ${this.nom}.
-    Mon prénom est ${this.prenom}.
-    Mon email est ${this.email}.
-    Mon message est : ${this.message}`;*/
-
-    //Récupère les valeurs de tous les champs du formulaire
-    /*alert(message);*/
     console.log(this.userForm.value);
     const { name, rate, description, address, owner, category } = this.userForm.value
 		console.log(name, 

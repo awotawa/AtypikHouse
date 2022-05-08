@@ -16,25 +16,31 @@
                         placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nom" pattern="^[a-zA-Zàâéèç.-.' ']*" required>
                 </mat-form-field>
 
-                <!-- Input email avec regex -->
+                <!-- Input adresse avec regex -->
                 <mat-form-field class="example-full-width">
                     <input matInput id="address" name="address" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adresse"
                         formControlName="address" required>
                 </mat-form-field>
 
-                <!-- Input email avec regex -->
+                <!-- Input email avec regex 
                 <mat-form-field class="example-full-width">
                     <input matInput id="category" name="category" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type d'habitation"
                         formControlName="category" required>
-                </mat-form-field>
+                </mat-form-field>-->
 
-                <!-- Input email avec regex -->
+                <!-- Select category -->
+                <select name="category" matInput id="category" formControlName="category" class="category" required>
+                    <option value="">--Type d'habitation--</option>
+                    <option value="/api/categories/1">Cabane</option>
+                    <option value="/api/categories/2">Yourte</option>
+                </select>
+                <!-- Input prix -->
                 <mat-form-field class="example-full-width">
                     <input type="number" matInput id="rate" name="rate" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prix"
                         formControlName="rate" required>
                 </mat-form-field>
 
-                <!-- Input email avec regex -->
+                <!-- Input propriétaire -->
                 <mat-form-field class="example-full-width">
                     <input matInput id="owner" name="owner" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Propriétaire"
                         formControlName="owner" required>
