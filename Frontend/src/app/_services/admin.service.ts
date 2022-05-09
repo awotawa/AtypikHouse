@@ -8,6 +8,9 @@ const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
+const httpOptionsPatch = {
+	headers: new HttpHeaders({ 'Content-Type': 'application/merge-patch+json' })
+};
 @Injectable({
 	providedIn: 'root'
 })
@@ -31,14 +34,17 @@ export class AdminService {
 	}
 
 	getallUsers(): Observable<any> {
-		return this.http.get(AUTH_API + '/users', { responseType: 'text'
-
-		});
+		return this.http.get(AUTH_API + '/users', { responseType: 'text'});
 	}
 
-	editLodgings(): Observable<any> {
-		return this.http.patch(AUTH_API + '/users', { responseType: 'text'
-
-		});
+	editLodgings(id:number, name: string, rate: number, description: string, address: string, owner: string, category: string): Observable<any> {
+		return this.http.patch(AUTH_API + '/lodgings/' + id, { 
+			name,
+			rate,
+			description,
+			address,
+			owner,
+			category
+		}, httpOptionsPatch );
 	}
 }
