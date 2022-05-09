@@ -3,7 +3,7 @@ End of cursus project to create a AirBnB like website but for atypical housing w
 
 Technology used:
 - PHP (version 8.1.2)
-- Symfony (version 6.0.4)
+- Symfony (version 6.0.8)
 - mySQL (version 8.1.2)
 - Angular (version 13.1.2)
 
