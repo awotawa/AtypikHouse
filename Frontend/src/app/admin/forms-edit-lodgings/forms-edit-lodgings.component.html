@@ -7,7 +7,7 @@
 
                 <div class="lodgingSection">
 
-                    <h1>{{lodging.name}}</h1>
+                    <!-- <h1>{{lodging.name}}</h1> -->
 
                     <div class="lodging">
 
@@ -34,9 +34,8 @@
                         </div> -->
 
                         <div class="logingDesc">
-                            <span>{{lodging.rate}}€/nuit</span>
-                            <p>{{lodging.description}}
-                            </p>
+                            <!-- <span>{{lodging.rate}}€/nuit</span> -->
+                            <!-- <p>{{lodging.description}}</p> -->
                         </div>
 
                     </div>
@@ -68,8 +67,7 @@
 
                 <!-- Input nom avec regex -->
                 <mat-form-field class="example-full-width">
-                    <input matInput name="nom" formControlName="name"
-                        value="{{lodging.name}}" pattern="^[a-zA-Zàâéèç.-.' ']*" required>
+                    <input matInput name="nom" formControlName="name" pattern="^[a-zA-Zàâéèç.-.' ']*" required>
                 </mat-form-field>
 
                 <!-- Input adresse avec regex -->
@@ -86,9 +84,10 @@
 
                 <!-- Select category -->
                 <select name="category" matInput id="category" formControlName="category" class="category" required>
-                    <option value="">--Type d'habitation--</option>
-                    <option value="/api/categories/1">Cabane</option>
-                    <option value="/api/categories/2">Yourte</option>
+                    <option value="" selected disabled>--Type d'habitation--</option>
+                    <!-- <option  *ngFor="let category of categories" value="/api/categories/{{category.id}}">{{category.type}}</option> -->
+                    <option *ngFor="let category of categories" [selected]="userForm.value.category.type === '/api/categories/{{category.id}}' " value="/api/categories/{{category.id}}">{{category.type}}</option>
+                    <!-- <option [selected]="userForm.value.category.type === '/api/categories/2' " value="/api/categories/2">Yourte</option> -->
                 </select>
                 <!-- Input prix -->
                 <mat-form-field class="example-full-width">
@@ -97,29 +96,30 @@
                 </mat-form-field>
 
                 <!-- Input propriétaire -->
-                <mat-form-field class="example-full-width">
+                <!-- <mat-form-field class="example-full-width">
                     <input matInput id="owner" name="owner" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Propriétaire"
                         formControlName="owner" required>
-                </mat-form-field>
+                </mat-form-field> -->
 
                 <p class="message-contact">Décrivez votre habitation</p>
                 <!-- Input message avec regex -->
                 <mat-form-field class="example-full-width">
-                    <textarea name="message" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Votre message" formControlName="description" 
-                    pattern="^.{50,255}$" required></textarea>
+                    <textarea name="message" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Votre message"
+                        formControlName="description" pattern="^.{50,255}$" required></textarea>
                 </mat-form-field>
                 <!-- Affiche une erreur si regex non respecté ou champ vide -->
-                <div class="error" *ngIf="userForm.controls['description'].invalid && userForm.controls['description'].value">
+                <div class="error"
+                    *ngIf="userForm.controls['description'].invalid && userForm.controls['description'].value">
                     Le message saisie est trop court et/ou trop long. Il doit contenir entre 50 et 255 caractères.
                 </div>
-                <div class="error" *ngIf="!userForm.controls['description'].value && userForm.controls['description'].touched">
+                <div class="error"
+                    *ngIf="!userForm.controls['description'].value && userForm.controls['description'].touched">
                     Ce champs est requis.
                 </div>
             </mat-card-content>
 
             <!-- Bouton désactivé tant que le formulaire n'est pas valide -->
-            <button type="submit" mat-stroked-button color="accent" class="btn-block"
-            [disabled]="!userForm.valid">Créez votre annonce</button>
+            <button mat-stroked-button color="accent" class="btn-block" [disabled]="!userForm.valid">Modifier mon annonce</button>
         </form>
     </mat-card>
 </div>
