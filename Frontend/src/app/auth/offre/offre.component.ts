@@ -6,7 +6,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/shared/models/category.model';
 import { AdminService } from 'src/app/_services/admin.service';
 import { UserService } from 'src/app/_services/user.service';
@@ -130,9 +130,6 @@ export class OffreComponent implements OnInit {
 
 			console.log(this.roles);
 			console.log(this.currentUserIdFromToken);
-			// this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-			// /*console.log(this.showAdminBoard)*/
-			// this.showOwnerBoard = this.roles.includes('ROLE_OWNER');
 		}
 
 		this.getCurrentUser();
@@ -156,7 +153,6 @@ export class OffreComponent implements OnInit {
 
 		this.authService.offre(name, rate, description, address, this.currentOwnerId!, category).subscribe({
 			next: data => {
-				console.log("gg mon bro")
 				window.alert("Succès ! Votre annonce va être publié d'ici peu.")
 				this.isSubmit = true;
 				if (this.isSubmit = true) {
@@ -213,8 +209,6 @@ export class OffreComponent implements OnInit {
 					console.log(concatOwnerId);
 					
 					this.currentOwnerId = concatOwnerId;
-					//this.currentUser! = currentUserData["hydra:member"];
-					//console.log(this.currentOwnerId ,"-^^^^-->", data);
 				},
 				error: err => {
 					this.content = JSON.parse(err.error).message;

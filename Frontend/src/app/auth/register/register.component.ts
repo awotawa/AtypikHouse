@@ -88,8 +88,8 @@ export class RegisterComponent implements OnInit {
 					this.isSignUpFailed = true;
 				}
 			);
-
-		//this.router.navigate(['/']);
+		window.alert("Compte créé avec succès !")
+		this.router.navigate(['/']);
 	}
 
 	visibilityPassword() {
