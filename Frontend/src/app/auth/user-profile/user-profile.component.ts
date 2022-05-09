@@ -157,8 +157,6 @@ export class UserProfileComponent implements OnInit {
 	//Redirection sur page inscription success
 	onSubmit() {
 		const { email, password, firstName, lastName } = this.userForm.value
-		console.log(email, password, firstName, lastName);
-		console.log(this.userObject.id);
 		this.userService.patchUserInfo(this.userObject.id, email, password, firstName, lastName)
 			.subscribe(data => {
 
@@ -168,6 +166,7 @@ export class UserProfileComponent implements OnInit {
 					console.log(data);
 					this.isSuccessful = true;
 					this.isUpdatedFailed = false;
+					window.alert("Succès ! Vos informations ont bien été mis à jour!")
 				}
 			},
 				err => {
