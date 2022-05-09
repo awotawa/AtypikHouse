@@ -14,7 +14,7 @@ export class LodgingComponent implements OnInit {
 
 	content: any;
 	lodgings: Lodgings[] = []
-	selectedId: any;
+	// selectedId: any;
 	//heroes = HEROES;
 
 	constructor(
@@ -42,8 +42,8 @@ export class LodgingComponent implements OnInit {
 			.subscribe({
 				next: lodginsData => {
 
-					this.lodgings = lodginsData;
-					// this.lodgings = lodginsData["hydra:member"];
+					//this.lodgings = lodginsData;
+					this.lodgings = lodginsData["hydra:member"];
 					console.log("--->", this.lodgings)
 				},
 				error: err => {

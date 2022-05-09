@@ -44,41 +44,35 @@ export class UserProfileComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		// Check to know which user is log
 		this.currentUser = this.token.getUser();
 
 		let splitToken = this.currentUser.token.split('.')[1]
 		let atobRes = JSON.parse(atob(splitToken));
 		console.log(atobRes.username)
 
-		/*console.log(atobRes.roles);*/
-		/*if(atobRes.roles[0]=="ROLE_ADMIN"){
-			this.showAdminBoard = true;
-		}
-		else if(atobRes.roles[0]=="ROLE_OWNER"){
-			this.showOwnerBoard = true;
-		}*/
-
-		this.isLoggedIn = !!this.tokenStorageService.getToken();
+		// Check if the user is steel log
+		this.isLoggedIn = !!this.token.getToken();
 		if (this.isLoggedIn) {
-		  const user = this.tokenStorageService.getUser();
-		  
-		  this.roles = atobRes.roles;
-		  console.log(this.roles)
-		  this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-		  /*console.log(this.showAdminBoard)*/
-		  this.showOwnerBoard = this.roles.includes('ROLE_OWNER');
+			const user = this.token.getUser();
+
+			this.roles = atobRes.roles;
+			console.log(this.roles)
+			this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+			/*console.log(this.showAdminBoard)*/
+			this.showOwnerBoard = this.roles.includes('ROLE_OWNER');
 		}
 
-		this.adminService.getallUsers().subscribe({
-			next: data => {
-				this.content = data;
-				console.log(data.roles)
-			},
-			error: err => {
-			  //this.errorMessage = err.error.message;
-			  //this.isLoginFailed = true;
-			}
-		  });
+		// this.adminService.getallUsers().subscribe({
+		// 	next: data => {
+		// 		this.content = data;
+		// 		console.log(data.roles)
+		// 	},
+		// 	error: err => {
+		// 	  //this.errorMessage = err.error.message;
+		// 	  //this.isLoginFailed = true;
+		// 	}
+		//   });
 	}
 
 	reloadPage(): void {
