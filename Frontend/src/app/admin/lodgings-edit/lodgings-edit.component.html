@@ -1,0 +1,34 @@
+<h1>Editer un logement</h1>
+
+    <!--<div class="lodgingAprecu">
+        <p> <span>{{ lodging.address }}</span> </p>
+    </div>-->
+
+    <!--<div class="logingDesc">
+
+        <h3>{{ lodging.name }}</h3>
+        <span>{{ lodging.rate }}€/nuit</span>
+        <p>{{ lodging.description }}</p>
+        <button (click)="goToProductDetails(lodging.id)"> Modifier</button>
+        <span>{{lodging-detail.id}}</span> -
+    </div>-->
+
+    <table>
+        <tr>
+          <th>Nom</th>
+          <th>Adresse</th>
+          <th>Description</th>
+          <th>Prix</th>
+          <th>Editer</th>
+        </tr>
+        <div class="lodging" *ngFor="let lodging of lodgings; let index = index">
+        <tr>
+          <td>{{ lodging.name }}</td>
+          <td>{{ lodging.address }}</td>
+          <td>{{ lodging.description }}</td>
+          <td>{{ lodging.rate }}€/nuit</td>
+          <td><button (click)="goToProductDetails(lodging.id)"> Modifier</button></td>
+        </tr>
+        </div>
+      </table>
+
