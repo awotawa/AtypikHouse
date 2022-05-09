@@ -15,7 +15,7 @@ import { PublicService } from 'src/app/_services/public.service';
 export class LodgingDetailComponent implements OnInit {
 
     title = 'Chalêt Albert | Atypik House | Location de logement | France';
-    lodging!: Lodgings
+    lodging!: Lodgings;
     images!: any[];
     content: any;
     id?: number;

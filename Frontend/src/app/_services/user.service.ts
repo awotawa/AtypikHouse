@@ -14,7 +14,7 @@ export class UserService {
 	constructor(private http: HttpClient) { }
 
 	getUserBoard(): Observable<any> {
-		return this.http.get(API_URL + '/users/me', { responseType: 'text' });
+		return this.http.get(API_URL + '/users/me', { responseType: 'json' });
 	}
 
 	getModeratorBoard(): Observable<any> {
