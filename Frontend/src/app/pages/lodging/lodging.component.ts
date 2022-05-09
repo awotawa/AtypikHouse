@@ -14,7 +14,7 @@ export class LodgingComponent implements OnInit {
 
 	content: any;
 	lodgings: Lodgings[] = []
-	selectedId: any;
+	// selectedId: any;
 	//heroes = HEROES;
 
 	constructor(

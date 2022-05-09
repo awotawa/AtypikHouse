@@ -30,9 +30,8 @@
 
                 <!-- Select category -->
                 <select name="category" matInput id="category" formControlName="category" class="category" required>
-                    <option value="">--Type d'habitation--</option>
-                    <option value="/api/categories/1">Cabane</option>
-                    <option value="/api/categories/2">Yourte</option>
+                    <option value="" disabled>--Type d'habitation--</option>
+                    <option  *ngFor="let category of categories" value="/api/categories/{{category.id}}">{{category.type}}</option>
                 </select>
                 <!-- Input prix -->
                 <mat-form-field class="example-full-width">
@@ -40,11 +39,6 @@
                         formControlName="rate" required>
                 </mat-form-field>
 
-                <!-- Input propriétaire -->
-                <mat-form-field class="example-full-width">
-                    <input matInput id="owner" name="owner" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Propriétaire"
-                        formControlName="owner" required>
-                </mat-form-field>
 
                 <p class="message-contact">Décrivez votre habitation</p>
                 <!-- Input message avec regex -->
@@ -66,7 +60,7 @@
             </form>
 
             <!-- Bouton désactivé tant que le formulaire n'est pas valide -->
-            <button type="submit" mat-stroked-button color="accent" class="btn-block"
+            <button  mat-stroked-button color="accent" class="btn-block"
             [disabled]="!userForm.valid || !frmFinish.valid">Créez votre annonce</button>
         </form>
     </mat-card>
