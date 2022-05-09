@@ -120,16 +120,10 @@ export class UserProfileComponent implements OnInit {
 		console.log('/--------/');
 		console.log(this.userInfo);
 
-		/*console.log(atobRes.roles);*/
-		/*if(atobRes.roles[0]=="ROLE_ADMIN"){
-			this.showAdminBoard = true;
-		}
-		else if(atobRes.roles[0]=="ROLE_OWNER"){
-			this.showOwnerBoard = true;
-		}*/
-
-		this.isLoggedIn = !!this.tokenStorageService.getToken();
+		// Check if the user is steel log
+		this.isLoggedIn = !!this.token.getToken();
 		if (this.isLoggedIn) {
+<<<<<<< HEAD
 		  const user = this.tokenStorageService.getUser();
 		  
 		  this.roles = atobRes.roles;
@@ -214,6 +208,27 @@ export class UserProfileComponent implements OnInit {
 			myImgPassword.src = "../../assets/icons/passwordVisibility/visibility.svg";
 		}
 
+=======
+			const user = this.token.getUser();
+
+			this.roles = atobRes.roles;
+			console.log(this.roles)
+			this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+			/*console.log(this.showAdminBoard)*/
+			this.showOwnerBoard = this.roles.includes('ROLE_OWNER');
+		}
+
+		// this.adminService.getallUsers().subscribe({
+		// 	next: data => {
+		// 		this.content = data;
+		// 		console.log(data.roles)
+		// 	},
+		// 	error: err => {
+		// 	  //this.errorMessage = err.error.message;
+		// 	  //this.isLoginFailed = true;
+		// 	}
+		//   });
+>>>>>>> a0d692cf9b8c142db9c6bfd5551d5039580e57f7
 	}
 
 	reloadPage(): void {

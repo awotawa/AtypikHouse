@@ -6,18 +6,22 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Lodgings } from 'src/app/shared/models/lodgings.model';
 import { PublicService } from 'src/app/_services/public.service';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+
 
 @Component({
-    selector: 'app-lodging-detail',
-    templateUrl: './lodging-detail.component.html',
-    styleUrls: ['./lodging-detail.component.scss']
+  selector: 'app-forms-edit-lodgings',
+  templateUrl: './forms-edit-lodgings.component.html',
+  styleUrls: ['./forms-edit-lodgings.component.scss']
 })
-export class LodgingDetailComponent implements OnInit {
-    title = 'Chalêt Albert | Atypik House | Location de logement | France';
-    lodging!: Lodgings;
+export class FormsEditLodgingsComponent implements OnInit {
+
+  title = 'Editer | Atypik House | Location de logement | France';
+    lodging!: Lodgings
     images!: any[];
     content: any;
     id?: number;
+    userForm: FormGroup;
 
     responsiveOptions: any[] = [
         {
@@ -40,10 +44,19 @@ export class LodgingDetailComponent implements OnInit {
         private publicService: PublicService,
         private photoService: PhotoServiceService,
         private metaService: Meta,
-        private titleService: Title) {
-        //this.visibleImages = this.photoService.getImages()
+        private titleService: Title,
+        private formBuilder: FormBuilder) {
         this.addTag();
         this.titleService.setTitle(this.title);
+
+        this.userForm = this.formBuilder.group({
+          name: ['', [Validators.required]],
+          address: ['', [Validators.required]],
+          category: ['', [Validators.required]],
+          rate: ['', [Validators.required]],
+          owner: ['', [Validators.required]],
+          description: ['', [Validators.required]]
+        });
     }
 
     addTag() {
@@ -58,7 +71,7 @@ export class LodgingDetailComponent implements OnInit {
 
 
     ngOnInit() {
-        this.photoService.getImages().then((images: any[]) => { this.images = images });
+        //this.photoService.getImages().then((images: any[]) => { this.images = images });
 
         //const lodgingId = this.route.snapshot.paramMap.get('id');
         //this.lodging = this.publicService.getLodgingId( parseInt(lodgingId!));
@@ -91,11 +104,8 @@ export class LodgingDetailComponent implements OnInit {
             });
     }
 
-    // gotoItems(lodging: Lodgings) {
-    //     const lodgingId = lodging ? lodging.id : null;
-    //     // Pass along the hero id if available
-    //     // so that the HeroList component can select that item.
-    //     this.router.navigate(['/homepage', { id: lodgingId }]);
-    // }
+    submitForm(){
+      
+    }
 
 }

@@ -33,6 +33,10 @@ export class AuthService {
 		}, httpOptions);
 	}
 
+	getCurrentUser(): Observable<any> {
+		return this.http.get(AUTH_API + '/users/me', { responseType: 'json'});
+	}
+
 	offre(name: string, rate: number, description: string, address: string, owner: string, category: string): Observable<any> {
 		return this.http.post(AUTH_API + '/lodgings', {
 			name,

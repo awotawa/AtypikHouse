@@ -22,8 +22,22 @@ export class AdminService {
 		}, httpOptions);
 	}
 
+	getAllCategory(): Observable<any> {
+		return this.http.get(AUTH_API + '/categories', { responseType: 'json'});
+	}
+
+	getCurrentUserByOwnerId(id: number): Observable<any> {
+		return this.http.get(AUTH_API + '/users/' + id + '/owner/' , { responseType: 'json'});
+	}
+
 	getallUsers(): Observable<any> {
 		return this.http.get(AUTH_API + '/users', { responseType: 'text'
+
+		});
+	}
+
+	editLodgings(): Observable<any> {
+		return this.http.patch(AUTH_API + '/users', { responseType: 'text'
 
 		});
 	}
