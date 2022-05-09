@@ -35,4 +35,10 @@ export class AdminService {
 
 		});
 	}
+
+	editLodgings(): Observable<any> {
+		return this.http.patch(AUTH_API + '/users', { responseType: 'text'
+
+		});
+	}
 }

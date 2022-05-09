@@ -55,6 +55,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { HebergementComponent } from './pages/hebergement/hebergement.component';
 import { OffreComponent } from './auth/offre/offre.component';
 import { AdminComponent } from './admin/admin.component';
+import { LodgingsEditComponent } from './admin/lodgings-edit/lodgings-edit.component';
+import { FormsEditLodgingsComponent } from './admin/forms-edit-lodgings/forms-edit-lodgings.component';
 
 @NgModule({
 	declarations: [
@@ -82,6 +84,8 @@ import { AdminComponent } from './admin/admin.component';
   HebergementComponent,
   OffreComponent,
   AdminComponent,
+  LodgingsEditComponent,
+  FormsEditLodgingsComponent,
 	],
 	imports: [
 		FormsModule,

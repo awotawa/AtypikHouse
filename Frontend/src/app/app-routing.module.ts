@@ -17,6 +17,8 @@ import { HebergementComponent } from './pages/hebergement/hebergement.component'
 import { LodgingComponent } from './pages/lodging/lodging.component';
 import { OffreComponent } from './auth/offre/offre.component';
 import { AdminComponent } from './admin/admin.component';
+import { LodgingsEditComponent } from './admin/lodgings-edit/lodgings-edit.component';
+import { FormsEditLodgingsComponent } from './admin/forms-edit-lodgings/forms-edit-lodgings.component';
 
 
 const routes: Routes = [
@@ -37,6 +39,8 @@ const routes: Routes = [
   { path: 'hebergement', component: HebergementComponent },
   { path: 'offre', component: OffreComponent },
   { path: 'categorie', component: AdminComponent},
+  { path: 'editer-logement', component: LodgingsEditComponent},
+  { path: 'editer-annonce/:id', component: FormsEditLodgingsComponent },
 
   // Re route lien qui n'existe pas sur page 404
   { path: '**', pathMatch: 'full', component: PagenotfoundComponent },

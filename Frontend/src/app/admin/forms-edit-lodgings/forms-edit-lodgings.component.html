@@ -1,0 +1,125 @@
+<div class="container">
+
+    <section>
+        <div class="useful-width">
+
+            <div class="margin-constraint">
+
+                <div class="lodgingSection">
+
+                    <h1>{{lodging.name}}</h1>
+
+                    <div class="lodging">
+
+                        <!-- <div class="lodgingAprecu">
+                            <div>
+            
+                                <img src="https://www.labresse.net/medias/images/prestations/chalet-lonier-le-couaroge-la-bresse-432752.jpg"
+                                    alt="">
+                            </div>
+                            <p> <span>Annecy, </span> <span> Auvergne-Rhône-Alpe</span> </p>
+                        </div>
+            
+                        <div class="logingDesc">
+            
+                            <span>200€/nuit</span>
+                            <p>Petit châlet cosy au sein
+                                des Alpes. Vous êtes à
+                                deux pas des stations 
+                                Gigot-Crue et
+                                Pouillot-les-Bains. Profitez du
+                                grand air !
+                            </p>
+            
+                        </div> -->
+
+                        <div class="logingDesc">
+                            <span>{{lodging.rate}}€/nuit</span>
+                            <p>{{lodging.description}}
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+</div>
+
+
+
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+
+        <!-- En-tête du formulaire-->
+        <mat-card-header>
+            <mat-card-title>Modifier l'annonce</mat-card-title>
+        </mat-card-header>
+
+        <!-- Début formulaire -->
+        <form (ngSubmit)="submitForm();" class="example-form" [formGroup]="userForm">
+            <mat-card-content>
+
+                <!-- Input nom avec regex -->
+                <mat-form-field class="example-full-width">
+                    <input matInput name="nom" formControlName="name"
+                        value="{{lodging.name}}" pattern="^[a-zA-Zàâéèç.-.' ']*" required>
+                </mat-form-field>
+
+                <!-- Input adresse avec regex -->
+                <mat-form-field class="example-full-width">
+                    <input matInput id="address" name="address" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adresse"
+                        formControlName="address" required>
+                </mat-form-field>
+
+                <!-- Input email avec regex 
+                <mat-form-field class="example-full-width">
+                    <input matInput id="category" name="category" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type d'habitation"
+                        formControlName="category" required>
+                </mat-form-field>-->
+
+                <!-- Select category -->
+                <select name="category" matInput id="category" formControlName="category" class="category" required>
+                    <option value="">--Type d'habitation--</option>
+                    <option value="/api/categories/1">Cabane</option>
+                    <option value="/api/categories/2">Yourte</option>
+                </select>
+                <!-- Input prix -->
+                <mat-form-field class="example-full-width">
+                    <input type="number" matInput id="rate" name="rate" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prix"
+                        formControlName="rate" required>
+                </mat-form-field>
+
+                <!-- Input propriétaire -->
+                <mat-form-field class="example-full-width">
+                    <input matInput id="owner" name="owner" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Propriétaire"
+                        formControlName="owner" required>
+                </mat-form-field>
+
+                <p class="message-contact">Décrivez votre habitation</p>
+                <!-- Input message avec regex -->
+                <mat-form-field class="example-full-width">
+                    <textarea name="message" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Votre message" formControlName="description" 
+                    pattern="^.{50,255}$" required></textarea>
+                </mat-form-field>
+                <!-- Affiche une erreur si regex non respecté ou champ vide -->
+                <div class="error" *ngIf="userForm.controls['description'].invalid && userForm.controls['description'].value">
+                    Le message saisie est trop court et/ou trop long. Il doit contenir entre 50 et 255 caractères.
+                </div>
+                <div class="error" *ngIf="!userForm.controls['description'].value && userForm.controls['description'].touched">
+                    Ce champs est requis.
+                </div>
+            </mat-card-content>
+
+            <!-- Bouton désactivé tant que le formulaire n'est pas valide -->
+            <button type="submit" mat-stroked-button color="accent" class="btn-block"
+            [disabled]="!userForm.valid">Créez votre annonce</button>
+        </form>
+    </mat-card>
+</div>
