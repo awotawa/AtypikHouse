@@ -13,7 +13,7 @@ import { PublicService } from 'src/app/_services/public.service';
     styleUrls: ['./lodging-detail.component.scss']
 })
 export class LodgingDetailComponent implements OnInit {
-    title = 'Chalêt Albert | Atypik House | Location de logement | France';
+    title = 'Réservez votre logement | Atypik House | Location de logement | France';
     lodging!: Lodgings;
     images!: any[];
     content: any;

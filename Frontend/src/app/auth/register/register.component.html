@@ -3,7 +3,7 @@
 
         <!-- En-tête du formulaire-->
         <mat-card-header>
-            <mat-card-title>Inscription</mat-card-title>
+            <mat-card-title><h1>Inscription</h1></mat-card-title>
         </mat-card-header>
 
         <!-- Début formulaire -->
@@ -63,7 +63,6 @@
                             <img class="imgVisibility1" src="../../assets/icons/passwordVisibility/visibility.svg"
                                 alt="">
                         </span>
-
                     </div>
                 </mat-form-field>
                 <div class="error" *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].value">
@@ -102,38 +101,6 @@
                 <div class="error" *ngIf="repassword.controls['samePassword'].touched && !repassword.controls['samePassword'].value">
                     Ce champs est requis.
                 </div>
-
-                <!-- Input adresse avec regex -->
-                <!-- <mat-form-field class="example-full-width">
-                    <input name="adresse" matInput placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adresse" [(ngModel)]="userForm.value.adresse"
-                        formControlName="adresse" required>
-                </mat-form-field>
-                <div class="error" *ngIf="userForm.controls['adresse'].touched && !userForm.controls['adresse'].value">
-                    Ce champs est requis.
-                </div> -->
-
-                <!-- Input date en readonly, pas de saisie manuelle autorisée -->
-                <!-- <mat-form-field class="example-full-width">
-                    <input name="date" matInput [matDatepicker]="picker" placeholder="Date de naissance" readonly
-                        [(ngModel)]="date" #dateInput="ngModel" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker touchUi="true" #picker></mat-datepicker>
-                </mat-form-field>
-                <div class="error" *ngIf="dateInput.touched && !dateInput.value">
-                    Ce champs est requis.
-                </div> -->
-
-                <!-- Sélection du rôle -->
-                <!-- <mat-form-field class="example-full-width">
-                    <mat-label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vous êtes un...</mat-label>
-                    <mat-select name="role" [(ngModel)]="userForm.value.role" formControlName="role" required>
-                        <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <div class="error" *ngIf="userForm.controls['role'].touched && !userForm.controls['role'].value">
-                    Ce champs est requis.
-                </div> -->
-
             </mat-card-content>
 
             <form [formGroup]="frmFinish" >

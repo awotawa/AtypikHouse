@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 import { User } from '../shared/models/user.model';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'https://radiant-reaches-08673.herokuapp.com/api';
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

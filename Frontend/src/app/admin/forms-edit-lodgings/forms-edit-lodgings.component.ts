@@ -105,11 +105,6 @@ export class FormsEditLodgingsComponent implements OnInit {
 
 
     ngOnInit() {
-        //this.photoService.getImages().then((images: any[]) => { this.images = images });
-
-        //const lodgingId = this.route.snapshot.paramMap.get('id');
-        //this.lodging = this.publicService.getLodgingId( parseInt(lodgingId!));
-
         this.route.params.subscribe(params => {
             this.id = +params['id']; // (+) converts string 'id' to a number
             console.log();
@@ -180,8 +175,6 @@ export class FormsEditLodgingsComponent implements OnInit {
 					console.log(concatOwnerId);
 					
 					this.currentOwnerId = concatOwnerId;
-					//this.currentUser! = currentUserData["hydra:member"];
-					//console.log(this.currentOwnerId ,"-^^^^-->", data);
 				},
 				error: err => {
 					this.content = JSON.parse(err.error).message;
@@ -199,6 +192,8 @@ export class FormsEditLodgingsComponent implements OnInit {
             address,
             category } = this.userForm.value
 
+        
+        //Requête éditer une annonce
         this.adminService.editLodgings(this.lodgingId!, name,
             rate,
             description,
@@ -207,8 +202,6 @@ export class FormsEditLodgingsComponent implements OnInit {
             category)
             .subscribe({
                 next: data => {
-
-                    console.log("gg mon bro")
                     window.alert("Succès ! Votre annonce va être publié d'ici peu.")
                     this.isSubmit = true;
                     if (this.isSubmit = true) {
@@ -221,6 +214,10 @@ export class FormsEditLodgingsComponent implements OnInit {
                 }
             });
 
+    }
+
+    btnPrec(){
+        this.router.navigate(['/mon-compte']);
     }
 
 

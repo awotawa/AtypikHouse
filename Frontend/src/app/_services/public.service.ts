@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpBackend } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://127.0.0.1:8000/api';
+const API_URL = 'https://radiant-reaches-08673.herokuapp.com/api';
 
 @Injectable({
 	providedIn: 'root'

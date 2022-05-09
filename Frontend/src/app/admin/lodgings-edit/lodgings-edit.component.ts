@@ -44,15 +44,7 @@ export class LodgingsEditComponent implements OnInit {
 
 
 	ngOnInit(): void {
-
 		this.getAllLodgings();
-
-		// this.lodgings = this.routeActive.paramMap.pipe(
-		// 	switchMap(params => {
-		// 		this.selectedId = params.get('id');
-		// 		return this.publicService.getLodgings();
-		// 	})
-		// );
 	}
 
 

@@ -3,9 +3,11 @@
 
         <!-- En-tête du formulaire-->
         <mat-card-header>
-            <mat-card-title>Ajouter une annonce</mat-card-title>
+            <mat-card-title><h1>Ajouter une annonce</h1></mat-card-title>
         </mat-card-header>
 
+
+        {{ userForm.valid }}
         <!-- Début formulaire -->
         <form (ngSubmit)="submitForm();" class="example-form" [formGroup]="userForm">
             <mat-card-content>
